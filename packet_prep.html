@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Packet Prep – Home</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <div style="width:44px;"><!-- logo excluded --></div>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#glossary">Glossary</a>
+      <a href="#about">About</a>
+      <a href="#progress">Progress</a>
+      <a href="#chapter-select">Chapter Select</a>
+    </nav>
+
+    <div id="themeSwitch" class="switch" role="switch" aria-checked="false" tabindex="0" title="Toggle dark mode"></div>
+  </header>
+
+  <!-- Screen 1: Hero -->
+  <section id="home" class="screen">
+    <div class="wrap hero">
+      <h1>Your Networking Journey<br/>Begins Here</h1>
+      <p>A complete beginner guide to the fundamentals of computer networking</p>
+      <button class="btn" id="beginBtn">Begin</button>
+      <div class="scrollHint">
+        <span>Scroll to learn more</span>
+        <span class="dot">⌄</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screen 2: About -->
+  <section id="about" class="screen">
+    <div class="wrap">
+      <div class="grid2">
+        <div class="card">
+          <div class="kicker">About Packet - Prep</div>
+
+          <div class="label">The What:</div>
+          <p class="para">
+            A beginner-friendly learning site that explains networking concepts with clear structure,
+            simple visuals, and short quizzes.
+          </p>
+
+          <div class="label">The Why:</div>
+          <p class="para">
+            Networking becomes easier when the information is organized. This project breaks fundamentals
+            into bite-sized sections so users can learn and review quickly.
+          </p>
+        </div>
+
+        <div class="imgPh">Image Placeholder</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screen 3: What You'll Learn -->
+  <section class="screen">
+    <div class="wrap">
+      <div class="learnHeader">
+        <div>
+          <h2>What You’ll Learn</h2>
+          <p>Click a chapter to preview what’s inside.</p>
+        </div>
+      </div>
+
+      <div class="learnLayout">
+        <div class="learnList" id="learnList"></div>
+
+        <aside class="preview" aria-live="polite">
+          <h3 class="previewTitle" id="previewTitle">IP Addresses</h3>
+          <p class="previewBody" id="previewBody">
+            Learn what an IP address is, how subnet masks work conceptually, and why addressing matters in real networks.
+          </p>
+          <div class="previewMeta" id="previewMeta">
+            <span class="pill">Estimated: 15–25 min</span>
+            <span class="pill">Includes: diagrams</span>
+            <span class="pill">Ends with: quiz</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screen 4: Ready -->
+  <section class="screen">
+    <div class="wrap ready">
+      <h2>Ready to Start?</h2>
+      <button class="btn" id="beginBtn2">Begin</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <!-- Brand / Image Area -->
+    <div class="footer-brand">
+      <div class="footer-logo">
+        Image
+      </div>
+      <p class="footer-tagline">
+        Packet Prep — Networking Fundamentals Made Simple
+      </p>
+    </div>
+
+    <!-- Primary Links -->
+    <nav class="footer-nav" aria-labelledby="footer-links-heading">
+      <h2 id="footer-links-heading" class="footer-heading">
+        Links
+      </h2>
+      <ul class="footer-list">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#glossary">Glossary</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#progress">Progress</a></li>
+        <li><a href="#chapters">Chapter Select</a></li>
+      </ul>
+    </nav>
+
+    <!-- Contact Links -->
+    <nav class="footer-nav" aria-labelledby="footer-contact-heading">
+      <h2 id="footer-contact-heading" class="footer-heading">
+        Contact
+      </h2>
+      <ul class="footer-list">
+        <li><a href="mailto:your@email.com">Email</a></li>
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </nav>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Packet Prep. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>
