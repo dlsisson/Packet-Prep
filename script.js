@@ -64,43 +64,87 @@
       document.querySelector(".learnHeader").scrollIntoView({ behavior:"smooth" });
     });
 
-    // ==========================
-// NAVBAR SCROLL BEHAVIOR
 // ==========================
-
+// NAVBAR: HIDE ON DOWN, SHOW ON UP (NO SPUTTER)
+// ==========================
 const navbar = document.querySelector(".topbar");
 const hero = document.querySelector(".hero");
 
-let lastScrollY = window.scrollY;
+let lastY = window.scrollY;
+let lastActionTime = 0;
 let ticking = false;
 
-// Height of hero (prevents hiding while at top)
 const heroHeight = hero ? hero.offsetHeight : 200;
 
+// Tune these
+const TOP_LOCK_PX = 6;      // always show when within 0-6px from top
+const SHOW_AT_TOP_PX = 40;  // always show when within first 40px (prevents early hide)
+const DEADZONE = 10;        // ignore small scroll jitter
+const COOLDOWN_MS = 180;    // min time between hide/show changes
+
+function setHidden(hidden) {
+  navbar.classList.toggle("hide", hidden);
+}
+
 function updateNavbar() {
-  const currentScrollY = window.scrollY;
+  const y = window.scrollY;
+  const delta = y - lastY;
+  const now = performance.now();
 
-  // Add shadow + shrink when not at top
-  if (currentScrollY > 10) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
+  // 1) Visual state (shadow/shrink)
+  navbar.classList.toggle("scrolled", y > 10);
+
+  // 2) Hard lock at the very top (kills sputter)
+  if (y <= TOP_LOCK_PX) {
+    setHidden(false);
+    lastY = y;
+    ticking = false;
+    return;
   }
 
-  // Hide when scrolling down (after hero)
-  if (currentScrollY > lastScrollY && currentScrollY > heroHeight) {
-    navbar.classList.add("hide");
-  } else {
-    navbar.classList.remove("hide");
+  // 3) Always show near top / hero area (prevents immediate hide)
+  if (y <= Math.min(heroHeight + 40, SHOW_AT_TOP_PX)) {
+    setHidden(false);
+    lastY = y;
+    ticking = false;
+    return;
   }
 
-  lastScrollY = currentScrollY;
+  // 4) Ignore micro movement
+  if (Math.abs(delta) < DEADZONE) {
+    lastY = y;
+    ticking = false;
+    return;
+  }
+
+  // 5) Cooldown to prevent rapid toggling
+  if (now - lastActionTime < COOLDOWN_MS) {
+    lastY = y;
+    ticking = false;
+    return;
+  }
+
+  // 6) Direction logic
+  if (delta > 0) {
+    // scrolling down
+    setHidden(true);
+  } else {
+    // scrolling up
+    setHidden(false);
+  }
+
+  lastActionTime = now;
+  lastY = y;
   ticking = false;
 }
 
-window.addEventListener("scroll", () => {
-  if (!ticking) {
-    window.requestAnimationFrame(updateNavbar);
-    ticking = true;
-  }
-});
+window.addEventListener(
+  "scroll",
+  () => {
+    if (!ticking) {
+      requestAnimationFrame(updateNavbar);
+      ticking = true;
+    }
+  },
+  { passive: true }
+);
