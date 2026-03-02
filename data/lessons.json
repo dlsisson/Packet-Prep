@@ -1,0 +1,27 @@
+{
+  "chapters": [
+    {
+      "id": "chapter-1",
+      "number": 1,
+      "title": "Networking Basics",
+      "subtitle": "What networks are, why they exist, and how data moves.",
+      "sections": [
+        { "id": "s-what-is-a-network", "heading": "What is a Network?", "html": "<p>A network is...</p>" },
+        { "id": "s-packets", "heading": "Packets", "html": "<p>Packets are...</p>" }
+      ],
+      "quiz": [
+        { "topic": "Basics", "question": "A LAN is typically...", "options": ["Local scope", "Global scope", "Satellite only", "Layer 1 only"], "answerIndex": 0, "explain": "LAN = Local Area Network." }
+      ]
+    },
+    {
+      "id": "chapter-2",
+      "number": 2,
+      "title": "OSI Model",
+      "subtitle": "Layers, responsibilities, and how to troubleshoot.",
+      "sections": [
+        { "id": "s-osi", "heading": "The 7 Layers", "html": "<p>...</p>" }
+      ],
+      "quiz": []
+    }
+  ]
+}
