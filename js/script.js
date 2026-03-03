@@ -86,55 +86,38 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
   // -------------------------
-  // Navbar hide/show on scroll (guarded)
+  // Navbar scroll detection (works for both packet_prep.html and lessons.html)
   // -------------------------
   (() => {
-    const navbar = document.querySelector(".topbar");
-    if (!navbar) return;
+    const topbar = document.querySelector(".topbar");
+    if (!topbar) return;
 
-    const hero = document.querySelector(".hero");
-    const heroHeight = hero ? hero.offsetHeight : 200;
+    const hero = document.querySelector("#home.screen");
+    const triggerHeight = hero ? hero.offsetHeight - 80 : 300; // fallback to 300px for lessons page
 
     let lastY = window.scrollY;
-    let lastActionTime = 0;
     let ticking = false;
-
-    const TOP_LOCK_PX = 6;
-    const SHOW_AT_TOP_PX = 40;
-    const DEADZONE = 10;
-    const COOLDOWN_MS = 180;
-
-    function setHidden(hidden) {
-      navbar.classList.toggle("hide", hidden);
-    }
 
     function updateNavbar() {
       const y = window.scrollY;
       const delta = y - lastY;
-      const now = performance.now();
 
-      navbar.classList.toggle("scrolled", y > 10);
-
-      if (y <= TOP_LOCK_PX) {
-        setHidden(false);
-        lastY = y; ticking = false; return;
+      // Toggle "scrolled" state based on hero height or fixed threshold
+      if (y > triggerHeight) {
+        topbar.classList.add("scrolled");
+      } else {
+        topbar.classList.remove("scrolled");
       }
 
-      if (y <= Math.min(heroHeight + 40, SHOW_AT_TOP_PX)) {
-        setHidden(false);
-        lastY = y; ticking = false; return;
+      // Hide on scroll down, show on scroll up (but always show at top)
+      if (y < 10) {
+        topbar.classList.remove("hide");
+      } else if (delta > 0) {
+        topbar.classList.add("hide");
+      } else if (delta < 0) {
+        topbar.classList.remove("hide");
       }
 
-      if (Math.abs(delta) < DEADZONE) {
-        lastY = y; ticking = false; return;
-      }
-
-      if (now - lastActionTime < COOLDOWN_MS) {
-        lastY = y; ticking = false; return;
-      }
-
-      setHidden(delta > 0);
-      lastActionTime = now;
       lastY = y;
       ticking = false;
     }
@@ -145,5 +128,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ticking = true;
       }
     }, { passive: true });
+
+    // Set initial state
+    updateNavbar();
   })();
 });

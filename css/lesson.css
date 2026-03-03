@@ -1,6 +1,6 @@
 /* =========================================================
-   Packet Prep Lesson Page (Codecademy/Udemy style)
-   Plug your existing nav/core styling in by mapping variables + classes
+   Packet Prep Lesson Page
+   Color-consistent with homepage (global.css tokens)
 ========================================================= */
 
 :root{
@@ -18,59 +18,23 @@ html,body{ height: 100%; }
 body{
   margin: 0;
   font-family: var(--font);
-  background: radial-gradient(1200px 600px at 20% -10%, rgba(255,77,46,.16), transparent 60%),
-              radial-gradient(900px 500px at 90% 10%, rgba(46,211,255,.10), transparent 55%),
-              var(--bg);
+  background: var(--bg);     /* ✅ match homepage */
   color: var(--text);
 }
 
-/* Links */
-a{ color: inherit; text-decoration: none; }
-a:hover{ text-decoration: underline; }
-
-/* =========================================================
-   Topbar (replace with your existing nav if you want)
-========================================================= */
+/* Override global topbar transparent styling for lesson pages */
 .topbar{
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(11,15,20,.72);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
 }
-.topbar__inner{
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 12px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-.brand{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 700;
-  letter-spacing: .2px;
-}
-.brand__mark{
-  width: 14px; height: 14px;
-  border-radius: 6px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  box-shadow: 0 8px 18px rgba(255,77,46,.18);
-}
-.topbar__actions{ display: inline-flex; gap: 10px; }
-.icon-btn{
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.04);
+
+.topbar .nav a{
   color: var(--text);
-  border-radius: 12px;
-  padding: 8px 10px;
-  cursor: pointer;
 }
-.icon-btn:hover{ background: rgba(255,255,255,.07); }
+
+.topbar .nav a:hover{
+  color: var(--focus);
+}
 
 /* =========================================================
    Page Layout
@@ -78,39 +42,38 @@ a:hover{ text-decoration: underline; }
 .page{
   display: grid;
   grid-template-columns: var(--sidebar-w) 1fr;
-  min-height: calc(100vh - 56px);
+  min-height: calc(100vh - var(--topH));
 }
+
 /* Sidebar base */
 .sidebar{
   position: sticky;
-  top: 56px; /* adjust to your header height */
-  height: calc(100vh - 56px);
+  top: var(--topH);
+  height: calc(100vh - var(--topH));
   overflow: auto;
 
-  background: rgba(15,22,32,.55);
-  border-right: 1px solid var(--border);
-  backdrop-filter: blur(10px);
+  background: var(--panel);                 /* ✅ light panel */
+  border-right: 1px solid var(--line);      /* ✅ homepage line */
 }
 
-/* Optional: nicer scrollbar (safe to remove if you hate it) */
+/* Optional: nicer scrollbar */
 .sidebar::-webkit-scrollbar{ width: 10px; }
 .sidebar::-webkit-scrollbar-thumb{
-  background: rgba(255,255,255,.08);
+  background: rgba(0,0,0,.12);              /* ✅ dark thumb on light bg */
   border-radius: 999px;
 }
 .sidebar::-webkit-scrollbar-track{ background: transparent; }
 
-/* Sidebar header: flex layout with meta on left, buttons on right */
+/* Sidebar header */
 .sidebar__header{
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
   padding: 12px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--line);
 }
 
-/* Sidebar meta info */
 .sidebar__meta{
   flex: 1;
   min-width: 0;
@@ -120,7 +83,7 @@ a:hover{ text-decoration: underline; }
   margin: 0;
   font-size: 12px;
   color: var(--muted);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .05em;
 }
@@ -128,7 +91,7 @@ a:hover{ text-decoration: underline; }
 .sidebar__chapter{
   margin: 4px 0 0;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -160,19 +123,18 @@ a:hover{ text-decoration: underline; }
   width: auto;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid var(--border);
-  background: rgba(15,22,32,.75);
-  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  background: #fff;                 /* ✅ match cards */
   color: var(--text);
   cursor: pointer;
   box-shadow: var(--shadow);
   display: none;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   white-space: nowrap;
 }
 .sidebar-rail:hover{
-  background: rgba(255,255,255,.07);
+  background: var(--panel);
 }
 
 /* Closed state: hide sidebar, expand content */
@@ -190,16 +152,16 @@ a:hover{ text-decoration: underline; }
   }
 }
 
-/* Sidebar progress section */
+/* Sidebar progress */
 .sidebar__progress{
   padding: 12px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--line);
 }
 
 .progressline{
   width: 100%;
-  height: 4px;
-  background: rgba(255,255,255,.1);
+  height: 6px;
+  background: rgba(0,0,0,.08);
   border-radius: 999px;
   overflow: hidden;
   margin-bottom: 8px;
@@ -207,7 +169,7 @@ a:hover{ text-decoration: underline; }
 
 .progressline__fill{
   height: 100%;
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
   transition: width .3s ease;
 }
 
@@ -226,13 +188,15 @@ a:hover{ text-decoration: underline; }
   padding: 12px 0;
 }
 
-/* Sidebar: cleaner chapter hierarchy */
+/* Chapters title */
 .sidebar__navTitle{
   padding: 12px 12px 8px;
-  font-weight: 750;
+  font-weight: 800;
   letter-spacing: .2px;
+  color: var(--text);
 }
 
+/* Chapter list */
 .chapterlist{
   display: grid;
   grid-template-columns: 1fr;
@@ -242,8 +206,8 @@ a:hover{ text-decoration: underline; }
 }
 
 .chapter{
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.03);
+  border: 1px solid var(--line);
+  background: #fff;
   border-radius: var(--radius);
   overflow: hidden;
   width: 100%;
@@ -274,7 +238,7 @@ a:hover{ text-decoration: underline; }
 }
 
 .chapter__title{
-  font-weight: 700;
+  font-weight: 800;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -290,8 +254,8 @@ a:hover{ text-decoration: underline; }
 }
 
 .chapter.is-active summary{
-  background: rgba(255,77,46,.10);
-  border-bottom: 1px solid rgba(255,77,46,.18);
+  background: rgba(5,108,242,.08);              /* ✅ focus tint */
+  border-bottom: 1px solid rgba(5,108,242,.18);
 }
 
 .chapter__sections{
@@ -303,31 +267,21 @@ a:hover{ text-decoration: underline; }
   display: block;
   padding: 10px 12px;
   color: var(--muted);
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--line);
   text-decoration: none;
 }
 .chapter__link:hover{
-  background: rgba(255,255,255,.04);
+  background: rgba(0,0,0,.03);
   color: var(--text);
   text-decoration: none;
 }
 .chapter__link.is-active{
-  color: var(--text);
-  background: rgba(255,77,46,.12);
+  color: var(--focus);
+  background: rgba(5,108,242,.08);
+  font-weight: 700;
 }
 
-.chapter__jump{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: inherit;
-  text-decoration: none;
-}
-.chapter__jump:hover{
-  text-decoration: none;
-}
-
-/* Optional: make subsections slightly indented */
+/* Optional: indent subsections slightly */
 .chapter__sections .chapter__link{
   padding-left: 34px;
 }
@@ -352,8 +306,8 @@ a:hover{ text-decoration: underline; }
   font-size: .92rem;
 }
 .crumbs__link{ color: var(--muted); }
-.crumbs__link:hover{ color: var(--text); }
-.crumbs__current{ color: var(--text); }
+.crumbs__link:hover{ color: var(--focus); }
+.crumbs__current{ color: var(--text); font-weight: 700; }
 
 .scroll-indicator{
   display: inline-flex;
@@ -365,7 +319,7 @@ a:hover{ text-decoration: underline; }
   flex: 1;
   height: 10px;
   border-radius: 999px;
-  background: rgba(255,255,255,.06);
+  background: rgba(0,0,0,.08);
   overflow: hidden;
 }
 .scroll-indicator__fill{
@@ -378,8 +332,8 @@ a:hover{ text-decoration: underline; }
 .lesson{
   max-width: var(--content-max);
   margin: 0 auto;
-  background: rgba(15,22,32,.45);
-  border: 1px solid var(--border);
+  background: rgb(23, 26, 33);
+  border: 1px solid var(--line);
   border-radius: calc(var(--radius) + 6px);
   box-shadow: var(--shadow);
   padding: 26px;
@@ -387,7 +341,7 @@ a:hover{ text-decoration: underline; }
 
 .lesson__header{
   padding-bottom: 18px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--line);
   margin-bottom: 18px;
 }
 .lesson__title{
@@ -410,15 +364,15 @@ a:hover{ text-decoration: underline; }
 .chip{
   font-size: .85rem;
   color: var(--muted);
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.03);
+  border: 1px solid var(--line);
+  background: var(--panel);
   padding: 6px 10px;
   border-radius: 999px;
 }
 .chip--accent{
   color: var(--text);
-  border-color: rgba(255,77,46,.35);
-  background: rgba(255,77,46,.12);
+  border-color: rgba(255,77,46,.30);
+  background: rgba(255,77,46,.10);
 }
 
 /* Sections */
@@ -429,7 +383,7 @@ a:hover{ text-decoration: underline; }
 }
 .section p{
   margin: 0;
-  color: rgba(231,237,246,.92);
+  color: var(--text);
   line-height: 1.7;
   max-width: 80ch;
 }
@@ -439,16 +393,18 @@ a:hover{ text-decoration: underline; }
   margin-top: 14px;
   padding: 14px 14px;
   border-radius: var(--radius);
-  border: 1px solid rgba(46,211,255,.25);
-  background: rgba(46,211,255,.08);
+  border: 1px solid rgba(5,108,242,.22);
+  background: rgba(5,108,242,.06);
 }
 .callout__title{
   margin: 0;
   font-size: .95rem;
+  color: var(--focus);
+  font-weight: 800;
 }
 .callout__text{
   margin: 8px 0 0;
-  color: rgba(231,237,246,.92);
+  color: var(--text);
   line-height: 1.65;
 }
 
@@ -457,25 +413,25 @@ pre{
   margin: 14px 0 0;
   padding: 14px;
   border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: rgba(0,0,0,.28);
+  border: 1px solid var(--line);
+  background: var(--panel);
   overflow: auto;
 }
-pre code{ font-family: var(--mono); color: rgba(231,237,246,.92); }
+pre code{ font-family: var(--mono); color: var(--text); }
 
 /* ===== Single-card quiz ===== */
 .quizcard{
   margin-top: 14px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.03);
+  border: 1px solid var(--line);
+  background: #fff;
   border-radius: calc(var(--radius) + 6px);
   overflow: hidden;
 }
 
 .quizcard__top{
   padding: 14px 16px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(0,0,0,.18);
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
 }
 
 .quizcard__meta{
@@ -490,7 +446,7 @@ pre code{ font-family: var(--mono); color: rgba(231,237,246,.92); }
 .quizcard__bar{
   height: 10px;
   border-radius: 999px;
-  background: rgba(255,255,255,.06);
+  background: rgba(0,0,0,.08);
   overflow: hidden;
 }
 
@@ -502,9 +458,7 @@ pre code{ font-family: var(--mono); color: rgba(231,237,246,.92); }
   transition: width 220ms ease;
 }
 
-.quizcard__body{
-  padding: 16px;
-}
+.quizcard__body{ padding: 16px; }
 
 .quizcard__prompt{
   margin: 0 0 12px;
@@ -524,25 +478,19 @@ pre code{ font-family: var(--mono); color: rgba(231,237,246,.92); }
   align-items: flex-start;
   padding: 10px 12px;
   border-radius: 14px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.02);
+  border: 1px solid var(--line);
+  background: #fff;
   cursor: pointer;
 }
-
-.quizopt:hover{
-  background: rgba(255,255,255,.05);
-}
-
-.quizopt input{
-  margin-top: 2px;
-}
+.quizopt:hover{ background: rgba(0,0,0,.03); }
+.quizopt input{ margin-top: 2px; }
 
 .quizcard__feedback{
   margin-top: 12px;
   padding: 10px 12px;
   border-radius: 14px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.02);
+  border: 1px solid var(--line);
+  background: var(--panel);
   min-height: 42px;
   display: flex;
   align-items: center;
@@ -550,18 +498,17 @@ pre code{ font-family: var(--mono); color: rgba(231,237,246,.92); }
 }
 
 .quizcard__feedback.is-correct{
-  border-color: rgba(46,211,255,.35);
-  background: rgba(46,211,255,.08);
+  border-color: rgba(46,211,255,.60);
+  background: rgba(46,211,255,.14);
 }
-
 .quizcard__feedback.is-wrong{
-  border-color: rgba(255,77,46,.35);
-  background: rgba(255,77,46,.10);
+  border-color: rgba(255,77,46,.55);
+  background: rgba(255,77,46,.14);
 }
 
 .quizcard__actions{
   padding: 14px 16px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--line);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -577,27 +524,28 @@ pre code{ font-family: var(--mono); color: rgba(231,237,246,.92); }
   gap: 8px;
   padding: 10px 14px;
   border-radius: 14px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.04);
-  color: var(--text);
+  border: 1px solid var(--line);
+  background: var(--btn);
+  color: var(--btnText);
   cursor: pointer;
-  font-weight: 650;
+  font-weight: 700;
 }
-.btn:hover{ background: rgba(255,255,255,.07); text-decoration: none; }
+.btn:hover{ filter: brightness(.98); text-decoration: none; }
 
 .btn--primary{
   border-color: rgba(255,77,46,.35);
-  background: linear-gradient(135deg, rgba(255,77,46,.22), rgba(46,211,255,.10));
+  background: rgba(255,77,46,.12);
+  color: var(--text);
 }
 .btn--ghost{
-  background: rgba(255,255,255,.02);
+  background: transparent;
 }
 
 /* Pager */
 .pager{
   margin-top: 22px;
   padding-top: 18px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--line);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -626,10 +574,7 @@ pre code{ font-family: var(--mono); color: rgba(231,237,246,.92); }
   padding: 0 12px 12px;
   gap: 8px;
 }
-
-.jump-chapters-list li{
-  width: 100%;
-}
+.jump-chapters-list li{ width: 100%; }
 
 .jump-chapters-list .navitem{
   display: block;
@@ -638,26 +583,20 @@ pre code{ font-family: var(--mono); color: rgba(231,237,246,.92); }
   font-size: 13px;
   color: var(--text);
 }
-
-.jump-chapters-list .navitem:hover{
-  color: var(--accent);
-}
-
+.jump-chapters-list .navitem:hover{ color: var(--focus); }
 .jump-chapters-list .navitem.is-active{
-  color: var(--accent);
-  font-weight: 600;
+  color: var(--focus);
+  font-weight: 800;
 }
 
 @media (max-width: 860px){
-  .page{
-    grid-template-columns: 1fr;
-  }
+  .page{ grid-template-columns: 1fr; }
   .sidebar{
     position: relative;
     top: auto;
     height: auto;
     border-right: none;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--line);
   }
   .content{ padding: 18px 14px 40px; }
   .content__top{ flex-direction: column; align-items: flex-start; }

@@ -1,4 +1,5 @@
 {
+  "courseTitle": "Networking Fundamentals",
   "chapters": [
     {
       "id": "chapter-1",
@@ -6,13 +7,42 @@
       "title": "Networking Basics",
       "subtitle": "What networks are, why they exist, and how data moves.",
       "sections": [
-        { "id": "s-what-is-a-network", "heading": "What is a Network?", "html": "<p>A network is...</p>" },
-        { "id": "s-packets", "heading": "Packets", "html": "<p>Packets are...</p>" }
+        {
+          "id": "s-network-types",
+          "heading": "Network Types",
+          "type": "twoColList",
+          "introHtml": "<p>From smallest to largest:</p>",
+          "items": [
+            {
+              "label": "PAN",
+              "title": "Personal Area Network",
+              "desc": "Very short-range network around a person (Bluetooth, wearables).",
+              "icon": "📱",
+              "img": "Assets/Images/network-types/pan.png",
+              "imgAlt": "Phone connected to smartwatch via Bluetooth"
+            },
+            {
+              "label": "LAN",
+              "title": "Local Area Network",
+              "desc": "Network inside a home, office, or building (Ethernet/Wi-Fi).",
+              "icon": "🏠",
+              "img": "Assets/Images/network-types/lan.png",
+              "imgAlt": "Router connecting devices inside a home"
+            },
+            {
+              "label": "WAN",
+              "title": "Wide Area Network",
+              "desc": "Connects LANs across cities/countries (ISP networks, MPLS).",
+              "icon": "🌎",
+              "img": "Assets/Images/network-types/wan.png",
+              "imgAlt": "Map showing links between cities"
+            }
+          ]
+        }
       ],
-      "quiz": [
-        { "topic": "Basics", "question": "A LAN is typically...", "options": ["Local scope", "Global scope", "Satellite only", "Layer 1 only"], "answerIndex": 0, "explain": "LAN = Local Area Network." }
-      ]
+      "quiz": []
     },
+
     {
       "id": "chapter-2",
       "number": 2,

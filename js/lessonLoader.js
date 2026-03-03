@@ -11,7 +11,7 @@ async function getLessons() {
 
 function getChapterIdFromURL() {
   const params = new URLSearchParams(window.location.search);
-  return params.get("id") || "chapter-1"; // default
+  return params.get("id") || "chapter-1";
 }
 
 function setURLChapter(id) {
@@ -20,59 +20,107 @@ function setURLChapter(id) {
   history.pushState({ id }, "", url);
 }
 
+// -------- Section rendering (supports types) --------
+function renderSectionHTML(sec) {
+  const type = sec.type || "richtext";
+
+  if (type === "richtext") {
+    return `
+      <section class="section" id="${sec.id}">
+        <h2>${sec.heading}</h2>
+        ${sec.html || ""}
+      </section>
+    `;
+  }
+
+  if (type === "twoColList") {
+    const items = (sec.items || []).map(item => `
+      <div class="twocol__row">
+        <div class="twocol__left">
+          <div class="twocol__badge">${item.icon ?? ""} ${item.label ?? ""}</div>
+          <div class="twocol__title">${item.title ?? ""}</div>
+        </div>
+
+        <div class="twocol__right">
+          <p class="twocol__desc">${item.desc ?? ""}</p>
+
+          ${item.img ? `
+            <figure class="twocol__figure">
+              <img class="twocol__img" src="${item.img}" alt="${item.imgAlt || item.title || ""}">
+            </figure>
+          ` : ""}
+        </div>
+      </div>
+    `).join("");
+
+    return `
+      <section class="section" id="${sec.id}">
+        <h2>${sec.heading}</h2>
+        ${sec.introHtml || ""}
+        <div class="twocol">
+          ${items}
+        </div>
+      </section>
+    `;
+  }
+
+  // Fallback: show something instead of silently failing
+  return `
+    <section class="section" id="${sec.id}">
+      <h2>${sec.heading}</h2>
+      <p class="muted">Unsupported section type: <span class="mono">${type}</span></p>
+    </section>
+  `;
+}
+
 function renderChapter(chapter, chapters) {
   // --- title/subtitle ---
-  document.getElementById("chapterTitle").textContent = chapter.title;
-  document.getElementById("chapterSubtitle").textContent = chapter.subtitle || "";
+  const titleEl = document.getElementById("chapterTitle");
+  const subEl = document.getElementById("chapterSubtitle");
+  if (titleEl) titleEl.textContent = chapter.title || "";
+  if (subEl) subEl.textContent = chapter.subtitle || "";
 
   // --- sections ---
   const sectionsMount = document.getElementById("lessonSections");
-  sectionsMount.innerHTML = ""; // wipe old chapter
-
-  chapter.sections.forEach(sec => {
-    const sectionEl = document.createElement("section");
-    sectionEl.className = "section";
-    sectionEl.id = sec.id;
-
-    sectionEl.innerHTML = `
-      <h2>${sec.heading}</h2>
-      ${sec.html}
-    `;
-    sectionsMount.appendChild(sectionEl);
-  });
+  if (sectionsMount) {
+    sectionsMount.innerHTML = (chapter.sections || []).map(renderSectionHTML).join("");
+  }
 
   // --- sidebar nav (chapter sections list) ---
   const sidebarNav = document.getElementById("sidebarNav");
-  sidebarNav.innerHTML = ""; // wipe old nav
+  if (sidebarNav) {
+    sidebarNav.innerHTML = "";
 
-  const currentGroup = document.createElement("div");
-  currentGroup.className = "navgroup"; // reuse your styles if you want
+    const currentGroup = document.createElement("div");
+    currentGroup.className = "navgroup";
 
-  // Build section anchors
-  const links = chapter.sections.map(sec =>
-    `<a class="navitem" href="#${sec.id}" data-scroll>${sec.heading}</a>`
-  ).join("");
+    const links = (chapter.sections || []).map(sec =>
+      `<a class="navitem" href="#${sec.id}" data-scroll>${sec.heading}</a>`
+    ).join("");
 
-  currentGroup.innerHTML = `
-    <div class="navgroup__title" style="padding:12px">
-      <span>Chapter ${chapter.number}: ${chapter.title}</span>
-    </div>
-    ${links}
-    <a class="navitem" href="#knowledge-check" data-scroll>Knowledge Check</a>
-    <hr style="border:0;border-top:1px solid var(--border);margin:10px 12px">
-    <div style="padding:0 12px 10px" class="muted">Jump Chapters</div>
-    <ul class="jump-chapters-list">
-      ${chapters.map(ch => `
-        <li><a class="navitem ${ch.id === chapter.id ? "is-active" : ""}"
-           href="?id=${ch.id}"
-           data-chapter-link="${ch.id}">
-          Chapter ${ch.number}: ${ch.title}
-        </a></li>
-      `).join("")}
-    </ul>
-  `;
+    currentGroup.innerHTML = `
+      <div class="navgroup__title" style="padding:12px">
+        <span>Chapter ${chapter.number}: ${chapter.title}</span>
+      </div>
+      ${links}
+      <a class="navitem" href="#knowledge-check" data-scroll>Knowledge Check</a>
+      <hr style="border:0;border-top:1px solid var(--border);margin:10px 12px">
+      <div style="padding:0 12px 10px" class="muted">Jump Chapters</div>
+      <ul class="jump-chapters-list">
+        ${chapters.map(ch => `
+          <li>
+            <a class="navitem ${ch.id === chapter.id ? "is-active" : ""}"
+               href="?id=${ch.id}"
+               data-chapter-link="${ch.id}">
+              Chapter ${ch.number}: ${ch.title}
+            </a>
+          </li>
+        `).join("")}
+      </ul>
+    `;
 
-  sidebarNav.appendChild(currentGroup);
+    sidebarNav.appendChild(currentGroup);
+  }
 
   // --- prev/next ---
   const idx = chapters.findIndex(c => c.id === chapter.id);
@@ -82,32 +130,38 @@ function renderChapter(chapter, chapters) {
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
 
-  if (prev) {
-    prevBtn.href = `?id=${prev.id}`;
-    prevBtn.dataset.chapterLink = prev.id;
-    prevBtn.classList.remove("is-disabled");
-    prevBtn.removeAttribute("aria-disabled");
-  } else {
-    prevBtn.href = "#";
-    prevBtn.classList.add("is-disabled");
-    prevBtn.setAttribute("aria-disabled", "true");
+  if (prevBtn) {
+    if (prev) {
+      prevBtn.href = `?id=${prev.id}`;
+      prevBtn.dataset.chapterLink = prev.id;
+      prevBtn.classList.remove("is-disabled");
+      prevBtn.removeAttribute("aria-disabled");
+    } else {
+      prevBtn.href = "#";
+      prevBtn.classList.add("is-disabled");
+      prevBtn.setAttribute("aria-disabled", "true");
+    }
   }
 
-  if (next) {
-    nextBtn.href = `?id=${next.id}`;
-    nextBtn.dataset.chapterLink = next.id;
-    nextBtn.classList.remove("is-disabled");
-    nextBtn.removeAttribute("aria-disabled");
-  } else {
-    nextBtn.href = "#";
-    nextBtn.classList.add("is-disabled");
-    nextBtn.setAttribute("aria-disabled", "true");
+  if (nextBtn) {
+    if (next) {
+      nextBtn.href = `?id=${next.id}`;
+      nextBtn.dataset.chapterLink = next.id;
+      nextBtn.classList.remove("is-disabled");
+      nextBtn.removeAttribute("aria-disabled");
+    } else {
+      nextBtn.href = "#";
+      nextBtn.classList.add("is-disabled");
+      nextBtn.setAttribute("aria-disabled", "true");
+    }
   }
 
-  // --- quiz mount (hook your single-card quiz here) ---
+  // --- quiz mount ---
   const quizMount = document.getElementById("quizMount");
-  quizMount.innerHTML = ""; // wipe old quiz UI
-  mountSingleCardQuiz(quizMount, chapter.quiz || [], chapter.id);
+  if (quizMount) {
+    quizMount.innerHTML = "";
+    mountSingleCardQuiz(quizMount, chapter.quiz || [], chapter.id);
+  }
 }
 
 // Event delegation: intercept chapter link clicks for SPA-like behavior
@@ -118,22 +172,29 @@ function wireNavigation() {
 
     e.preventDefault();
     const id = link.dataset.chapterLink;
+    if (!id) return;
+
     setURLChapter(id);
     await loadAndRender();
-    // optional: scroll to top of content
     document.getElementById("main")?.scrollIntoView({ behavior: "smooth" });
   });
 
   window.addEventListener("popstate", () => {
-    loadAndRender(); // back/forward browser buttons
+    loadAndRender();
   });
 }
 
 async function loadAndRender() {
   const data = await getLessons();
-  const chapters = data.chapters;
+  const chapters = data.chapters || [];
   const id = getChapterIdFromURL();
   const chapter = chapters.find(c => c.id === id) || chapters[0];
+
+  if (!chapter) {
+    console.warn("No chapters found in lessons.json");
+    return;
+  }
+
   renderChapter(chapter, chapters);
 }
 
@@ -142,25 +203,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadAndRender();
 });
 
-
 // ---------------------------------------------------------
-// Quiz: mount your single-card quiz per chapter
-// (This is a minimal stub; replace with your full single-card logic)
+// Quiz: mount your single-card quiz per chapter (stub)
 // ---------------------------------------------------------
 function mountSingleCardQuiz(mountEl, quizData, chapterId) {
-  // If no quiz provided, show a friendly message
   if (!quizData.length) {
     mountEl.innerHTML = `<div class="muted" style="padding:12px 0">No quiz for this chapter yet.</div>`;
     return;
   }
 
-  // Example: reuse your single-card component function
-  // For now, just show that it loaded the right quiz:
   mountEl.innerHTML = `
     <section class="quiz" id="knowledge-check">
       <h2>Knowledge Check</h2>
       <p class="muted">Loaded ${quizData.length} questions for ${chapterId}.</p>
-      <!-- Call your real single-card quiz renderer here -->
     </section>
   `;
 }
