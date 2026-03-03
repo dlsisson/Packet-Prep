@@ -12,6 +12,12 @@
   --max:1100px;
   --gap:28px;
   --radius:14px;
+
+  /* Lesson page variables (light mode) */
+  --border:rgba(0,0,0,.08);
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+  --accent:#ff4d2e;
+  --accent-2:#2ed3ff;
 }
 
 [data-theme="dark"]{
@@ -22,6 +28,10 @@
   --panel:#171a21;
   --btn:#232a36;
   --btnText:#f2f2f2;
+
+  /* Lesson page variables (dark mode) */
+  --border:rgba(255,255,255,.08);
+  --shadow:0 10px 30px rgba(0,0,0,.35);
 }
 
 *{ box-sizing:border-box; }
@@ -36,6 +46,13 @@ body{
   font-size:1rem;
   line-height:1.6;
 }
+
+/* utility helpers used across pages */
+.muted{ color: var(--muted); }
+.mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+.code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+.bullets{ padding-left:1.1rem; line-height:1.65; }
+.bullets li{ margin:.35rem 0; }
 
 a{ color:inherit; text-decoration:none; }
 

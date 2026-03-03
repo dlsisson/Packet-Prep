@@ -61,13 +61,15 @@ function renderChapter(chapter, chapters) {
     <a class="navitem" href="#knowledge-check" data-scroll>Knowledge Check</a>
     <hr style="border:0;border-top:1px solid var(--border);margin:10px 12px">
     <div style="padding:0 12px 10px" class="muted">Jump Chapters</div>
-    ${chapters.map(ch => `
-      <a class="navitem ${ch.id === chapter.id ? "is-active" : ""}"
-         href="?id=${ch.id}"
-         data-chapter-link="${ch.id}">
-        Chapter ${ch.number}: ${ch.title}
-      </a>
-    `).join("")}
+    <ul class="jump-chapters-list">
+      ${chapters.map(ch => `
+        <li><a class="navitem ${ch.id === chapter.id ? "is-active" : ""}"
+           href="?id=${ch.id}"
+           data-chapter-link="${ch.id}">
+          Chapter ${ch.number}: ${ch.title}
+        </a></li>
+      `).join("")}
+    </ul>
   `;
 
   sidebarNav.appendChild(currentGroup);

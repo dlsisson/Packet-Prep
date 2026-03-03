@@ -213,10 +213,11 @@ p{
   flex:1;
   width:100%;
   display:flex;
-  flex-direction:column;         /* stacked like your screenshot */
+  flex-direction:column;
   align-items:center;
-  justify-content:space-between; /* button higher, scroll hint lower */
-  padding: 1.25rem 0 2rem;
+  justify-content:center;
+  gap: 3rem;
+  padding: 0 0 2rem;
 }
 
 /* Button */
@@ -239,7 +240,7 @@ p{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:8px;
+  gap:4px;
   color:var(--muted);
   font-size:12px;
 }

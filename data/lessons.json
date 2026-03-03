@@ -21,7 +21,56 @@
       "sections": [
         { "id": "s-osi", "heading": "The 7 Layers", "html": "<p>...</p>" }
       ],
-      "quiz": []
+      "quiz": [
+      ]
+    },
+  
+    {
+      "id": "chapter-3",
+      "number": 3,
+      "title": "IP Addresses",
+      "subtitle": "Layers, responsibilities, and how to troubleshoot.",
+      "sections": [
+        { "id": "s-osi", "heading": "The 7 Layers", "html": "<p>...</p>" }
+      ],
+      "quiz": [
+
+      ]
+    },
+    {
+      "id": "chapter-4",
+      "number": 4,
+      "title": "Switching & Routing",
+      "subtitle": "Layers, responsibilities, and how to troubleshoot.",
+      "sections": [
+        { "id": "s-osi", "heading": "The 7 Layers", "html": "<p>...</p>" }
+      ],
+      "quiz": [
+      ]
+    },
+        {
+      "id": "chapter-5",
+      "number": 5,
+      "title": "Core Protocols",
+      "subtitle": "Layers, responsibilities, and how to troubleshoot.",
+      "sections": [
+        { "id": "s-osi", "heading": "The 7 Layers", "html": "<p>...</p>" }
+      ],
+      "quiz": [
+
+      ]
+    },
+            {
+      "id": "chapter-6",
+      "number": 6,
+      "title": "Security Fundamentals",
+      "subtitle": "Layers, responsibilities, and how to troubleshoot.",
+      "sections": [
+        { "id": "s-osi", "heading": "The 7 Layers", "html": "<p>...</p>" }
+      ],
+      "quiz": [
+
+      ]
     }
   ]
 }

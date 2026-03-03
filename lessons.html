@@ -4,7 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Packet Prep • Chapter</title>
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/lesson.css">
 
@@ -24,7 +26,7 @@
     </div>
 
     <nav class="nav" aria-label="Primary Navigation">
-      <a href="index.html#home">Home</a>
+      <a href="packet_prep.html">Home</a>
       <a href="index.html#glossary">Glossary</a>
       <a href="index.html#about">About</a>
       <a href="index.html#progress">Progress</a>
@@ -63,10 +65,9 @@
           <p class="sidebar__course">Networking Fundamentals</p>
           <p class="sidebar__chapter" id="chapterLabel">Loading...</p>
         </div>
-
-        <button class="sidebar__toggle" type="button" aria-label="Collapse sidebar">
-          ⟷
-        </button>
+        <div class="sidebar__headerBtns">
+          <button class="icon-btn sidebar__close" id="sidebarCloseBtn" type="button" aria-label="Close sidebar" onclick="const page = document.querySelector('.page'); if(page) { page.classList.toggle('sidebar-closed'); console.log('toggled sidebar-closed'); }">×</button>
+        </div>
       </div>
 
       <div class="sidebar__progress" aria-label="Progress">
@@ -82,6 +83,9 @@
       <!-- ✅ JS will inject chapter/section nav here -->
       <nav class="sidebar__nav" id="sidebarNav" aria-label="Chapters and sections"></nav>
     </aside>
+
+    <!-- rail button to reopen sidebar when closed -->
+    <button id="sidebarOpenBtn" class="sidebar-rail" aria-label="Open sidebar" onclick="document.querySelector('.page').classList.remove('sidebar-closed')">Chapters</button>
 
     <!-- =========================
          MAIN CONTENT
