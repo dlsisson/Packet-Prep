@@ -25,10 +25,12 @@
 -------------------------- */
 
 #home.screen{
-  min-height: 85vh;
-  display: grid;
-  place-items: center;
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  overflow: hidden;
   position: relative;
   background: radial-gradient(circle at 50% 40%,
     #ff4d2e 0%,
@@ -42,13 +44,15 @@
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,.25);
+  z-index: 0;
 }
 
 .hero-inner{
   position: relative;
-  z-index: 1;
-  max-width: 800px;
-  padding: 0 20px;
+  z-index: 2;
+  width: 50%;
+  max-width: none;
+  padding: 0 clamp(20px, 4vw, 56px);
 }
 
 .hero h1{
@@ -334,6 +338,25 @@ footer svg{ width:3em; }
   padding:5px 0;
 }
 
+#globe-container{
+  position:absolute;
+  top:0;
+  right:0;
+  width:50%;
+  height:100%;
+  z-index:1;
+  pointer-events:none;
+}
+
+#globe-container canvas{
+  opacity:.8;
+}
+
+.hero-inner{
+  position:relative;
+  z-index:2;
+}
+
 /* --------------------------
    RESPONSIVE
 -------------------------- */
@@ -348,6 +371,22 @@ footer svg{ width:3em; }
 
 @media (max-width: 920px){
   .nav{ display:none; }
+
+  #home.screen{
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-inner{
+    width: 100%;
+    max-width: 760px;
+    padding: 0 20px;
+  }
+
+  #globe-container{
+    width:100%;
+    opacity:.55;
+  }
 }
 
 @media (max-width: 720px){
