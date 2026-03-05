@@ -74,11 +74,31 @@ function renderSectionHTML(sec) {
 }
 
 function renderChapter(chapter, chapters) {
+  // --- ensure sidebar is visible ---
+  const page = document.querySelector(".page");
+  if (page) {
+    page.classList.remove("sidebar-closed");
+  }
+
   // --- title/subtitle ---
   const titleEl = document.getElementById("chapterTitle");
   const subEl = document.getElementById("chapterSubtitle");
   if (titleEl) titleEl.textContent = chapter.title || "";
   if (subEl) subEl.textContent = chapter.subtitle || "";
+
+  // --- update sidebar chapter label ---
+  const chapterLabel = document.getElementById("chapterLabel");
+  if (chapterLabel) {
+    chapterLabel.textContent = chapter.title || "Loading...";
+  }
+
+  // --- chapter count display ---
+  const chapterCountEl = document.getElementById("chapterCount");
+  if (chapterCountEl) {
+    const totalChapters = chapters.length;
+    const currentNumber = chapter.number || 1;
+    chapterCountEl.textContent = `${currentNumber} of ${totalChapters}`;
+  }
 
   // --- sections ---
   const sectionsMount = document.getElementById("lessonSections");
@@ -86,7 +106,7 @@ function renderChapter(chapter, chapters) {
     sectionsMount.innerHTML = (chapter.sections || []).map(renderSectionHTML).join("");
   }
 
-  // --- sidebar nav (chapter sections list) ---
+  // --- sidebar nav (chapter sections + jump chapters) ---
   const sidebarNav = document.getElementById("sidebarNav");
   if (sidebarNav) {
     sidebarNav.innerHTML = "";
@@ -99,13 +119,10 @@ function renderChapter(chapter, chapters) {
     ).join("");
 
     currentGroup.innerHTML = `
-      <div class="navgroup__title" style="padding:12px">
-        <span>Chapter ${chapter.number}: ${chapter.title}</span>
-      </div>
       ${links}
       <a class="navitem" href="#knowledge-check" data-scroll>Knowledge Check</a>
       <hr style="border:0;border-top:1px solid var(--border);margin:10px 12px">
-      <div style="padding:0 12px 10px" class="muted">Jump Chapters</div>
+      <div style="padding:12px 12px 10px" class="muted">Other Chapters</div>
       <ul class="jump-chapters-list">
         ${chapters.map(ch => `
           <li>

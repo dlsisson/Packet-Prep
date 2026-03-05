@@ -60,27 +60,27 @@
          SIDEBAR / CURRICULUM NAV
     ========================== -->
     <aside class="sidebar" id="sidebar" aria-label="Course navigation">
-      <div class="sidebar__header">
-        <div class="sidebar__meta">
-          <p class="sidebar__course">Networking Fundamentals</p>
-          <p class="sidebar__chapter" id="chapterLabel">Loading...</p>
-        </div>
-        <div class="sidebar__headerBtns">
-          <button class="icon-btn sidebar__close" id="sidebarCloseBtn" type="button" aria-label="Close sidebar" onclick="const page = document.querySelector('.page'); if(page) { page.classList.toggle('sidebar-closed'); console.log('toggled sidebar-closed'); }">×</button>
-        </div>
-      </div>
-
-      <div class="sidebar__progress" aria-label="Progress">
+      <!-- Top header: progress bar + close button -->
+      <div class="sidebar__top">
         <div class="progressline">
           <div class="progressline__fill" id="courseProgressFill" style="width: 0%"></div>
         </div>
-        <div class="sidebar__progressRow">
-          <span class="muted">Progress</span>
-          <span class="mono" id="courseProgressText">0%</span>
-        </div>
+        <button class="icon-btn sidebar__close" id="sidebarCloseBtn" type="button" aria-label="Close sidebar" onclick="const page = document.querySelector('.page'); if(page) { page.classList.toggle('sidebar-closed'); }">×</button>
       </div>
 
-      <!-- ✅ JS will inject chapter/section nav here -->
+      <!-- Chapter info section -->
+      <div class="sidebar__meta">
+        <p class="sidebar__course">Networking Fundamentals</p>
+        <p class="sidebar__chapter" id="chapterLabel">Loading...</p>
+      </div>
+
+      <!-- Progress text -->
+      <div class="sidebar__progressText">
+        <span class="muted">Progress</span>
+        <span class="mono" id="courseProgressText">0%</span>
+      </div>
+
+      <!-- ✅ JS will inject chapter/section nav and jump chapters here -->
       <nav class="sidebar__nav" id="sidebarNav" aria-label="Chapters and sections"></nav>
     </aside>
 
