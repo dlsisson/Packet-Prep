@@ -6,7 +6,7 @@
 :root{
   /* Layout and typography variables (non-color) */
   --radius-sm: 12px;
-  --content-max: 980px;
+  --content-max: var(--max);
   --sidebar-w: 320px;
   --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -24,8 +24,20 @@ body{
 
 /* Override global topbar transparent styling for lesson pages */
 .topbar{
-  background: var(--bg);
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--line);
+}
+
+/* Keep the topbar fixed and prevent JS-driven retraction on lesson pages.
+   This ensures the header stays visible and doesn't translate away. */
+.topbar{
+  position: fixed; /* reinforce fixed positioning */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 110; /* above sidebar */
 }
 
 .topbar .nav a{
@@ -41,22 +53,26 @@ body{
 ========================================================= */
 .page{
   display: grid;
-  grid-template-columns: var(--sidebar-w) 1fr;
+  grid-template-columns: 1fr;
   min-height: calc(100vh - var(--topH));
 }
 
-/* Sidebar base */
+/* Sidebar base - fixed on left */
 .sidebar{
-  position: sticky;
-  top: var(--topH);
-  height: calc(100vh - var(--topH) - 12px);
-  overflow: auto;
-  margin-top: 12px;
-  margin-right: 12px;
+  position: fixed;
+  left: 20px;
+  top: calc(var(--topH) + 20px);
+  width: var(--sidebar-w);
+  height: calc(100vh - var(--topH) - 40px);
+  overflow-y: auto;
   border-radius: var(--radius-sm);
-
   background: var(--panel);
   border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 /* Optional: nicer scrollbar */
@@ -67,59 +83,45 @@ body{
 }
 .sidebar::-webkit-scrollbar-track{ background: transparent; }
 
-/* Sidebar top section: progress bar + close button */
-.sidebar__top{
+/* Sidebar header: chapter name + close button */
+.sidebar__header{
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 12px;
+  padding: 14px;
   border-bottom: 1px solid var(--line);
-  position: sticky;
-  top: 0;
-  background: var(--panel);
-  z-index: 10;
-}
-
-.sidebar__top .progressline{
-  flex: 1;
-  margin: 0;
-}
-
-/* Sidebar meta: chapter info */
-.sidebar__meta{
-  padding: 12px;
-  border-bottom: 1px solid var(--line);
-}
-
-.sidebar__course{
-  margin: 0;
-  font-size: 12px;
-  color: var(--muted);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .05em;
+  flex-shrink: 0;
 }
 
 .sidebar__chapter{
-  margin: 4px 0 0;
-  font-size: 14px;
+  margin: 0;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  flex: 1;
 }
 
-/* Progress text section */
-.sidebar__progressText{
+/* Progress section with bar and percentage */
+.sidebar__progress-section{
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.sidebar__progress-section .progressline{
+  margin-bottom: 8px;
+}
+
+.sidebar__progress-text{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px;
-  border-bottom: 1px solid var(--line);
   font-size: 12px;
-  gap: 8px;
+  color: var(--text);
 }
 
 /* Close button in sidebar */
@@ -135,9 +137,9 @@ body{
 /* Floating “open sidebar” rail button (desktop) */
 .sidebar-rail{
   position: fixed;
-  left: 12px;
-  top: 110px;
-  z-index: 65;
+  left: 20px;
+  top: calc(var(--topH) + 20px);
+  z-index: 70;
   width: auto;
   padding: 8px 12px;
   border-radius: 8px;
@@ -152,13 +154,10 @@ body{
   white-space: nowrap;
 }
 .sidebar-rail:hover{
-  background: var(--panel);
+  background: rgba(5, 108, 242, 0.08);
 }
 
-/* Closed state: hide sidebar, expand content */
-.page.sidebar-closed{
-  grid-template-columns: 1fr;
-}
+/* Closed state: hide sidebar */
 .page.sidebar-closed .sidebar{
   display: none;
 }
@@ -186,11 +185,14 @@ body{
   transition: width .3s ease;
 }
 
-/* Sidebar navigation */
+/* Sidebar navigation - scrollable list */
 .sidebar__nav{
   display: flex;
   flex-direction: column;
-  padding: 12px 0;
+  padding: 12px;
+  overflow-y: auto;
+  flex: 1;
+  gap: 0;
 }
 
 /* Chapters title */
@@ -293,15 +295,10 @@ body{
 
 /* Content column */
 .content{
-  padding: 24px 22px 46px;
+  padding: calc(var(--topH) + 24px) 20px 46px;
 }
 .content__top{
-  max-width: var(--content-max);
-  margin: 0 auto 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
+  display: none;
 }
 .crumbs{
   display: flex;
@@ -352,8 +349,8 @@ body{
   margin-bottom: 32px;
   border-radius: var(--radius-sm);
   margin-top: -24px;
-  margin-left: -22px;
-  margin-right: -22px;
+  margin-left: -20px;
+  margin-right: -20px;
 }
 .lesson__title{
   margin: 0;
@@ -653,11 +650,11 @@ pre code{ font-family: var(--mono); color: var(--text); }
 ========================================================= */
 @media (max-width: 980px){
   :root{ --sidebar-w: 280px; }
-  .content { padding: 20px 16px 46px; }
+  .content { padding: calc(var(--topH) + 20px) 20px 46px; }
   .lesson__header {
     padding: 32px 20px;
-    margin-left: -16px;
-    margin-right: -16px;
+    margin-left: -20px;
+    margin-right: -20px;
     margin-top: -20px;
   }
 }
@@ -696,7 +693,7 @@ pre code{ font-family: var(--mono); color: var(--text); }
     border-bottom: 1px solid var(--line);
   }
   .content{ 
-    padding: 20px 16px 40px; 
+    padding: calc(var(--topH) + 16px) 16px 40px; 
   }
   .content__top{ 
     flex-direction: column; 

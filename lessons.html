@@ -60,27 +60,24 @@
          SIDEBAR / CURRICULUM NAV
     ========================== -->
     <aside class="sidebar" id="sidebar" aria-label="Course navigation">
-      <!-- Top header: progress bar + close button -->
-      <div class="sidebar__top">
-        <div class="progressline">
-          <div class="progressline__fill" id="courseProgressFill" style="width: 0%"></div>
-        </div>
+      <!-- Header: chapter name + close button -->
+      <div class="sidebar__header">
+        <h3 class="sidebar__chapter" id="chapterLabel">Loading...</h3>
         <button class="icon-btn sidebar__close" id="sidebarCloseBtn" type="button" aria-label="Close sidebar" onclick="const page = document.querySelector('.page'); if(page) { page.classList.toggle('sidebar-closed'); }">×</button>
       </div>
 
-      <!-- Chapter info section -->
-      <div class="sidebar__meta">
-        <p class="sidebar__course">Networking Fundamentals</p>
-        <p class="sidebar__chapter" id="chapterLabel">Loading...</p>
+      <!-- Progress section -->
+      <div class="sidebar__progress-section">
+        <div class="progressline">
+          <div class="progressline__fill" id="courseProgressFill" style="width: 0%"></div>
+        </div>
+        <div class="sidebar__progress-text">
+          <span class="muted">Progress</span>
+          <span class="mono" id="courseProgressText">0%</span>
+        </div>
       </div>
 
-      <!-- Progress text -->
-      <div class="sidebar__progressText">
-        <span class="muted">Progress</span>
-        <span class="mono" id="courseProgressText">0%</span>
-      </div>
-
-      <!-- ✅ JS will inject chapter/section nav and jump chapters here -->
+      <!-- Chapter list: JS will inject here -->
       <nav class="sidebar__nav" id="sidebarNav" aria-label="Chapters and sections"></nav>
     </aside>
 
@@ -91,21 +88,6 @@
          MAIN CONTENT
     ========================== -->
     <main class="content" id="main">
-      <div class="content__top">
-        <div class="crumbs">
-          <a href="./course.html" class="crumbs__link">Course</a>
-          <span class="crumbs__sep">/</span>
-          <span class="crumbs__current" id="crumbCurrent">Loading...</span>
-        </div>
-
-        <div class="scroll-indicator" aria-label="Page scroll progress">
-          <span class="scroll-indicator__label muted">Scroll</span>
-          <div class="scroll-indicator__bar">
-            <div class="scroll-indicator__fill" id="scrollFill" style="width: 0%"></div>
-          </div>
-        </div>
-      </div>
-
       <article class="lesson">
         <header class="lesson__header">
           <!-- ✅ JS injects title/subtitle -->
