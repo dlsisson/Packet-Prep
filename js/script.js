@@ -86,50 +86,178 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
   // -------------------------
+  // Hero ticker (GSAP infinite right-to-left)
+  // -------------------------
+  (() => {
+    const viewport = document.getElementById("heroTickerViewport");
+    const track = document.getElementById("heroTickerTrack");
+    if (!viewport || !track || typeof gsap === "undefined") return;
+
+    const baseMarkup = track.innerHTML.trim();
+
+    let tween;
+
+    function buildTrack() {
+      const measure = document.createElement("div");
+      measure.className = "ticker-group";
+      measure.style.position = "absolute";
+      measure.style.visibility = "hidden";
+      measure.style.pointerEvents = "none";
+      measure.innerHTML = baseMarkup;
+      viewport.appendChild(measure);
+
+      const unitWidth = measure.offsetWidth;
+      measure.remove();
+      if (!unitWidth) return 0;
+
+      const requiredGroups = Math.max(3, Math.ceil((viewport.offsetWidth * 2) / unitWidth) + 1);
+      track.innerHTML = "";
+
+      for (let i = 0; i < requiredGroups; i += 1) {
+        const group = document.createElement("div");
+        group.className = "ticker-group";
+        group.innerHTML = baseMarkup;
+        if (i > 0) group.setAttribute("aria-hidden", "true");
+        track.appendChild(group);
+      }
+
+      return unitWidth;
+    }
+
+    function startTicker() {
+      const groupWidth = buildTrack();
+      if (!groupWidth) return;
+
+      if (tween) tween.kill();
+
+      const pixelsPerSecond = 10;
+      const duration = groupWidth / pixelsPerSecond;
+
+      gsap.set(track, { x: 0 });
+      tween = gsap.to(track, {
+        x: -groupWidth,
+        duration,
+        ease: "none",
+        repeat: -1,
+      });
+    }
+
+    startTicker();
+
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(startTicker, 120);
+    });
+  })();
+
+  // -------------------------
+  // Packet page section snap (GSAP)
+  // -------------------------
+  (() => {
+    const isPacketPage = !!document.getElementById("heroTickerViewport");
+    if (!isPacketPage || typeof gsap === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const snapTargets = [
+      ...document.querySelectorAll("section.screen, section.ticker-banner, footer.site-footer"),
+    ];
+    if (snapTargets.length < 2) return;
+
+    let tween = null;
+    let activeIndex = 0;
+    let wheelAccumulator = 0;
+
+    const WHEEL_TRIGGER = 24;
+
+    function clampIndex(i) {
+      return Math.max(0, Math.min(snapTargets.length - 1, i));
+    }
+
+    function nearestIndex() {
+      const y = window.scrollY;
+      let bestIdx = 0;
+      let bestDist = Number.POSITIVE_INFINITY;
+
+      for (let i = 0; i < snapTargets.length; i += 1) {
+        const dist = Math.abs(y - snapTargets[i].offsetTop);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestIdx = i;
+        }
+      }
+
+      return bestIdx;
+    }
+
+    function goTo(index) {
+      const next = clampIndex(index);
+      const targetY = snapTargets[next].offsetTop;
+
+      if (Math.abs(window.scrollY - targetY) < 2) {
+        activeIndex = next;
+        return;
+      }
+
+      if (tween) tween.kill();
+
+      const state = { y: window.scrollY };
+      tween = gsap.to(state, {
+        y: targetY,
+        duration: 0.62,
+        ease: "power2.out",
+        onStart: () => {
+          document.body.classList.add("is-snap-scrolling");
+        },
+        onUpdate: () => window.scrollTo(0, state.y),
+        onInterrupt: () => {
+          document.body.classList.remove("is-snap-scrolling");
+        },
+        onComplete: () => {
+          document.body.classList.remove("is-snap-scrolling");
+          activeIndex = next;
+          tween = null;
+        },
+      });
+    }
+
+    function onWheel(e) {
+      e.preventDefault();
+
+      const normalizedDelta =
+        e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1);
+      wheelAccumulator += normalizedDelta;
+
+      if (tween) return;
+
+      if (Math.abs(wheelAccumulator) < WHEEL_TRIGGER) return;
+
+      const direction = wheelAccumulator > 0 ? 1 : -1;
+      wheelAccumulator = 0;
+
+      activeIndex = nearestIndex();
+      if (direction > 0) {
+        goTo(activeIndex + 1);
+      } else {
+        goTo(activeIndex - 1);
+      }
+    }
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("resize", () => {
+      activeIndex = nearestIndex();
+    });
+  })();
+
+  // -------------------------
   // Navbar scroll detection (works for both packet_prep.html and lessons.html)
   // -------------------------
   (() => {
     const topbar = document.querySelector(".topbar");
     if (!topbar) return;
 
-    const hero = document.querySelector("#home.screen");
-    const triggerHeight = hero ? hero.offsetHeight - 80 : 300; // fallback to 300px for lessons page
-
-    let lastY = window.scrollY;
-    let ticking = false;
-
-    function updateNavbar() {
-      const y = window.scrollY;
-      const delta = y - lastY;
-
-      // Toggle "scrolled" state based on hero height or fixed threshold
-      if (y > triggerHeight) {
-        topbar.classList.add("scrolled");
-      } else {
-        topbar.classList.remove("scrolled");
-      }
-
-      // Hide on scroll down, show on scroll up (but always show at top)
-      if (y < 10) {
-        topbar.classList.remove("hide");
-      } else if (delta > 0) {
-        topbar.classList.add("hide");
-      } else if (delta < 0) {
-        topbar.classList.remove("hide");
-      }
-
-      lastY = y;
-      ticking = false;
-    }
-
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        requestAnimationFrame(updateNavbar);
-        ticking = true;
-      }
-    }, { passive: true });
-
-    // Set initial state
-    updateNavbar();
+    // Keep topbar style static; disable hero/scroll-driven nav style changes.
+    topbar.classList.remove("scrolled");
+    topbar.classList.remove("hide");
   })();
 });

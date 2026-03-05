@@ -96,7 +96,50 @@ h1 {
   box-shadow: 0 8px 24px rgba(0,0,0,.2);
 }
 
-/* Transparent state when over hero */
+/* --------------------------
+   HERO TICKER
+-------------------------- */
+.ticker-banner{
+  border-top:1px solid rgba(255,255,255,0.2);
+  border-bottom:1px solid rgba(255,255,255,0.2);
+  background: linear-gradient(90deg, #5f0f10 0%, #8a1f17 50%, #5f0f10 100%);
+  overflow:hidden;
+}
+
+.ticker-viewport{
+  width:100%;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+.ticker-track{
+  display:inline-flex;
+  align-items:center;
+  gap:20px;
+  width:max-content;
+  padding:14px 0;
+  will-change:transform;
+}
+
+.ticker-group{
+  display:inline-flex;
+  align-items:center;
+  gap:20px;
+  padding-right:20px;
+}
+
+.ticker-item{
+  font-family:"Orbitron", sans-serif;
+  color:#ffe9cc;
+  letter-spacing:0.15em;
+  font-size:0.86rem;
+  font-weight:700;
+}
+
+.ticker-dot{
+  color:rgba(255,233,204,0.5);
+  font-size:0.85rem;
+}
 
 /* --------------------------
    ABOUT
@@ -386,6 +429,15 @@ footer svg{ width:3em; }
   #globe-container{
     width:100%;
     opacity:.55;
+  }
+
+  .ticker-track{
+    padding:12px 0;
+  }
+
+  .ticker-item{
+    font-size:0.74rem;
+    letter-spacing:0.11em;
   }
 }
 
