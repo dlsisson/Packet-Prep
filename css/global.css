@@ -1,13 +1,13 @@
 :root{
   /* ===== Core tokens (LIGHT) ===== */
-  --bg:#F6F6F6;
+  --bg:#fff5f7;
   --text:#111111;
-  --muted:#242424;
-  --line:#cfcfcf;
-  --panel:#f2f2f2;
-  --btn:#e6e6e6;
+  --muted:#4a3640;
+  --line:#ecc8d8;
+  --panel:#fff0f5;
+  --btn:#ffdfe9;
   --btnText:#111;
-  --focus:#056CF2;
+  --focus:#c13a86;
   --title:#F2F2F2;
 
   --topH:75px;
@@ -18,20 +18,20 @@
   /* Lesson/shared tokens */
   --border:rgba(0,0,0,.08);
   --shadow:0 10px 30px rgba(0,0,0,.08);
-  --accent:#ff4d2e;
-  --accent-2:#2ed3ff;
+  --accent:#ff9cb6;
+  --accent-2:#c13a86;
 }
 
-/* ✅ Dark mode tokens (ENABLED) */
+/* Dark mode tokens (ENABLED) */
 :root[data-theme="dark"]{
-  --bg:#0f1115;
+  --bg:#181018;
   --text:#f2f2f2;
-  --muted:#a2a7b3;
-  --line:#2b3140;
-  --panel:#171a21;
-  --btn:#232a36;
+  --muted:#c3a7b7;
+  --line:#4a2b3a;
+  --panel:#211520;
+  --btn:#301d2c;
   --btnText:#f2f2f2;
-  --title:#0f1115;
+  --title:#181018;
 
   --border:rgba(255,255,255,.08);
   --shadow:0 10px 30px rgba(0,0,0,.35);

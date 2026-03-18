@@ -37,18 +37,12 @@ function renderSectionHTML(sec) {
     const items = (sec.items || []).map(item => `
       <div class="twocol__row">
         <div class="twocol__left">
-          <div class="twocol__badge">${item.icon ?? ""} ${item.label ?? ""}</div>
+          <div class="twocol__badge">${item.label ?? ""}</div>
           <div class="twocol__title">${item.title ?? ""}</div>
         </div>
 
         <div class="twocol__right">
           <p class="twocol__desc">${item.desc ?? ""}</p>
-
-          ${item.img ? `
-            <figure class="twocol__figure">
-              <img class="twocol__img" src="${item.img}" alt="${item.imgAlt || item.title || ""}">
-            </figure>
-          ` : ""}
         </div>
       </div>
     `).join("");
@@ -74,11 +68,7 @@ function renderSectionHTML(sec) {
 }
 
 function renderChapter(chapter, chapters) {
-  // --- ensure sidebar is visible ---
-  const page = document.querySelector(".page");
-  if (page) {
-    page.classList.remove("sidebar-closed");
-  }
+  // NOTE: don't force the sidebar open here; keep user's last state.
 
   // --- title/subtitle ---
   const titleEl = document.getElementById("chapterTitle");

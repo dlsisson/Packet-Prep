@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Packet Prep • Chapter</title>
+  <title>Packet Prep - Chapter</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
@@ -45,7 +45,7 @@
       aria-label="Open course menu"
       aria-controls="sidebar"
       aria-expanded="false">
-      ☰
+      Menu
     </button>
   </header>
 
@@ -55,7 +55,7 @@
   <!-- =========================
        PAGE LAYOUT
   ========================== -->
-  <div class="page">
+  <div class="page sidebar-closed">
     <!-- =========================
          SIDEBAR / CURRICULUM NAV
     ========================== -->
@@ -63,7 +63,7 @@
       <!-- Header: chapter name + close button -->
       <div class="sidebar__header">
         <h3 class="sidebar__chapter" id="chapterLabel">Loading...</h3>
-        <button class="icon-btn sidebar__close" id="sidebarCloseBtn" type="button" aria-label="Close sidebar" onclick="const page = document.querySelector('.page'); if(page) { page.classList.toggle('sidebar-closed'); }">×</button>
+        <button class="icon-btn sidebar__close" id="sidebarCloseBtn" type="button" aria-label="Close sidebar">Close</button>
       </div>
 
       <!-- Progress section -->
@@ -90,7 +90,7 @@
     <main class="content" id="main">
       <article class="lesson">
         <header class="lesson__header">
-          <!-- ✅ JS injects title/subtitle -->
+          <!-- JS injects title/subtitle -->
           <h1 class="lesson__title" id="chapterTitle">Loading...</h1>
           <p class="lesson__subtitle" id="chapterSubtitle"></p>
 
@@ -102,10 +102,10 @@
           </div>
         </header>
 
-        <!-- ✅ JS injects sections here -->
+        <!-- JS injects sections here -->
         <div id="lessonSections"></div>
 
-        <!-- ✅ JS injects the quiz card here (single-card quiz) -->
+        <!-- JS injects the quiz card here (single-card quiz) -->
         <div id="quizMount"></div>
 
         <!-- =========================
@@ -113,16 +113,16 @@
         ========================== -->
         <footer class="pager" aria-label="Chapter navigation">
           <a class="pager__btn btn btn--ghost" id="prevBtn" href="#">
-            ← Previous
+            Previous
           </a>
 
           <div class="pager__status">
             <span class="muted">Chapter</span>
-            <span class="mono" id="chapterCount">—</span>
+            <span class="mono" id="chapterCount">-</span>
           </div>
 
           <a class="pager__btn btn btn--primary" id="nextBtn" href="#">
-            Next →
+            Next
           </a>
         </footer>
       </article>

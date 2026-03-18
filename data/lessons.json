@@ -17,7 +17,6 @@
               "label": "PAN",
               "title": "Personal Area Network",
               "desc": "Very short-range network around a person (Bluetooth, wearables).",
-              "icon": "📱",
               "img": "Assets/Images/network-types/pan.png",
               "imgAlt": "Phone connected to smartwatch via Bluetooth"
             },
@@ -25,7 +24,6 @@
               "label": "LAN",
               "title": "Local Area Network",
               "desc": "Network inside a home, office, or building (Ethernet/Wi-Fi).",
-              "icon": "🏠",
               "img": "Assets/Images/network-types/lan.png",
               "imgAlt": "Router connecting devices inside a home"
             },
@@ -33,7 +31,6 @@
               "label": "WAN",
               "title": "Wide Area Network",
               "desc": "Connects LANs across cities/countries (ISP networks, MPLS).",
-              "icon": "🌎",
               "img": "Assets/Images/network-types/wan.png",
               "imgAlt": "Map showing links between cities"
             }

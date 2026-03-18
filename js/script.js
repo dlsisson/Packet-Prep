@@ -198,4 +198,69 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set initial state
     updateNavbar();
   })();
+
+  // -------------------------
+  // Sidebar toggle (show/hide inline sidebar on desktop, drawer on mobile)
+  // -------------------------
+  (() => {
+    const menuBtn = document.getElementById('menuBtn');
+    const overlay = document.getElementById('overlay');
+    const page = document.querySelector('.page');
+    const sidebar = document.getElementById('sidebar');
+    const mobileMq = window.matchMedia('(max-width: 860px)');
+    if (!menuBtn || !page || !sidebar) return;
+
+    function isMobileView() {
+      return mobileMq.matches;
+    }
+
+    function closeSidebar() {
+      if (isMobileView()) {
+        sidebar.classList.remove('is-open');
+      } else {
+        page.classList.add('sidebar-closed');
+      }
+
+      menuBtn.setAttribute('aria-expanded', 'false');
+      if (overlay) overlay.setAttribute('hidden', '');
+      document.body.classList.remove('nav-open');
+    }
+
+    function openSidebar() {
+      if (isMobileView()) {
+        sidebar.classList.add('is-open');
+      } else {
+        page.classList.remove('sidebar-closed');
+      }
+
+      menuBtn.setAttribute('aria-expanded', 'true');
+      if (overlay) overlay.removeAttribute('hidden');
+      document.body.classList.add('nav-open');
+    }
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = isMobileView()
+        ? sidebar.classList.contains('is-open')
+        : !page.classList.contains('sidebar-closed');
+
+      if (isOpen) closeSidebar();
+      else openSidebar();
+    });
+
+    // overlay click closes
+    if (overlay) overlay.addEventListener('click', closeSidebar);
+
+    // ensure close buttons also close (some markup uses inline onclick)
+    document.addEventListener('click', (e) => {
+      const close = e.target.closest('.sidebar__close');
+      if (close) closeSidebar();
+    });
+
+    mobileMq.addEventListener('change', () => {
+      sidebar.classList.remove('is-open');
+      if (overlay) overlay.setAttribute('hidden', '');
+      document.body.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  })();
 });
