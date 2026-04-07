@@ -194,38 +194,38 @@ function setupLearnPreviewPanel() {
       n: 1,
       title: "What is a Network?",
       preview: "Define networks, devices, links, and what it means to move data between endpoints.",
-      meta: ["Estimated: 10–15 min", "Includes: overview", "Ends with: quiz"]
+      meta: ["Estimated: 10–15 min"]
     },
     {
       n: 2,
       title: "OSI & TCP/IP",
       preview: "Understand the OSI model as a mental map and how it relates to the real TCP/IP stack.",
-      meta: ["Estimated: 15–20 min", "Includes: layers", "Ends with: quiz"]
+      meta: ["Estimated: 15–20 min"]
     },
     {
       n: 3,
       title: "IP Addresses",
       preview:
         "Learn IP addressing fundamentals, subnet masks conceptually, and why addressing matters in real networks.",
-      meta: ["Estimated: 15–25 min", "Includes: diagrams", "Ends with: quiz"]
+      meta: ["Estimated: 15–25 min"]
     },
     {
       n: 4,
       title: "Switching & Routing",
       preview: "Learn what switches and routers do, and how traffic moves at Layer 2 vs Layer 3.",
-      meta: ["Estimated: 20–30 min", "Includes: examples", "Ends with: quiz"]
+      meta: ["Estimated: 20–30 min"]
     },
     {
       n: 5,
       title: "Core Protocols",
       preview: "Learn the big ones: DHCP, DNS, ARP, ICMP, and how they work together.",
-      meta: ["Estimated: 20–30 min", "Includes: reference", "Ends with: quiz"]
+      meta: ["Estimated: 20–30 min"]
     },
     {
       n: 6,
       title: "Security Basics",
       preview: "Learn foundational security ideas like segmentation, least privilege, and common network controls.",
-      meta: ["Estimated: 15–25 min", "Includes: best practices", "Ends with: quiz"]
+      meta: ["Estimated: 15–25 min"]
     }
   ];
 

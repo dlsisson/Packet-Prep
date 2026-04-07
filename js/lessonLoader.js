@@ -2,6 +2,14 @@
 let LESSONS = null;
 const LESSON_PROGRESS_KEY = "packetprep.lessonProgress.v1";
 const QUIZ_PASS_PERCENT = 70;
+const CHAPTER_TIME_ESTIMATES = {
+  1: "Estimated: 10-15 min",
+  2: "Estimated: 15-20 min",
+  3: "Estimated: 15-25 min",
+  4: "Estimated: 20-30 min",
+  5: "Estimated: 20-30 min",
+  6: "Estimated: 15-25 min"
+};
 
 function getProgressState() {
   try {
@@ -158,8 +166,13 @@ function renderChapter(chapter, chapters) {
   // Title and subtitle.
   const titleEl = document.getElementById("chapterTitle");
   const subEl = document.getElementById("chapterSubtitle");
+  const timeEl = document.getElementById("chapterTimeEstimate");
   if (titleEl) titleEl.textContent = chapter.title || "";
   if (subEl) subEl.textContent = chapter.subtitle || "";
+  if (timeEl) {
+    const fallbackEstimate = "Estimated: 10-15 min";
+    timeEl.textContent = CHAPTER_TIME_ESTIMATES[chapter.number] || fallbackEstimate;
+  }
 
   // Sidebar chapter label.
   const chapterLabel = document.getElementById("chapterLabel");
