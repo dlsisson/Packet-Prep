@@ -1,218 +1,241 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Packet Prep – Home</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Packet Prep – Home</title>
 
-  <!-- Google Fonts (clean version) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&family=Orbitron:wght@400;700&family=Overpass:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts (clean version) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&family=Orbitron:wght@400;700&family=Overpass:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stlesheet" href="css/lesson.css">
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js" defer></script>
     <script src="js/script.js" defer></script>
-</head>
+  </head>
 
-<body>
+  <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
 
-  <!-- ================= HEADER ================= -->
-  <header class="topbar">
-    <div class="logo-nav">
-      <img src="Assets/Images/Logo/Logo.png" alt="Packet Prep Logo">
-    </div>
+    <!-- ================= HEADER ================= -->
+    <header class="topbar" id="top">
+      <a class="logo-nav" href="packet_prep.html#home" aria-label="Packet Prep home">
+        <img src="Assets/Images/Logo/Logo.png" alt="Packet Prep Logo" />
+      </a>
 
-    <nav class="nav" aria-label="Primary Navigation">
-      <a href="#home">Home</a>
-      <a href="#glossary">Glossary</a>
-      <a href="#about">About</a>
-      <a href="#progress">Progress</a>
-      <a href="#chapter-select">Chapter Select</a>
-    </nav>
+      <nav class="nav site-nav" id="primaryNav" aria-label="Primary Navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#learn">What You'll Learn</a>
+        <a href="#contact">Contact</a>
+        <a href="glossary.html">Glossary</a>
+        <a class="nav-cta" href="lessons.html?id=chapter-1">Start Now</a>
+      </nav>
 
-    <div id="themeSwitch"
-         class="switch"
-         role="switch"
-         aria-checked="false"
-         tabindex="0"
-         title="Toggle dark mode">
-    </div>
-  </header>
-
-  <!-- ================= HERO ================= -->
-  <section id="home" class="screen">
-    <div class="hero-inner">
-      <h1><span class="hero-title-line">Your Networking Journey</span><br>Begins Here</h1>
-      <p>A complete beginner guide to the fundamentals of computer networking</p>
-      <button class="btn" id="beginBtn">Begin</button>
-    </div>
-  </section>
-
-  <section class="ticker-banner" aria-label="Networking Topics">
-    <div class="ticker-viewport" id="heroTickerViewport">
-      <div class="ticker-track" id="heroTickerTrack">
-        <span class="ticker-item">INFORMATION TECHNOLOGY</span>
-        <span class="ticker-dot" aria-hidden="true">•</span>
-        <span class="ticker-item">COMPUTER NETWORKING</span>
-        <span class="ticker-dot" aria-hidden="true">•</span>
-        <span class="ticker-item">COMPTIA NETWORK +</span>
-        <span class="ticker-dot" aria-hidden="true">•</span>
-        <span class="ticker-item">CCNA</span>
-        <span class="ticker-dot" aria-hidden="true">•</span>
-        <span class="ticker-item">NETWORKING BASICS</span>
-        <span class="ticker-dot" aria-hidden="true">•</span>
-        <span class="ticker-item">DIGITAL SECURITY</span>
+      <div class="theme-toggle" aria-label="Toggle theme">
+        <span class="theme-toggle__label" aria-hidden="true">Theme</span>
+        <div
+          id="themeSwitch"
+          class="switch"
+          role="switch"
+          aria-checked="false"
+          tabindex="0"
+          title="Toggle dark mode"
+        ></div>
       </div>
-    </div>
-  </section>
 
-  <!-- ================= ABOUT ================= -->
-  <section id="about" class="screen">
-    <div class="wrap">
-      <div class="about">
+      <button
+        class="icon-btn"
+        id="menuBtn"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="primaryNav"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+    </header>
 
-        <h2 class="about-title">About Packet Prep</h2>
+    <div class="overlay" id="overlay" hidden></div>
 
-        <p class="about-lead">
-          Modern businesses rely on connected systems to operate, scale, and stay secure.
-          From cloud platforms to enterprise infrastructure, strong networking fundamentals
-          power the technology people depend on every day.
-        </p>
-
-        <div class="about-cards">
-
-          <article class="fact-card">
-            <div class="fact-media">Image</div>
-            <h3 class="fact-title">Steady Career Growth</h3>
-            <p class="fact-text">
-              Networking roles continue expanding as organizations invest in cloud and security.
-            </p>
-          </article>
-
-          <article class="fact-card">
-            <div class="fact-media">Image</div>
-            <h3 class="fact-title">Everything Connects</h3>
-            <p class="fact-text">
-              Every website, cloud app, and secure transaction depends on networking.
-            </p>
-          </article>
-
-          <article class="fact-card">
-            <div class="fact-media">Image</div>
-            <h3 class="fact-title">Foundational Skillset</h3>
-            <p class="fact-text">
-              Networking fundamentals apply across IT, cloud, cybersecurity, and DevOps.
-            </p>
-          </article>
-
+    <main id="mainContent">
+      <!-- ================= HERO ================= -->
+      <section id="home" class="screen">
+        <div class="hero-inner">
+          <h1><span class="hero-title-line">Your Networking Journey</span><br />Begins Here</h1>
+          <p>A complete beginner guide to the fundamentals of computer networking</p>
+          <button class="btn" id="beginBtn">Begin</button>
         </div>
+      </section>
 
-      </div>
-    </div>
-  </section>
+      <!-- ================= ABOUT ================= -->
+      <section id="about" class="screen">
+        <div class="wrap">
+          <div class="about">
+            <h2 class="about-title">About Packet Prep</h2>
 
-  <!-- ================= WHAT YOU'LL LEARN ================= -->
-  <section class="screen">
-    <div class="wrap">
+            <p class="about-lead">
+              Modern businesses rely on connected systems to operate, scale, and stay secure. From cloud platforms to
+              enterprise infrastructure, strong networking fundamentals power the technology people depend on every day.
+            </p>
 
-      <div class="learnHeader">
-        <div>
-          <h2>What You’ll Learn</h2>
-          <p>Click a chapter to preview what’s inside.</p>
-        </div>
-      </div>
+            <div class="about-cards">
+              <article class="fact-card">
+                <div class="fact-media" aria-hidden="true">Illustration</div>
+                <h3 class="fact-title">Steady Career Growth</h3>
+                <p class="fact-text">
+                  Networking roles continue expanding as organizations invest in cloud and security.
+                </p>
+              </article>
 
-      <div class="learnLayout">
+              <article class="fact-card">
+                <div class="fact-media" aria-hidden="true">Illustration</div>
+                <h3 class="fact-title">Everything Connects</h3>
+                <p class="fact-text">Every website, cloud app, and secure transaction depends on networking.</p>
+              </article>
 
-        <div class="learnList" id="learnList"></div>
-
-        <aside class="preview" aria-live="polite">
-          <h3 class="previewTitle" id="previewTitle">IP Addresses</h3>
-          <p class="previewBody" id="previewBody">
-            Learn what an IP address is and why addressing matters in real networks.
-          </p>
-          <div class="previewMeta" id="previewMeta">
-            <span class="pill">Estimated: 15–25 min</span>
-            <span class="pill">Includes: diagrams</span>
-            <span class="pill">Ends with: quiz</span>
+              <article class="fact-card">
+                <div class="fact-media" aria-hidden="true">Illustration</div>
+                <h3 class="fact-title">Foundational Skillset</h3>
+                <p class="fact-text">Networking fundamentals apply across IT, cloud, cybersecurity, and DevOps.</p>
+              </article>
+            </div>
           </div>
-        </aside>
+        </div>
+      </section>
 
+      <!-- ================= WHAT YOU'LL LEARN ================= -->
+      <section id="learn" class="screen">
+        <div class="wrap">
+          <div class="learnHeader">
+            <div>
+              <h2>What You’ll Learn</h2>
+              <p>Click a chapter to preview what’s inside.</p>
+            </div>
+          </div>
+
+          <div class="learnLayout">
+            <div class="learnList" id="learnList"></div>
+
+            <aside class="preview" aria-live="polite">
+              <h3 class="previewTitle" id="previewTitle">IP Addresses</h3>
+              <p class="previewBody" id="previewBody">
+                Learn what an IP address is and why addressing matters in real networks.
+              </p>
+              <div class="previewMeta" id="previewMeta">
+                <span class="pill">Estimated: 15–25 min</span>
+                <span class="pill">Includes: diagrams</span>
+                <span class="pill">Ends with: quiz</span>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= READY ================= -->
+      <section class="screen" id="ready">
+        <div class="wrap ready">
+          <h2>Ready to Start?</h2>
+          <button class="btn" id="beginBtn2">Begin</button>
+        </div>
+      </section>
+
+      <section class="ticker-banner" aria-label="Networking Topics">
+        <div class="ticker-viewport" id="heroTickerViewport">
+          <div class="ticker-track" id="heroTickerTrack">
+            <span class="ticker-item">INFORMATION TECHNOLOGY</span>
+            <span class="ticker-dot" aria-hidden="true">•</span>
+            <span class="ticker-item">COMPUTER NETWORKING</span>
+            <span class="ticker-dot" aria-hidden="true">•</span>
+            <span class="ticker-item">COMPTIA NETWORK +</span>
+            <span class="ticker-dot" aria-hidden="true">•</span>
+            <span class="ticker-item">CCNA</span>
+            <span class="ticker-dot" aria-hidden="true">•</span>
+            <span class="ticker-item">NETWORKING BASICS</span>
+            <span class="ticker-dot" aria-hidden="true">•</span>
+            <span class="ticker-item">DIGITAL SECURITY</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer" id="contact">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="footer-logo" aria-hidden="true">Logo</div>
+          <p class="footer-tagline">Packet Prep — Networking Fundamentals Made Simple</p>
+        </div>
+
+        <nav aria-labelledby="footer-links-heading">
+          <h2 id="footer-links-heading" class="footer-heading">Links</h2>
+          <ul class="footer-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="lessons.html?id=chapter-1">Progress</a></li>
+            <li><a href="#learn">Chapter Select</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-contact-heading">
+          <h2 id="footer-contact-heading" class="footer-heading">Contact</h2>
+          <ul class="footer-list">
+            <li class="footer-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="3"
+                  y="5"
+                  width="18"
+                  height="14"
+                  rx="2"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <a href="mailto:your@email.com">Email</a>
+            </li>
+
+            <li class="footer-item footer-item--social">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.59 2 12.25c0 4.53 2.87 8.38 6.84 9.73.5.1.66-.22.66-.49 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.22-3.37-1.22-.46-1.2-1.11-1.52-1.11-1.52-.91-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.33 1.11 2.9.85.09-.67.35-1.11.64-1.37-2.22-.26-4.56-1.14-4.56-5.1 0-1.13.39-2.05 1.03-2.77-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.06A9.32 9.32 0 0 1 12 6.84c.85 0 1.71.12 2.51.36 1.91-1.34 2.75-1.06 2.75-1.06.55 1.42.2 2.47.1 2.73.64.72 1.03 1.64 1.03 2.77 0 3.97-2.34 4.84-4.57 5.09.36.32.68.95.68 1.92 0 1.39-.01 2.5-.01 2.84 0 .27.17.59.67.49A10.3 10.3 0 0 0 22 12.25C22 6.59 17.52 2 12 2Z"
+                />
+              </svg>
+              <a href="#">GitHub</a>
+            </li>
+
+            <li class="footer-item footer-item--social">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                <path
+                  d="M6.94 8.5v8.53H4.11V8.5h2.83Zm.18-2.64c0 .82-.62 1.48-1.59 1.48h-.02c-.94 0-1.54-.66-1.54-1.48 0-.84.62-1.49 1.58-1.49s1.55.65 1.57 1.49ZM19.89 12.14v4.89h-2.83v-4.56c0-1.15-.41-1.93-1.43-1.93-.78 0-1.25.54-1.46 1.06-.08.18-.1.44-.1.7v4.73h-2.83s.04-7.67 0-8.53h2.83v1.21c.38-.58 1.05-1.41 2.56-1.41 1.87 0 3.26 1.26 3.26 3.84Z"
+                />
+              </svg>
+              <a href="#">LinkedIn</a>
+            </li>
+          </ul>
+        </nav>
       </div>
 
-    </div>
-  </section>
-
-  <!-- ================= READY ================= -->
-  <section class="screen">
-    <div class="wrap ready">
-      <h2>Ready to Start?</h2>
-      <button class="btn" id="beginBtn2">Begin</button>
-    </div>
-  </section>
-
-  <!-- ================= FOOTER ================= -->
-  <footer class="site-footer">
-
-    <div class="footer-container">
-
-      <div class="footer-brand">
-        <div class="footer-logo">Image</div>
-        <p class="footer-tagline">
-          Packet Prep — Networking Fundamentals Made Simple
-        </p>
+      <div class="footer-bottom">
+        <p><a class="footer-top-link" href="#top">Back to Top</a></p>
+        <p>© 2026 Packet Prep. All rights reserved.</p>
       </div>
-
-      <nav aria-labelledby="footer-links-heading">
-        <h2 id="footer-links-heading" class="footer-heading">Links</h2>
-        <ul class="footer-list">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#glossary">Glossary</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#progress">Progress</a></li>
-          <li><a href="#chapter-select">Chapter Select</a></li>
-        </ul>
-      </nav>
-
-      <nav aria-labelledby="footer-contact-heading">
-        <h2 id="footer-contact-heading" class="footer-heading">Contact</h2>
-        <ul class="footer-list">
-
-          <li class="footer-item">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-              <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <rect x="3" y="5" width="18" height="14" rx="2" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            <a href="mailto:your@email.com">Email</a>
-          </li>
-
-          <li class="footer-item">
-            <svg viewBox="0 0 24 24" width="20" height="20">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none"/>
-            </svg>
-            <a href="#">GitHub</a>
-          </li>
-
-          <li class="footer-item">
-            <svg viewBox="0 0 24 24" width="20" height="20">
-              <rect x="3" y="3" width="18" height="18" stroke="currentColor" fill="none"/>
-            </svg>
-            <a href="#">LinkedIn</a>
-          </li>
-
-        </ul>
-      </nav>
-
-    </div>
-
-    <div class="footer-bottom">
-      <p>© 2026 Packet Prep. All rights reserved.</p>
-    </div>
-
-  </footer>
-
-</body>
+    </footer>
+  </body>
 </html>

@@ -5,98 +5,419 @@
       "id": "chapter-1",
       "number": 1,
       "title": "Networking Basics",
-      "subtitle": "What networks are, why they exist, and how data moves.",
+      "subtitle": "Start from zero: what a network is, why it matters, and how data travels.",
       "sections": [
+        {
+          "id": "s-what-is-network",
+          "heading": "What Is a Network?",
+          "type": "richtext",
+          "html": "<p>A <strong>network</strong> is a group of devices that can communicate and share resources. Your phone, laptop, smart TV, and printer can all be on the same home network.</p><p>Think of networking like a road system:</p><ul><li><strong>Devices</strong> are the buildings (homes, schools, offices).</li><li><strong>Cables/Wi-Fi</strong> are the roads.</li><li><strong>Data</strong> is the traffic moving between places.</li></ul><p>Without networking, every device would be isolated and unable to access the internet or shared services.</p>"
+        },
         {
           "id": "s-network-types",
           "heading": "Network Types",
           "type": "twoColList",
-          "introHtml": "<p>From smallest to largest:</p>",
+          "introHtml": "<p>From smallest to largest, you will usually see these network categories:</p>",
           "items": [
             {
               "label": "PAN",
               "title": "Personal Area Network",
-              "desc": "Very short-range network around a person (Bluetooth, wearables).",
+              "desc": "Very short-range network around one person, such as Bluetooth earbuds, watches, and phones.",
               "img": "Assets/Images/network-types/pan.png",
               "imgAlt": "Phone connected to smartwatch via Bluetooth"
             },
             {
               "label": "LAN",
               "title": "Local Area Network",
-              "desc": "Network inside a home, office, or building (Ethernet/Wi-Fi).",
+              "desc": "A network inside one location (home, office, school). Most beginner labs are LAN-focused.",
               "img": "Assets/Images/network-types/lan.png",
               "imgAlt": "Router connecting devices inside a home"
             },
             {
               "label": "WAN",
               "title": "Wide Area Network",
-              "desc": "Connects LANs across cities/countries (ISP networks, MPLS).",
+              "desc": "Connects many LANs over large distances using ISP or enterprise infrastructure.",
               "img": "Assets/Images/network-types/wan.png",
               "imgAlt": "Map showing links between cities"
             }
           ]
+        },
+        {
+          "id": "s-topologies",
+          "heading": "Common Network Topologies",
+          "type": "richtext",
+          "html": "<p><strong>Topology</strong> means the shape of connections between devices.</p><ul><li><strong>Star:</strong> All devices connect to one central switch. This is the most common and easiest to troubleshoot.</li><li><strong>Bus:</strong> Devices share one cable path. It is simple but one break can impact everyone.</li><li><strong>Ring:</strong> Devices form a loop. Data passes device to device around the ring.</li><li><strong>Mesh:</strong> Devices have multiple paths. More reliable, but more expensive and complex.</li></ul><p>Beginner tip: in modern office LANs, assume <strong>star</strong> unless told otherwise.</p>"
+        },
+        {
+          "id": "s-data-flow",
+          "heading": "How Data Travels",
+          "type": "richtext",
+          "html": "<p>When you open a website, your device sends data in small pieces called <strong>packets</strong>.</p><ol><li>Your computer creates packets and labels them with source/destination info.</li><li>The switch forwards frames inside your local network.</li><li>The router forwards packets to other networks (like the internet).</li><li>The destination server sends responses back the same way.</li></ol><p>At the end, your browser reassembles everything so you see one complete page.</p><p><strong>Try this mental model:</strong> packets are like envelopes, headers are the address labels, and routers/switches are the postal sorting centers.</p>"
+        },
+        {
+          "id": "s-beginner-checklist",
+          "heading": "Beginner Checklist",
+          "type": "richtext",
+          "html": "<p>Before moving to Chapter 2, make sure you can explain:</p><ul><li>The difference between PAN, LAN, and WAN.</li><li>Why star topology is common.</li><li>Why data is split into packets.</li><li>What switches and routers each do at a high level.</li></ul><p>If any point feels unclear, re-read this chapter slowly. Building strong basics now makes advanced topics much easier.</p>"
         }
       ],
-      "quiz": []
+      "quiz": [
+        {
+          "id": "q1-1",
+          "question": "Which network type usually covers a single home or office?",
+          "choices": ["PAN", "LAN", "WAN", "MAN"],
+          "answerIndex": 1,
+          "explanation": "LANs are designed for local spaces like homes, schools, and office buildings."
+        },
+        {
+          "id": "q1-2",
+          "question": "What is the main benefit of a star topology?",
+          "choices": [
+            "No central device needed",
+            "Every device has a dedicated link to a central point",
+            "Uses the least cable in all cases",
+            "Packets can never collide"
+          ],
+          "answerIndex": 1,
+          "explanation": "A star topology centralizes connections, making troubleshooting and expansion easier."
+        },
+        {
+          "id": "q1-3",
+          "question": "What is the purpose of packet headers?",
+          "choices": [
+            "Increase file size",
+            "Store routing and delivery information",
+            "Encrypt all traffic automatically",
+            "Replace MAC addresses"
+          ],
+          "answerIndex": 1,
+          "explanation": "Headers include metadata such as source and destination addresses used for forwarding."
+        }
+      ]
     },
-
     {
       "id": "chapter-2",
       "number": 2,
       "title": "OSI Model",
-      "subtitle": "Layers, responsibilities, and how to troubleshoot.",
+      "subtitle": "Learn the layers as a beginner-friendly map for understanding and troubleshooting networks.",
       "sections": [
-        { "id": "s-osi", "heading": "The 7 Layers", "html": "<p>...</p>" }
+        {
+          "id": "s-osi-why",
+          "heading": "Why Learn the OSI Model?",
+          "type": "richtext",
+          "html": "<p>The OSI model helps beginners answer one key question: <strong>where is the problem?</strong></p><p>Instead of guessing, you can troubleshoot layer by layer. If Layer 1 fails, you do not waste time checking Layer 7 apps.</p><p>Even though real networks use TCP/IP, OSI is still the best teaching framework.</p>"
+        },
+        {
+          "id": "s-osi-overview",
+          "heading": "The 7 Layers",
+          "type": "richtext",
+          "html": "<p>The OSI model breaks communication into 7 layers:</p><ol><li><strong>Physical (L1):</strong> cables, fiber, radio signals, connectors.</li><li><strong>Data Link (L2):</strong> frames and MAC addresses on the local network.</li><li><strong>Network (L3):</strong> IP addressing and routing between networks.</li><li><strong>Transport (L4):</strong> end-to-end delivery with TCP/UDP and ports.</li><li><strong>Session (L5):</strong> starts, maintains, and ends sessions.</li><li><strong>Presentation (L6):</strong> data format, encryption, compression.</li><li><strong>Application (L7):</strong> user-facing protocols like HTTP, DNS, SMTP.</li></ol><p>Beginner shortcut: L1-L3 = infrastructure path, L4-L7 = application behavior.</p>"
+        },
+        {
+          "id": "s-pdu-map",
+          "heading": "PDU Names by Layer",
+          "type": "richtext",
+          "html": "<p>As data goes down the stack, each layer wraps it with extra information.</p><ul><li><strong>Layers 7-5:</strong> Data</li><li><strong>Layer 4:</strong> Segment (TCP) or Datagram (UDP)</li><li><strong>Layer 3:</strong> Packet</li><li><strong>Layer 2:</strong> Frame</li><li><strong>Layer 1:</strong> Bits</li></ul><p><strong>Encapsulation</strong> = wrapping data with headers. <strong>Decapsulation</strong> = removing headers at the destination.</p>"
+        },
+        {
+          "id": "s-osi-troubleshoot",
+          "heading": "Troubleshooting by Layer",
+          "type": "richtext",
+          "html": "<p>Use this beginner workflow during real problems:</p><ol><li><strong>Layer 1:</strong> cable connected? Wi-Fi enabled? link light on?</li><li><strong>Layer 2:</strong> right VLAN? switch port up? MAC learned?</li><li><strong>Layer 3:</strong> correct IP, subnet mask, gateway, DNS?</li><li><strong>Layer 4+:</strong> can the app port be reached? does DNS resolve?</li></ol><p>Rule: fix the <strong>lowest broken layer first</strong>. Higher layers depend on lower layers.</p>"
+        },
+        {
+          "id": "s-osi-memory-aids",
+          "heading": "Memory Aids for Beginners",
+          "type": "richtext",
+          "html": "<p>Use mnemonics to remember layers quickly:</p><ul><li>Top to bottom: <strong>All People Seem To Need Data Processing</strong></li><li>Bottom to top: <strong>Please Do Not Throw Sausage Pizza Away</strong></li></ul><p>Don’t memorize blindly. Always tie each layer to what it <em>does</em> in real troubleshooting.</p>"
+        }
       ],
       "quiz": [
+        {
+          "id": "q2-1",
+          "question": "Which OSI layer is responsible for logical addressing and routing?",
+          "choices": ["Data Link", "Network", "Transport", "Session"],
+          "answerIndex": 1,
+          "explanation": "The Network layer (Layer 3) handles IP addresses and path selection."
+        },
+        {
+          "id": "q2-2",
+          "question": "At which layer is a frame processed?",
+          "choices": ["Layer 1", "Layer 2", "Layer 3", "Layer 4"],
+          "answerIndex": 1,
+          "explanation": "Frames are the Data Link layer PDU."
+        },
+        {
+          "id": "q2-3",
+          "question": "If a cable is unplugged, which layer is affected first?",
+          "choices": ["Physical", "Transport", "Session", "Application"],
+          "answerIndex": 0,
+          "explanation": "Physical issues happen at Layer 1 before any higher-layer checks matter."
+        }
       ]
     },
-  
     {
       "id": "chapter-3",
       "number": 3,
       "title": "IP Addresses",
-      "subtitle": "Layers, responsibilities, and how to troubleshoot.",
+      "subtitle": "Understand addressing step by step: IPv4, subnets, private/public ranges, and practical usage.",
       "sections": [
-        { "id": "s-osi", "heading": "The 7 Layers", "html": "<p>...</p>" }
+        {
+          "id": "s-ipv4-structure",
+          "heading": "IPv4 Fundamentals",
+          "type": "richtext",
+          "html": "<p>IPv4 uses <strong>32 bits</strong> and is written in dotted decimal format, like <code>192.168.1.10</code>.</p><p>An IP address has two parts:</p><ul><li><strong>Network portion:</strong> identifies which network a device belongs to.</li><li><strong>Host portion:</strong> identifies the specific device on that network.</li></ul><p>The subnet mask (or CIDR prefix) tells you where the split happens.</p>"
+        },
+        {
+          "id": "s-subnetting-basics",
+          "heading": "Subnetting Basics",
+          "type": "richtext",
+          "html": "<p>Subnetting splits large networks into smaller, easier-to-manage networks.</p><p>For any subnet, identify:</p><ul><li><strong>Network address:</strong> first address (not assigned to hosts).</li><li><strong>Broadcast address:</strong> last address (used to reach all hosts in subnet).</li><li><strong>Usable range:</strong> addresses between network and broadcast.</li></ul><p>Example: <code>10.0.0.0/24</code> has usable hosts <code>10.0.0.1</code> to <code>10.0.0.254</code> and broadcast <code>10.0.0.255</code>.</p>"
+        },
+        {
+          "id": "s-cidr-walkthrough",
+          "heading": "CIDR Quick Walkthrough",
+          "type": "richtext",
+          "html": "<p>CIDR uses slash notation like <code>/24</code>, <code>/25</code>, or <code>/30</code>.</p><ul><li><strong>Larger prefix</strong> (like /30): fewer host addresses.</li><li><strong>Smaller prefix</strong> (like /16): more host addresses.</li></ul><p>Common beginner ranges:</p><ul><li><code>/24</code> = up to 254 usable hosts</li><li><code>/25</code> = up to 126 usable hosts</li><li><code>/26</code> = up to 62 usable hosts</li></ul><p>Practice these repeatedly; subnetting gets easier with repetition.</p>"
+        },
+        {
+          "id": "s-private-public-ip",
+          "heading": "Private, Public, and IPv6",
+          "type": "richtext",
+          "html": "<p>Private IPv4 addresses are used inside local networks and are not directly routable on the public internet:</p><ul><li><code>10.0.0.0/8</code></li><li><code>172.16.0.0/12</code></li><li><code>192.168.0.0/16</code></li></ul><p><strong>Public IPs</strong> are internet-routable and usually assigned by ISPs. <strong>NAT</strong> helps private devices share a public IP.</p><p><strong>IPv6</strong> uses 128 bits and provides a very large address space for modern growth.</p>"
+        },
+        {
+          "id": "s-ip-practice",
+          "heading": "Practice Like an Instructional Lab",
+          "type": "richtext",
+          "html": "<p>Try this simple lab workflow:</p><ol><li>Check your own IP settings on your device.</li><li>Identify subnet mask/prefix.</li><li>Decide if the IP is private or public.</li><li>Predict the default gateway range.</li><li>Test with <code>ping</code> (gateway first, then internet DNS like 8.8.8.8).</li></ol><p>This habit builds confidence quickly for beginners.</p>"
+        }
       ],
       "quiz": [
-
+        {
+          "id": "q3-1",
+          "question": "How many bits are in an IPv4 address?",
+          "choices": ["16", "32", "64", "128"],
+          "answerIndex": 1,
+          "explanation": "IPv4 uses 32-bit addressing."
+        },
+        {
+          "id": "q3-2",
+          "question": "Which of these is a private IPv4 address?",
+          "choices": ["8.8.8.8", "172.20.5.9", "1.1.1.1", "66.249.64.1"],
+          "answerIndex": 1,
+          "explanation": "172.20.5.9 is in the private 172.16.0.0/12 range."
+        },
+        {
+          "id": "q3-3",
+          "question": "What does /24 indicate in CIDR notation?",
+          "choices": ["24 host bits", "24 network bits", "24 total addresses", "24 subnets"],
+          "answerIndex": 1,
+          "explanation": "A /24 prefix means 24 bits are allocated to the network portion."
+        }
       ]
     },
     {
       "id": "chapter-4",
       "number": 4,
-      "title": "Switching & Routing",
-      "subtitle": "Layers, responsibilities, and how to troubleshoot.",
+      "title": "Switching and Routing",
+      "subtitle": "Learn the core difference: switching inside networks vs routing between networks.",
       "sections": [
-        { "id": "s-osi", "heading": "The 7 Layers", "html": "<p>...</p>" }
+        {
+          "id": "s-switching-basics",
+          "heading": "Switching Essentials",
+          "type": "richtext",
+          "html": "<p>Switches mostly work at Layer 2 and forward traffic using <strong>MAC addresses</strong>.</p><p>They build a MAC table by learning source MAC addresses on each port. If a destination MAC is unknown, the switch temporarily floods the frame within the VLAN.</p><p>Beginner takeaway: switches keep local traffic local and efficient.</p>"
+        },
+        {
+          "id": "s-vlan-segmentation",
+          "heading": "VLANs and Segmentation",
+          "type": "richtext",
+          "html": "<p>VLANs let you split one physical switch network into separate logical networks.</p><ul><li><strong>Access port:</strong> belongs to one VLAN (typical for PCs/printers).</li><li><strong>Trunk port:</strong> carries multiple VLANs between switches/routers.</li></ul><p>Devices in different VLANs cannot talk directly without Layer 3 routing. This improves security and organization.</p>"
+        },
+        {
+          "id": "s-routing-basics",
+          "heading": "Routing Fundamentals",
+          "type": "richtext",
+          "html": "<p>Routers operate at Layer 3 and forward packets between different networks.</p><p>They check destination IP addresses and pick the best route from the routing table.</p><p>Route types you should know as a beginner:</p><ul><li><strong>Connected:</strong> directly attached networks.</li><li><strong>Static:</strong> manually configured paths.</li><li><strong>Dynamic:</strong> learned by protocols like OSPF/BGP.</li></ul><p>The default route <code>0.0.0.0/0</code> is used when no specific route exists.</p>"
+        },
+        {
+          "id": "s-switch-router-compare",
+          "heading": "Switch vs Router: Beginner Comparison",
+          "type": "richtext",
+          "html": "<p>Use this quick comparison:</p><ul><li><strong>Switch:</strong> forwards frames inside one network (MAC-based).</li><li><strong>Router:</strong> forwards packets between networks (IP-based).</li></ul><p>If two devices are in the same VLAN/subnet, the switch handles most traffic. If they are in different networks, the router is required.</p>"
+        },
+        {
+          "id": "s-chapter4-practice",
+          "heading": "Instructional Practice Scenario",
+          "type": "richtext",
+          "html": "<p>Imagine VLAN 10 (HR) and VLAN 20 (Engineering) on one switch:</p><ol><li>Devices in VLAN 10 can talk to VLAN 10 directly.</li><li>Devices in VLAN 20 can talk to VLAN 20 directly.</li><li>Traffic between VLAN 10 and VLAN 20 must go through a router/L3 switch.</li></ol><p>This is one of the most common real-world network patterns.</p>"
+        }
       ],
       "quiz": [
+        {
+          "id": "q4-1",
+          "question": "What address type does a Layer 2 switch primarily use to forward traffic?",
+          "choices": ["IP", "Port", "MAC", "DNS"],
+          "answerIndex": 2,
+          "explanation": "Layer 2 forwarding decisions are made using destination MAC addresses."
+        },
+        {
+          "id": "q4-2",
+          "question": "Which port type carries multiple VLANs?",
+          "choices": ["Access", "Trunk", "Console", "Loopback"],
+          "answerIndex": 1,
+          "explanation": "Trunk ports carry traffic for multiple VLANs."
+        },
+        {
+          "id": "q4-3",
+          "question": "What is the purpose of a default route?",
+          "choices": [
+            "Route traffic only inside a VLAN",
+            "Drop unknown destinations",
+            "Forward packets when no specific route exists",
+            "Replace all dynamic routes"
+          ],
+          "answerIndex": 2,
+          "explanation": "A default route is a catch-all path for unmatched destinations."
+        }
       ]
     },
-        {
+    {
       "id": "chapter-5",
       "number": 5,
       "title": "Core Protocols",
-      "subtitle": "Layers, responsibilities, and how to troubleshoot.",
+      "subtitle": "Understand the everyday protocols that make apps and services work.",
       "sections": [
-        { "id": "s-osi", "heading": "The 7 Layers", "html": "<p>...</p>" }
+        {
+          "id": "s-tcp-vs-udp",
+          "heading": "TCP vs UDP",
+          "type": "richtext",
+          "html": "<p><strong>TCP</strong> is reliable and connection-oriented. It confirms delivery and can resend lost data.</p><p><strong>UDP</strong> is lightweight and connectionless. It does not guarantee delivery but is fast.</p><p>Beginner rule:</p><ul><li>Need reliability? Think TCP.</li><li>Need speed/low delay? Think UDP.</li></ul>"
+        },
+        {
+          "id": "s-dns-dhcp",
+          "heading": "DNS and DHCP",
+          "type": "richtext",
+          "html": "<p><strong>DNS</strong> translates names (like <code>example.com</code>) into IP addresses.</p><p><strong>DHCP</strong> automatically gives devices their network settings: IP, subnet mask, gateway, and DNS server.</p><p>DHCP process (DORA):</p><ol><li>Discover</li><li>Offer</li><li>Request</li><li>Acknowledge</li></ol><p>If a client has no valid IP, DHCP is one of the first things to check.</p>"
+        },
+        {
+          "id": "s-arp-icmp",
+          "heading": "ARP and ICMP in Daily Troubleshooting",
+          "type": "richtext",
+          "html": "<p><strong>ARP</strong> maps IP addresses to MAC addresses on local networks.</p><p><strong>ICMP</strong> carries control/diagnostic messages used by tools like <code>ping</code> and <code>traceroute</code>.</p><p>When beginners troubleshoot connectivity, these two protocols often explain why local vs remote communication behaves differently.</p>"
+        },
+        {
+          "id": "s-web-email-protocols",
+          "heading": "Web and Email Protocols",
+          "type": "richtext",
+          "html": "<p><strong>HTTP/HTTPS</strong> carry web traffic. HTTPS adds TLS encryption.</p><p><strong>SMTP</strong> sends mail. <strong>IMAP</strong> and <strong>POP3</strong> retrieve mail.</p><p>Knowing basic protocol-purpose mapping helps with firewall rules and troubleshooting user issues.</p>"
+        },
+        {
+          "id": "s-protocol-playbook",
+          "heading": "Beginner Protocol Playbook",
+          "type": "richtext",
+          "html": "<p>When an app fails, ask in this order:</p><ol><li>Does the device have an IP? (DHCP)</li><li>Can it resolve a hostname? (DNS)</li><li>Can it reach the target network? (ICMP/ping)</li><li>Is the required app protocol allowed? (HTTP/HTTPS/SMTP/etc.)</li></ol><p>This step-by-step playbook is how help desks and junior admins troubleshoot consistently.</p>"
+        }
       ],
       "quiz": [
-
+        {
+          "id": "q5-1",
+          "question": "Which protocol is connection-oriented and reliable by design?",
+          "choices": ["UDP", "TCP", "ICMP", "ARP"],
+          "answerIndex": 1,
+          "explanation": "TCP provides reliable delivery with acknowledgments and retransmissions."
+        },
+        {
+          "id": "q5-2",
+          "question": "What is the main role of DNS?",
+          "choices": [
+            "Assign private IP addresses",
+            "Translate names to IP addresses",
+            "Encrypt all traffic",
+            "Filter spam"
+          ],
+          "answerIndex": 1,
+          "explanation": "DNS maps hostnames to IP addresses for network communication."
+        },
+        {
+          "id": "q5-3",
+          "question": "What does DHCP primarily automate?",
+          "choices": [
+            "Routing table creation",
+            "Switch MAC learning",
+            "Host IP configuration",
+            "TLS certificate issuance"
+          ],
+          "answerIndex": 2,
+          "explanation": "DHCP automatically provides hosts with address and network parameters."
+        }
       ]
     },
-            {
+    {
       "id": "chapter-6",
       "number": 6,
       "title": "Security Fundamentals",
-      "subtitle": "Layers, responsibilities, and how to troubleshoot.",
+      "subtitle": "Build security-first habits: protect users, devices, and data with practical beginner steps.",
       "sections": [
-        { "id": "s-osi", "heading": "The 7 Layers", "html": "<p>...</p>" }
+        {
+          "id": "s-cia-triad",
+          "heading": "Security Goals: CIA Triad",
+          "type": "richtext",
+          "html": "<p>Most security decisions map to the CIA triad:</p><ul><li><strong>Confidentiality:</strong> keep sensitive data private.</li><li><strong>Integrity:</strong> protect data from unauthorized changes.</li><li><strong>Availability:</strong> keep systems usable when needed.</li></ul><p>When evaluating a control, ask: which part of CIA does this protect?</p>"
+        },
+        {
+          "id": "s-threats-attacks",
+          "heading": "Common Threats",
+          "type": "richtext",
+          "html": "<p>Common threats beginners should recognize:</p><ul><li>Phishing and social engineering</li><li>Malware and ransomware</li><li>Weak/reused passwords</li><li>Unpatched systems</li><li>Misconfigured firewall or access rules</li></ul><p>Most incidents come from a chain of small weaknesses, not one giant failure.</p>"
+        },
+        {
+          "id": "s-defense-practices",
+          "heading": "Baseline Defense Practices",
+          "type": "richtext",
+          "html": "<p>Foundational controls every beginner should know:</p><ul><li>Use MFA and strong password policy.</li><li>Apply updates and patches on a schedule.</li><li>Use least privilege for accounts and services.</li><li>Segment networks to reduce lateral movement.</li><li>Encrypt sensitive traffic and stored data.</li><li>Monitor logs and alerts for unusual behavior.</li></ul><p>Security is not a one-time setup. It is an ongoing cycle: <strong>prevent, detect, respond, improve</strong>.</p>"
+        },
+        {
+          "id": "s-incident-mindset",
+          "heading": "Beginner Incident Response Mindset",
+          "type": "richtext",
+          "html": "<p>If something suspicious happens:</p><ol><li><strong>Contain:</strong> isolate affected systems quickly.</li><li><strong>Preserve:</strong> keep logs/evidence for analysis.</li><li><strong>Report:</strong> notify the right team/person immediately.</li><li><strong>Recover:</strong> restore systems safely.</li><li><strong>Review:</strong> document lessons learned and improve controls.</li></ol><p>Good response habits can limit damage even when prevention fails.</p>"
+        },
+        {
+          "id": "s-security-habits",
+          "heading": "Daily Security Habits",
+          "type": "richtext",
+          "html": "<p>Small habits create strong security posture:</p><ul><li>Lock your device when stepping away.</li><li>Verify sender identity before clicking links.</li><li>Use approved tools, not random downloads.</li><li>Review account permissions periodically.</li><li>Report suspicious behavior early.</li></ul><p>For beginners, consistency beats complexity. Do the basics well every day.</p>"
+        }
       ],
       "quiz": [
-
+        {
+          "id": "q6-1",
+          "question": "Which element of the CIA triad focuses on keeping systems accessible?",
+          "choices": ["Confidentiality", "Integrity", "Availability", "Authenticity"],
+          "answerIndex": 2,
+          "explanation": "Availability means services and data are reachable when needed."
+        },
+        {
+          "id": "q6-2",
+          "question": "What does least privilege mean?",
+          "choices": [
+            "Users get admin rights by default",
+            "Users receive only the access needed for their tasks",
+            "All users share one account",
+            "Only guests can log in"
+          ],
+          "answerIndex": 1,
+          "explanation": "Least privilege limits access to reduce potential damage from mistakes or compromise."
+        },
+        {
+          "id": "q6-3",
+          "question": "Which control most directly reduces password-only account compromise?",
+          "choices": ["VLAN trunking", "MFA", "DHCP relay", "NAT"],
+          "answerIndex": 1,
+          "explanation": "MFA adds another verification factor beyond the password."
+        }
       ]
     }
   ]
