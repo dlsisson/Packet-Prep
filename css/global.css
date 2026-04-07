@@ -1,5 +1,5 @@
 :root {
-  /* ===== Core tokens (LIGHT) ===== */
+  /* Core color tokens for light mode */
   --bg: #fff5f7;
   --text: #111111;
   --muted: #4a3640;
@@ -15,14 +15,14 @@
   --gap: 28px;
   --radius: 14px;
 
-  /* Lesson/shared tokens */
+  /* Shared tokens used by lesson pages */
   --border: rgba(0, 0, 0, 0.08);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   --accent: #ff9cb6;
   --accent-2: #c13a86;
 }
 
-/* Dark mode tokens (ENABLED) */
+/* Dark mode token overrides */
 :root[data-theme="dark"] {
   --bg: #181018;
   --text: #f2f2f2;
@@ -82,7 +82,7 @@ body.nav-open {
   transform: translateY(0);
 }
 
-/* utility helpers used across pages */
+/* Small utility helpers shared across pages */
 .muted {
   color: var(--muted);
 }
@@ -159,9 +159,7 @@ p {
   color: var(--text);
 }
 
-/* --------------------------
-   TOP BAR
--------------------------- */
+/* Top bar */
 
 .topbar {
   position: fixed;
@@ -191,7 +189,7 @@ p {
   transform: translateY(-100%);
 }
 
-/* Nav links white/semi-transparent when header is transparent */
+/* Keep nav links bright while the header is transparent. */
 .topbar .nav a {
   color: rgba(255, 255, 255, 0.9);
   transition: color 0.3s ease;
@@ -201,7 +199,7 @@ p {
   color: #fff;
 }
 
-/* When scrolled: switch to glassy effect */
+/* Apply the glass style once the page is scrolled. */
 .topbar.scrolled {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
@@ -218,7 +216,7 @@ p {
   color: var(--focus);
 }
 
-/* Glossary page / any non-hero page: always-dark navbar */
+/* Use a solid nav style on non-hero pages like glossary. */
 .topbar.topbar--solid,
 .topbar.topbar--solid.scrolled {
   background: var(--panel);
@@ -325,7 +323,7 @@ p {
   font-size: clamp(1rem, 1.3vw, 1.28rem);
   letter-spacing: 0.04em;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--text);
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -371,16 +369,16 @@ p {
   text-transform: uppercase;
   color: var(--text);
   user-select: none;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .theme-toggle:focus-within .theme-toggle__label {
   opacity: 1;
 }
 
-/* on the hero page the nav links are white, so match the label */
+/* Keep label contrast consistent across themes. */
 .topbar:not(.topbar--solid) .theme-toggle__label {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text);
 }
 
 .switch {
@@ -443,9 +441,7 @@ p {
   left: 25px;
 }
 
-/* --------------------------
-   SECTION SYSTEM
--------------------------- */
+/* Shared full-screen section layout */
 .screen {
   min-height: calc(100vh - var(--topH));
   border-bottom: 1px solid var(--line);
@@ -460,9 +456,9 @@ p {
   padding: 48px 20px;
 }
 
-/* ===== Sidebar collapse + mobile drawer ===== */
+/* Sidebar collapse and mobile drawer behavior */
 
-/* Desktop “collapsed” sidebar state */
+/* Collapsed sidebar state on desktop */
 .page.is-collapsed {
   grid-template-columns: 88px 1fr;
 }
@@ -482,7 +478,7 @@ p {
   transform: rotate(180deg);
 }
 
-/* Overlay for mobile drawer */
+/* Backdrop behind mobile drawer */
 .overlay {
   position: fixed;
   inset: 0;
@@ -491,7 +487,7 @@ p {
   z-index: 60;
 }
 
-/* Mobile drawer behavior */
+/* Mobile drawer layout and interactions */
 @media (max-width: 860px) {
   .topbar {
     gap: 10px;
@@ -549,7 +545,7 @@ p {
   }
 }
 
-/* Hide hamburger on desktop */
+/* Hide the menu button on desktop widths */
 #menuBtn {
   display: none;
 }

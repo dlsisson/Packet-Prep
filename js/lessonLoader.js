@@ -1,4 +1,4 @@
-// js/lessonLoader.js
+// Lesson page loader and quiz logic.
 let LESSONS = null;
 const LESSON_PROGRESS_KEY = "packetprep.lessonProgress.v1";
 const QUIZ_PASS_PERCENT = 70;
@@ -21,7 +21,7 @@ function saveProgressState(state) {
   try {
     localStorage.setItem(LESSON_PROGRESS_KEY, JSON.stringify(state));
   } catch {
-    // Ignore storage failures so the page remains usable.
+    // Keep the page usable even if storage is blocked.
   }
 }
 
@@ -29,7 +29,7 @@ function resetProgressState() {
   try {
     localStorage.removeItem(LESSON_PROGRESS_KEY);
   } catch {
-    // Ignore storage failures so the page remains usable.
+    // Keep the page usable even if storage is blocked.
   }
 }
 
@@ -101,7 +101,7 @@ function setURLChapter(id) {
   history.pushState({ id }, "", url);
 }
 
-// -------- Section rendering (supports types) --------
+// Render each section by its content type.
 function renderSectionHTML(sec) {
   const type = sec.type || "richtext";
 
@@ -143,7 +143,7 @@ function renderSectionHTML(sec) {
     `;
   }
 
-  // Fallback: show something instead of silently failing
+  // Show a fallback message for unknown section types.
   return `
     <section class="section" id="${sec.id}">
       <h2>${sec.heading}</h2>
@@ -153,21 +153,21 @@ function renderSectionHTML(sec) {
 }
 
 function renderChapter(chapter, chapters) {
-  // NOTE: don't force the sidebar open here; keep user's last state.
+  // Keep the user's current sidebar state.
 
-  // --- title/subtitle ---
+  // Title and subtitle.
   const titleEl = document.getElementById("chapterTitle");
   const subEl = document.getElementById("chapterSubtitle");
   if (titleEl) titleEl.textContent = chapter.title || "";
   if (subEl) subEl.textContent = chapter.subtitle || "";
 
-  // --- update sidebar chapter label ---
+  // Sidebar chapter label.
   const chapterLabel = document.getElementById("chapterLabel");
   if (chapterLabel) {
     chapterLabel.textContent = chapter.title || "Loading...";
   }
 
-  // --- chapter count display ---
+  // Chapter count.
   const chapterCountEl = document.getElementById("chapterCount");
   if (chapterCountEl) {
     const totalChapters = chapters.length;
@@ -175,13 +175,13 @@ function renderChapter(chapter, chapters) {
     chapterCountEl.textContent = `${currentNumber} of ${totalChapters}`;
   }
 
-  // --- sections ---
+  // Main section content.
   const sectionsMount = document.getElementById("lessonSections");
   if (sectionsMount) {
     sectionsMount.innerHTML = (chapter.sections || []).map(renderSectionHTML).join("");
   }
 
-  // --- sidebar nav (chapter sections + jump chapters) ---
+  // Sidebar navigation and chapter jump list.
   const sidebarNav = document.getElementById("sidebarNav");
   if (sidebarNav) {
     const state = getProgressState();
@@ -226,7 +226,7 @@ function renderChapter(chapter, chapters) {
 
   updateCourseProgressUI(chapters);
 
-  // --- prev/next ---
+  // Previous and next chapter links.
   const idx = chapters.findIndex((c) => c.id === chapter.id);
   const prev = chapters[idx - 1] || null;
   const next = chapters[idx + 1] || null;
@@ -260,7 +260,7 @@ function renderChapter(chapter, chapters) {
     }
   }
 
-  // --- quiz mount ---
+  // Quiz mount point.
   const quizMount = document.getElementById("quizMount");
   if (quizMount) {
     quizMount.innerHTML = "";
@@ -268,7 +268,7 @@ function renderChapter(chapter, chapters) {
   }
 }
 
-// Event delegation: intercept chapter link clicks for SPA-like behavior
+// Intercept chapter links so navigation stays in-page.
 function wireNavigation() {
   document.addEventListener("click", async (e) => {
     const backToTopLink = e.target.closest(".lesson-footer__top");
@@ -322,9 +322,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadAndRender();
 });
 
-// ---------------------------------------------------------
-// Quiz: single-card multiple-choice flow
-// ---------------------------------------------------------
+// Single-card multiple-choice quiz flow.
 function mountSingleCardQuiz(mountEl, quizData, chapterId) {
   if (!quizData.length) {
     mountEl.innerHTML = `<div class="muted" style="padding:12px 0">No quiz for this chapter yet.</div>`;
@@ -382,7 +380,7 @@ function mountSingleCardQuiz(mountEl, quizData, chapterId) {
     selectedIndex = null;
     isLocked = false;
 
-    const progressPercent = ((currentIndex + 1) / total) * 100;
+    const progressPercent = (score / total) * 100;
 
     if (progressLabel) {
       progressLabel.textContent = `Question ${currentIndex + 1} of ${total}`;
@@ -403,7 +401,7 @@ function mountSingleCardQuiz(mountEl, quizData, chapterId) {
     }
 
     const rawChoices = q.choices || [];
-    // Shuffle choices, keeping track of where the correct answer lands
+    // Shuffle choices and track the new index of the correct answer.
     const indices = rawChoices.map((_, i) => i);
     for (let i = indices.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -445,7 +443,10 @@ function mountSingleCardQuiz(mountEl, quizData, chapterId) {
 
     if (progressLabel) progressLabel.textContent = "Complete";
     if (scoreLabel) scoreLabel.textContent = `Final Score: ${score}/${total}`;
-    if (progressFill) progressFill.style.width = "100%";
+    if (progressFill) {
+      const percent = Math.round((score / total) * 100);
+      progressFill.style.width = `${percent}%`;
+    }
     if (checkBtn) checkBtn.disabled = true;
     if (nextBtn) nextBtn.disabled = true;
 
@@ -498,6 +499,7 @@ function mountSingleCardQuiz(mountEl, quizData, chapterId) {
     const checkBtn = mountEl.querySelector("#quizCheckBtn");
     const nextBtn = mountEl.querySelector("#quizNextBtn");
     const scoreLabel = mountEl.querySelector("#quizScoreLabel");
+    const progressFill = mountEl.querySelector("#quizProgressFill");
 
     if (selectedIndex === null) {
       if (feedbackEl) {
@@ -533,6 +535,10 @@ function mountSingleCardQuiz(mountEl, quizData, chapterId) {
     }
 
     if (scoreLabel) scoreLabel.textContent = `Score: ${score}/${total}`;
+    if (progressFill) {
+      const progressPercent = (score / total) * 100;
+      progressFill.style.width = `${progressPercent}%`;
+    }
     if (checkBtn) checkBtn.disabled = true;
     if (nextBtn) nextBtn.disabled = false;
 
