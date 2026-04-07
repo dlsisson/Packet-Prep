@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Glossary – Packet Prep</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&family=Orbitron:wght@400;700&family=Overpass:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="js/script.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
+
+    <!-- ================= HEADER ================= -->
+    <header class="topbar topbar--solid" id="top">
+      <a class="logo-nav" href="packet_prep.html#home" aria-label="Packet Prep home">
+        <img src="Assets/Images/Logo/Logo.png" alt="Packet Prep Logo" />
+      </a>
+
+      <nav class="nav site-nav" id="primaryNav" aria-label="Primary Navigation">
+        <a href="packet_prep.html#home">Home</a>
+        <a href="packet_prep.html#about">About</a>
+        <a href="packet_prep.html#learn">What You'll Learn</a>
+        <a href="packet_prep.html#contact">Contact</a>
+        <a href="glossary.html" aria-current="page">Glossary</a>
+        <a class="nav-cta" href="lessons.html?id=chapter-1">Start Now</a>
+      </nav>
+
+      <div class="theme-toggle" aria-label="Toggle theme">
+        <span class="theme-toggle__label" aria-hidden="true">Theme</span>
+        <div
+          id="themeSwitch"
+          class="switch"
+          role="switch"
+          aria-checked="false"
+          tabindex="0"
+          title="Toggle dark mode"
+        ></div>
+      </div>
+
+      <button
+        class="icon-btn"
+        id="menuBtn"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="primaryNav"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+    </header>
+
+    <div class="overlay" id="overlay" hidden></div>
+
+    <!-- ================= GLOSSARY PAGE ================= -->
+    <main class="gloss-page" id="mainContent">
+      <div class="gloss-header">
+        <h1 class="gloss-title">Glossary</h1>
+        <p class="gloss-lead">Key networking terms, explained simply.</p>
+      </div>
+
+      <div class="gloss-content">
+        <!-- A -->
+        <section class="gloss-group" id="gloss-A">
+          <h2 class="gloss-letter">A</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">ACL <span class="gloss-full">(Access Control List)</span></dt>
+              <dd class="gloss-def">
+                A set of rules that filters network traffic by permitting or denying packets based on criteria such as
+                IP address or port.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">ARP <span class="gloss-full">(Address Resolution Protocol)</span></dt>
+              <dd class="gloss-def">
+                Resolves a known IP address to its corresponding MAC address on a local network segment.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- B -->
+        <section class="gloss-group" id="gloss-B">
+          <h2 class="gloss-letter">B</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">Bandwidth</dt>
+              <dd class="gloss-def">
+                The maximum rate of data transfer across a network path, usually measured in bits per second (Mbps,
+                Gbps).
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">BGP <span class="gloss-full">(Border Gateway Protocol)</span></dt>
+              <dd class="gloss-def">
+                The routing protocol of the internet; used to exchange routes between autonomous systems (ISPs, large
+                organizations).
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">Broadcast</dt>
+              <dd class="gloss-def">
+                A packet sent to all devices in a network segment simultaneously, addressed to the subnet's broadcast
+                address.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- C -->
+        <section class="gloss-group" id="gloss-C">
+          <h2 class="gloss-letter">C</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">CIDR <span class="gloss-full">(Classless Inter-Domain Routing)</span></dt>
+              <dd class="gloss-def">
+                A method of allocating IP addresses using prefix notation (e.g., 192.168.1.0/24) instead of fixed class
+                boundaries.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- D -->
+        <section class="gloss-group" id="gloss-D">
+          <h2 class="gloss-letter">D</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">Default Gateway</dt>
+              <dd class="gloss-def">
+                The router a host uses to send traffic destined for addresses outside its local subnet.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">Default Route</dt>
+              <dd class="gloss-def">
+                A catch-all route (0.0.0.0/0) used when no more specific route matches a destination in the routing
+                table.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">DHCP <span class="gloss-full">(Dynamic Host Configuration Protocol)</span></dt>
+              <dd class="gloss-def">
+                Automatically assigns IP address, subnet mask, default gateway, and DNS server settings to network
+                clients.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">DNS <span class="gloss-full">(Domain Name System)</span></dt>
+              <dd class="gloss-def">
+                Translates human-readable hostnames (e.g., example.com) into IP addresses that routers can use.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- E -->
+        <section class="gloss-group" id="gloss-E">
+          <h2 class="gloss-letter">E</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">Encapsulation</dt>
+              <dd class="gloss-def">
+                The process of wrapping data with protocol headers at each OSI layer as it travels down the stack before
+                transmission.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">Ethernet</dt>
+              <dd class="gloss-def">
+                The dominant wired LAN technology, defining framing, MAC addressing, and physical signaling over copper
+                or fiber.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- F -->
+        <section class="gloss-group" id="gloss-F">
+          <h2 class="gloss-letter">F</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">Firewall</dt>
+              <dd class="gloss-def">
+                A security device or software that monitors and controls incoming and outgoing traffic based on
+                configured rules.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">Frame</dt>
+              <dd class="gloss-def">
+                The Layer 2 PDU containing a payload, source MAC, destination MAC, and error-checking trailer.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- H -->
+        <section class="gloss-group" id="gloss-H">
+          <h2 class="gloss-letter">H</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">
+                HTTP / HTTPS <span class="gloss-full">(Hypertext Transfer Protocol / Secure)</span>
+              </dt>
+              <dd class="gloss-def">
+                Application-layer protocols for web traffic. HTTPS adds TLS encryption for confidentiality and data
+                integrity.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- I -->
+        <section class="gloss-group" id="gloss-I">
+          <h2 class="gloss-letter">I</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">ICMP <span class="gloss-full">(Internet Control Message Protocol)</span></dt>
+              <dd class="gloss-def">
+                Used for network diagnostics; carries messages like echo requests and replies (used by ping and
+                traceroute).
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">IP Address <span class="gloss-full">(Internet Protocol Address)</span></dt>
+              <dd class="gloss-def">
+                A logical Layer 3 address (IPv4: 32-bit; IPv6: 128-bit) that uniquely identifies a device on a routed
+                network.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- L -->
+        <section class="gloss-group" id="gloss-L">
+          <h2 class="gloss-letter">L</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">LAN <span class="gloss-full">(Local Area Network)</span></dt>
+              <dd class="gloss-def">
+                A network confined to a single location such as a home, office, or campus, typically connected by
+                Ethernet or Wi-Fi.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- M -->
+        <section class="gloss-group" id="gloss-M">
+          <h2 class="gloss-letter">M</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">MAC Address <span class="gloss-full">(Media Access Control)</span></dt>
+              <dd class="gloss-def">
+                A 48-bit hardware address burned into a network interface card, used for Layer 2 frame delivery on a
+                local segment.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">MFA <span class="gloss-full">(Multi-Factor Authentication)</span></dt>
+              <dd class="gloss-def">
+                An authentication method requiring two or more verification factors, reducing the risk of compromised
+                credentials.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- N -->
+        <section class="gloss-group" id="gloss-N">
+          <h2 class="gloss-letter">N</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">NAT <span class="gloss-full">(Network Address Translation)</span></dt>
+              <dd class="gloss-def">
+                Maps private IP addresses to one or more public IP addresses, allowing many devices to share a single
+                public IP.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- O -->
+        <section class="gloss-group" id="gloss-O">
+          <h2 class="gloss-letter">O</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">OSI Model <span class="gloss-full">(Open Systems Interconnection)</span></dt>
+              <dd class="gloss-def">
+                A 7-layer reference framework (Physical, Data Link, Network, Transport, Session, Presentation,
+                Application) for understanding network communication.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">OSPF <span class="gloss-full">(Open Shortest Path First)</span></dt>
+              <dd class="gloss-def">
+                A link-state interior routing protocol that uses cost (based on bandwidth) to determine the best path
+                within an autonomous system.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- P -->
+        <section class="gloss-group" id="gloss-P">
+          <h2 class="gloss-letter">P</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">Packet</dt>
+              <dd class="gloss-def">
+                The Layer 3 PDU containing a payload, source IP, destination IP, and other header fields used for
+                routing across networks.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">PAN <span class="gloss-full">(Personal Area Network)</span></dt>
+              <dd class="gloss-def">
+                A very short-range network around a single person, typically using Bluetooth or USB to connect devices
+                like phones and wearables.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">Port</dt>
+              <dd class="gloss-def">
+                A 16-bit number used by TCP and UDP to identify a specific application or service on a host (e.g., port
+                443 for HTTPS).
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- R -->
+        <section class="gloss-group" id="gloss-R">
+          <h2 class="gloss-letter">R</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">Router</dt>
+              <dd class="gloss-def">
+                A Layer 3 device that forwards packets between different networks using routing tables and IP addresses.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">Routing Table</dt>
+              <dd class="gloss-def">
+                A database on a router listing known networks, next-hop addresses, and metrics used to select the best
+                path for forwarding packets.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- S -->
+        <section class="gloss-group" id="gloss-S">
+          <h2 class="gloss-letter">S</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">SMTP <span class="gloss-full">(Simple Mail Transfer Protocol)</span></dt>
+              <dd class="gloss-def">
+                The application-layer protocol used to send email messages between mail servers and from clients to
+                servers.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">SSH <span class="gloss-full">(Secure Shell)</span></dt>
+              <dd class="gloss-def">
+                An encrypted protocol for securely accessing and managing remote devices over an unsecured network.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">Subnet Mask</dt>
+              <dd class="gloss-def">
+                A 32-bit value that divides an IP address into network and host portions, determining which addresses
+                belong to the same local network.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">Switch</dt>
+              <dd class="gloss-def">
+                A Layer 2 device that forwards Ethernet frames between ports based on learned MAC address-to-port
+                mappings.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- T -->
+        <section class="gloss-group" id="gloss-T">
+          <h2 class="gloss-letter">T</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">TCP <span class="gloss-full">(Transmission Control Protocol)</span></dt>
+              <dd class="gloss-def">
+                A connection-oriented Layer 4 protocol providing reliable, ordered delivery with acknowledgments,
+                sequencing, and retransmissions.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">TLS <span class="gloss-full">(Transport Layer Security)</span></dt>
+              <dd class="gloss-def">
+                A cryptographic protocol that provides encrypted, authenticated communication over a network; successor
+                to SSL.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">Topology</dt>
+              <dd class="gloss-def">
+                The physical or logical arrangement of devices in a network; common types include star, bus, ring, and
+                mesh.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">Trunk Port</dt>
+              <dd class="gloss-def">
+                A switch port configured to carry traffic from multiple VLANs simultaneously between network devices
+                using 802.1Q tagging.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- U -->
+        <section class="gloss-group" id="gloss-U">
+          <h2 class="gloss-letter">U</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">UDP <span class="gloss-full">(User Datagram Protocol)</span></dt>
+              <dd class="gloss-def">
+                A connectionless Layer 4 protocol that offers fast, low-overhead delivery without guaranteed reliability
+                or ordering.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- V -->
+        <section class="gloss-group" id="gloss-V">
+          <h2 class="gloss-letter">V</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">VLAN <span class="gloss-full">(Virtual Local Area Network)</span></dt>
+              <dd class="gloss-def">
+                A logical grouping of devices on the same or different physical switches into a separate broadcast
+                domain.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">VPN <span class="gloss-full">(Virtual Private Network)</span></dt>
+              <dd class="gloss-def">
+                An encrypted tunnel over a public network that allows remote users or sites to communicate securely as
+                if on a private network.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- W -->
+        <section class="gloss-group" id="gloss-W">
+          <h2 class="gloss-letter">W</h2>
+          <dl class="gloss-list">
+            <div class="gloss-entry">
+              <dt class="gloss-term">WAN <span class="gloss-full">(Wide Area Network)</span></dt>
+              <dd class="gloss-def">
+                A network spanning large geographic distances, connecting multiple LANs via ISP infrastructure, leased
+                lines, or the internet.
+              </dd>
+            </div>
+            <div class="gloss-entry">
+              <dt class="gloss-term">Wi-Fi</dt>
+              <dd class="gloss-def">
+                Wireless LAN technology based on the IEEE 802.11 standards, allowing devices to connect to a network via
+                radio waves.
+              </dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+      <!-- /gloss-content -->
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="footer-logo" aria-hidden="true">Logo</div>
+          <p class="footer-tagline">Packet Prep — Networking Fundamentals Made Simple</p>
+        </div>
+
+        <nav aria-labelledby="footer-links-heading">
+          <h2 id="footer-links-heading" class="footer-heading">Links</h2>
+          <ul class="footer-list">
+            <li><a href="packet_prep.html#home">Home</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="packet_prep.html#about">About</a></li>
+            <li><a href="lessons.html?id=chapter-1">Progress</a></li>
+            <li><a href="packet_prep.html#learn">Chapter Select</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-contact-heading">
+          <h2 id="footer-contact-heading" class="footer-heading">Contact</h2>
+          <ul class="footer-list">
+            <li class="footer-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="3"
+                  y="5"
+                  width="18"
+                  height="14"
+                  rx="2"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <a href="mailto:your@email.com">Email</a>
+            </li>
+
+            <li class="footer-item footer-item--social">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                <path
+                  d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.58 9.58 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+                />
+              </svg>
+              <a href="#">GitHub</a>
+            </li>
+
+            <li class="footer-item footer-item--social">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                <path
+                  d="M6.94 8.5v8.53H4.11V8.5h2.83Zm.18-2.64c0 .82-.62 1.48-1.59 1.48h-.02c-.94 0-1.54-.66-1.54-1.48 0-.84.62-1.49 1.58-1.49s1.55.65 1.57 1.49ZM19.89 12.14v4.89h-2.83v-4.56c0-1.15-.41-1.93-1.43-1.93-.78 0-1.25.54-1.46 1.06-.08.18-.1.44-.1.7v4.73h-2.83s.04-7.67 0-8.53h2.83v1.21c.38-.58 1.05-1.41 2.56-1.41 1.87 0 3.26 1.26 3.26 3.84Z"
+                />
+              </svg>
+              <a href="#">LinkedIn</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <p><a class="footer-top-link" href="#top">Back to Top</a></p>
+        <p>© 2026 Packet Prep. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
