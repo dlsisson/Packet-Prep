@@ -303,14 +303,56 @@ p {
 .logo-nav {
   display: flex;
   align-items: center;
+  gap: 10px;
   flex: 0 0 auto;
+  height: calc(var(--topH) - 6px);
+  max-height: 70px;
 }
 
 .logo-nav img {
-  height: 2.25rem;
+  height: min(100%, 62px);
   width: auto;
-  max-width: 11rem;
+  max-width: 62px;
+  object-fit: contain;
+  transform: scale(1.6);
+  transform-origin: center;
   display: block;
+}
+
+.logo-wordmark {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1rem, 1.3vw, 1.28rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.topbar.scrolled .logo-wordmark,
+.topbar.topbar--solid .logo-wordmark,
+.topbar.topbar--solid.scrolled .logo-wordmark {
+  color: var(--text);
+}
+
+@media (max-width: 920px) {
+  .logo-nav {
+    height: calc(var(--topH) - 16px);
+    max-height: 52px;
+    gap: 8px;
+  }
+
+  .logo-nav img {
+    max-width: 44px;
+    height: min(100%, 44px);
+    transform: scale(1.52);
+  }
+
+  .logo-wordmark {
+    font-size: clamp(0.82rem, 3.6vw, 1rem);
+    letter-spacing: 0.03em;
+  }
 }
 
 .theme-toggle {
