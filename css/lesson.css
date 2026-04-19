@@ -39,6 +39,11 @@ body {
   z-index: 110; /* Stay above the sidebar layer. */
 }
 
+/* On lessons pages, keep nav visible even if shared script toggles .hide. */
+.topbar.hide {
+  transform: translateY(0) !important;
+}
+
 .topbar .nav a {
   color: var(--text);
 }
@@ -478,6 +483,162 @@ body {
   line-height: 1.75;
   max-width: 80ch;
   font-size: 1rem;
+  overflow-wrap: break-word;
+}
+
+.section p + p,
+.section p + ul,
+.section p + ol,
+.section ul + p,
+.section ol + p,
+.section .lesson-links,
+.section .lesson-note,
+.section .lab-steps {
+  margin-top: 16px;
+}
+
+.section ul,
+.section ol {
+  margin: 16px 0 0;
+  padding-left: 22px;
+  color: var(--text);
+  max-width: 80ch;
+}
+
+.section li {
+  margin: 10px 0;
+  line-height: 1.7;
+}
+
+.section a {
+  color: var(--focus);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.16em;
+}
+
+.section a:hover {
+  color: var(--accent);
+}
+
+.lesson-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lesson-link-card {
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--focus);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.lesson-link-card:hover {
+  color: var(--accent);
+}
+
+.lesson-link-card strong,
+.lesson-link-card span {
+  display: inline;
+}
+
+.lesson-link-card {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.lesson-link-card span {
+  margin-left: 6px;
+  color: var(--muted);
+}
+
+.lesson-note {
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(193, 58, 134, 0.18);
+  background: rgba(255, 202, 223, 0.12);
+}
+
+.lab-steps {
+  display: grid;
+  gap: 12px;
+}
+
+.lab-step {
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.lab-step strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.lab-step span {
+  overflow-wrap: break-word;
+}
+
+.twocol {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.twocol__row {
+  display: grid;
+  grid-template-columns: minmax(0, 180px) minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid rgba(193, 58, 134, 0.16);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255, 250, 252, 0.96) 0%, rgba(255, 238, 245, 0.92) 100%);
+}
+
+.twocol__left {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 8px;
+}
+
+.twocol__badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: start;
+  width: fit-content;
+  min-width: 56px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(193, 58, 134, 0.12);
+  color: var(--focus);
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  font-weight: 700;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.twocol__title {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.twocol__desc {
+  margin: 0;
+}
+
+.twocol__right {
+  display: grid;
+  align-content: start;
 }
 
 /* Callout panel */
@@ -759,6 +920,10 @@ pre code {
     margin-right: -20px;
     margin-top: -20px;
   }
+
+  .twocol__row {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Jump-chapter list */
@@ -841,9 +1006,37 @@ pre code {
 }
 
 @media (max-width: 860px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .page,
+  .content,
+  .lesson,
+  .lesson__header,
+  .quizcard,
+  .twocol,
+  .twocol__row {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   .topbar {
     gap: 10px;
     padding: 0 14px;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  .topbar > * {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .logo-nav,
+  .theme-toggle {
+    min-width: 0;
   }
 
   .topbar .nav {
@@ -851,7 +1044,12 @@ pre code {
   }
 
   .logo-nav img {
-    max-width: 8.5rem;
+    max-width: 44px;
+    height: min(100%, 44px);
+  }
+
+  .logo-wordmark {
+    font-size: clamp(0.8rem, 3.2vw, 0.96rem);
   }
 
   #themeSwitch {
@@ -861,9 +1059,14 @@ pre code {
 
   #menuBtn {
     display: inline-flex;
+    min-height: 36px;
+    padding: 8px 12px;
+    white-space: nowrap;
   }
-  .page {
+  .page,
+  .page:not(.sidebar-closed) {
     grid-template-columns: 1fr;
+    gap: 0;
   }
   .overlay {
     z-index: 115;
@@ -895,10 +1098,13 @@ pre code {
   }
   .content {
     padding: calc(var(--topH) + 16px) 16px 40px;
+    overflow-x: hidden;
   }
 
   .lesson {
     max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .content__top {
@@ -910,8 +1116,10 @@ pre code {
   }
   .lesson__header {
     padding: 28px 16px;
-    margin-left: -16px;
-    margin-right: -16px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    border-radius: var(--radius-sm);
   }
 
   .lesson__subtitle {
@@ -943,6 +1151,48 @@ pre code {
 
   .section h2 {
     font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .logo-wordmark {
+    display: none;
+  }
+
+  .topbar {
+    gap: 8px;
+    padding: 0 10px;
+  }
+
+  .content {
+    padding: calc(var(--topH) + 14px) 12px 34px;
+  }
+
+  .lesson__header {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    border-radius: var(--radius-sm);
+    padding: 22px 14px;
+  }
+
+  .icon-btn,
+  .sidebar-rail {
+    min-height: 36px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .quizcard__actions {
+    flex-wrap: wrap;
+  }
+
+  .quizcard__actions .btn {
+    width: 100%;
+  }
+
+  .quizcard__spacer {
+    display: none;
   }
 }
 

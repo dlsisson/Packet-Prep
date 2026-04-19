@@ -109,6 +109,12 @@ function setURLChapter(id) {
   history.pushState({ id }, "", url);
 }
 
+function formatChapterTitle(chapter) {
+  if (!chapter) return "";
+  if (!chapter.number) return chapter.title || "";
+  return `Chapter ${chapter.number}: ${chapter.title || ""}`;
+}
+
 // Render each section by its content type.
 function renderSectionHTML(sec) {
   const type = sec.type || "richtext";
@@ -163,21 +169,25 @@ function renderSectionHTML(sec) {
 function renderChapter(chapter, chapters) {
   // Keep the user's current sidebar state.
 
+  const chapterDisplayTitle = formatChapterTitle(chapter);
+
   // Title and subtitle.
   const titleEl = document.getElementById("chapterTitle");
   const subEl = document.getElementById("chapterSubtitle");
   const timeEl = document.getElementById("chapterTimeEstimate");
-  if (titleEl) titleEl.textContent = chapter.title || "";
+  if (titleEl) titleEl.textContent = chapterDisplayTitle;
   if (subEl) subEl.textContent = chapter.subtitle || "";
   if (timeEl) {
     const fallbackEstimate = "Estimated: 10-15 min";
     timeEl.textContent = CHAPTER_TIME_ESTIMATES[chapter.number] || fallbackEstimate;
   }
 
+  document.title = chapterDisplayTitle ? `${chapterDisplayTitle} - Packet Prep` : "Packet Prep - Chapter";
+
   // Sidebar chapter label.
   const chapterLabel = document.getElementById("chapterLabel");
   if (chapterLabel) {
-    chapterLabel.textContent = chapter.title || "Loading...";
+    chapterLabel.textContent = chapterDisplayTitle || "Loading...";
   }
 
   // Chapter count.

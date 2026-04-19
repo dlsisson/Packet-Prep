@@ -5,42 +5,19 @@
       "id": "chapter-1",
       "number": 1,
       "title": "Networking Basics",
-      "subtitle": "Start from zero: what a network is, why it matters, and how data travels.",
+      "subtitle": "A practical starting point for understanding what a network really is, how devices share data, and what is happening behind the scenes.",
       "sections": [
         {
           "id": "s-what-is-network",
           "heading": "What Is a Network?",
           "type": "richtext",
-          "html": "<p>A <strong>network</strong> is a group of devices that can communicate and share resources. Your phone, laptop, smart TV, and printer can all be on the same home network.</p><p>Think of networking like a road system:</p><ul><li><strong>Devices</strong> are the buildings (homes, schools, offices).</li><li><strong>Cables/Wi-Fi</strong> are the roads.</li><li><strong>Data</strong> is the traffic moving between places.</li></ul><p>Without networking, every device would be isolated and unable to access the internet or shared services.</p>"
+          "html": "<p>A <strong>network</strong> is just a way for devices to find each other, communicate, and share things they could not share alone. That could mean your laptop reaching the internet, your phone streaming music to a speaker, or an office printer being available to everyone on the same floor.</p><p>If the word sounds intimidating, use a simpler picture: networking is traffic control for information. Devices need a path, an address, and rules for where data should go next.</p><ul><li><strong>Devices</strong> are the people or buildings taking part.</li><li><strong>Cables and Wi-Fi</strong> are the roads or lanes.</li><li><strong>Data</strong> is the traffic moving between them.</li></ul><p>That idea stays true even when networks get much bigger. The tools become more advanced, but the goal is still the same: move data to the right place reliably.</p>"
         },
         {
           "id": "s-network-types",
           "heading": "Network Types",
-          "type": "twoColList",
-          "introHtml": "<p>From smallest to largest, you will usually see these network categories:</p>",
-          "items": [
-            {
-              "label": "PAN",
-              "title": "Personal Area Network",
-              "desc": "Very short-range network around one person, such as Bluetooth earbuds, watches, and phones.",
-              "img": "Assets/Images/network-types/pan.png",
-              "imgAlt": "Phone connected to smartwatch via Bluetooth"
-            },
-            {
-              "label": "LAN",
-              "title": "Local Area Network",
-              "desc": "A network inside one location (home, office, school). Most beginner labs are LAN-focused.",
-              "img": "Assets/Images/network-types/lan.png",
-              "imgAlt": "Router connecting devices inside a home"
-            },
-            {
-              "label": "WAN",
-              "title": "Wide Area Network",
-              "desc": "Connects many LANs over large distances using ISP or enterprise infrastructure.",
-              "img": "Assets/Images/network-types/wan.png",
-              "imgAlt": "Map showing links between cities"
-            }
-          ]
+          "type": "richtext",
+          "html": "<p>These are the network types you will hear most often as you start learning. Think of them as different sizes of the same idea.</p><ul><li><strong>PAN (Personal Area Network):</strong> very short-range network around one person, such as Bluetooth earbuds, watches, and phones.</li><li><strong>LAN (Local Area Network):</strong> a network inside one location (home, office, school). Most beginner labs are LAN-focused.</li><li><strong>WAN (Wide Area Network):</strong> connects many LANs over large distances using ISP or enterprise infrastructure.</li></ul>"
         },
         {
           "id": "s-topologies",
@@ -52,13 +29,19 @@
           "id": "s-data-flow",
           "heading": "How Data Travels",
           "type": "richtext",
-          "html": "<p>When you open a website, your device sends data in small pieces called <strong>packets</strong>.</p><ol><li>Your computer creates packets and labels them with source/destination info.</li><li>The switch forwards frames inside your local network.</li><li>The router forwards packets to other networks (like the internet).</li><li>The destination server sends responses back the same way.</li></ol><p>At the end, your browser reassembles everything so you see one complete page.</p><p><strong>Try this mental model:</strong> packets are like envelopes, headers are the address labels, and routers/switches are the postal sorting centers.</p>"
+          "html": "<p>When you open a website, your computer does not send one giant block of information. It breaks the conversation into smaller pieces called <strong>packets</strong>. That makes the trip easier to manage and easier to recover if something goes wrong.</p><ol><li>Your device builds packets and adds source and destination details.</li><li>A switch handles the local part of the trip inside your network.</li><li>A router moves the traffic toward another network, such as your ISP or the internet.</li><li>The destination sends responses back, and your device puts those pieces back together.</li></ol><p>A useful beginner mental model is the postal system: packets are envelopes, headers are the address labels, and switches and routers act like sorting points that keep the delivery moving.</p>"
         },
         {
           "id": "s-beginner-checklist",
           "heading": "Beginner Checklist",
           "type": "richtext",
-          "html": "<p>Before moving to Chapter 2, make sure you can explain:</p><ul><li>The difference between PAN, LAN, and WAN.</li><li>Why star topology is common.</li><li>Why data is split into packets.</li><li>What switches and routers each do at a high level.</li></ul><p>If any point feels unclear, re-read this chapter slowly. Building strong basics now makes advanced topics much easier.</p>"
+          "html": "<p>Before moving on, pause and check whether these ideas feel clear in your own words:</p><ul><li>The difference between PAN, LAN, and WAN.</li><li>Why star topology is the default shape in most modern LANs.</li><li>Why data is split into packets instead of sent as one huge chunk.</li><li>The high-level difference between a switch and a router.</li></ul><p>If you still have to memorize the words instead of understanding the picture, spend one more pass here. That is normal. Strong basics make every later chapter easier.</p>"
+        },
+        {
+          "id": "s-ch1-further-learning",
+          "heading": "Further Learning",
+          "type": "richtext",
+          "html": "<p>If you want a trustworthy next step after this chapter, start with these official references:</p><div class='lesson-links'><a class='lesson-link-card' href='https://www.cisco.com/c/en/us/products/switches/what-is-a-network-switch.html' target='_blank' rel='noopener noreferrer'><strong>Cisco: What Is a Network Switch?</strong><span>Simple vendor documentation that explains how local traffic is handled.</span></a><a class='lesson-link-card' href='https://www.cloudflare.com/learning/network-layer/what-is-a-computer-network/' target='_blank' rel='noopener noreferrer'><strong>Cloudflare Learning Center: What Is a Computer Network?</strong><span>Clear beginner-friendly definitions and examples for core networking ideas.</span></a><a class='lesson-link-card' href='https://www.ietf.org/about/' target='_blank' rel='noopener noreferrer'><strong>IETF: How Internet Standards Are Made</strong><span>Useful context for understanding who defines the rules networks follow.</span></a></div>"
         }
       ],
       "quiz": [
@@ -99,19 +82,19 @@
       "id": "chapter-2",
       "number": 2,
       "title": "OSI Model",
-      "subtitle": "Learn the layers as a beginner-friendly map for understanding and troubleshooting networks.",
+      "subtitle": "Use the OSI model like a map: not to memorize buzzwords, but to narrow problems down and explain what each part of communication is doing.",
       "sections": [
         {
           "id": "s-osi-why",
           "heading": "Why Learn the OSI Model?",
           "type": "richtext",
-          "html": "<p>The OSI model helps beginners answer one key question: <strong>where is the problem?</strong></p><p>Instead of guessing, you can troubleshoot layer by layer. If Layer 1 fails, you do not waste time checking Layer 7 apps.</p><p>Even though real networks use TCP/IP, OSI is still the best teaching framework.</p>"
+          "html": "<p>The OSI model matters because it gives you a calm, structured way to think. When something breaks, you do not have to guess randomly. You can ask: <strong>which layer is most likely failing?</strong></p><p>That is powerful for beginners. If a cable is unplugged, the problem is not your web browser. If DNS is failing, replacing the network cable will not help. The model stops you from chasing the wrong fix.</p><p>Real networks are usually discussed with TCP/IP, but OSI is still one of the best teaching tools because it turns a messy system into smaller, understandable parts.</p>"
         },
         {
           "id": "s-osi-overview",
           "heading": "The 7 Layers",
           "type": "richtext",
-          "html": "<p>The OSI model breaks communication into 7 layers:</p><ol><li><strong>Physical (L1):</strong> cables, fiber, radio signals, connectors.</li><li><strong>Data Link (L2):</strong> frames and MAC addresses on the local network.</li><li><strong>Network (L3):</strong> IP addressing and routing between networks.</li><li><strong>Transport (L4):</strong> end-to-end delivery with TCP/UDP and ports.</li><li><strong>Session (L5):</strong> starts, maintains, and ends sessions.</li><li><strong>Presentation (L6):</strong> data format, encryption, compression.</li><li><strong>Application (L7):</strong> user-facing protocols like HTTP, DNS, SMTP.</li></ol><p>Beginner shortcut: L1-L3 = infrastructure path, L4-L7 = application behavior.</p>"
+          "html": "<p>The seven layers are easier to remember when you connect each one to a real job instead of a definition list:</p><ol><li><strong>Physical (L1):</strong> the actual medium, such as cable, fiber, radio, connectors, and signal levels.</li><li><strong>Data Link (L2):</strong> local delivery on the same network using frames and MAC addresses.</li><li><strong>Network (L3):</strong> logical addressing and routing with IP.</li><li><strong>Transport (L4):</strong> end-to-end reliability, sequencing, and port numbers.</li><li><strong>Session (L5):</strong> starting, managing, and ending conversations between systems.</li><li><strong>Presentation (L6):</strong> formatting, compression, and encryption.</li><li><strong>Application (L7):</strong> the protocols applications use directly, such as HTTP, DNS, and SMTP.</li></ol>"
         },
         {
           "id": "s-pdu-map",
@@ -129,7 +112,13 @@
           "id": "s-osi-memory-aids",
           "heading": "Memory Aids for Beginners",
           "type": "richtext",
-          "html": "<p>Use mnemonics to remember layers quickly:</p><ul><li>Top to bottom: <strong>All People Seem To Need Data Processing</strong></li><li>Bottom to top: <strong>Please Do Not Throw Sausage Pizza Away</strong></li></ul><p>Don’t memorize blindly. Always tie each layer to what it <em>does</em> in real troubleshooting.</p>"
+          "html": "<p>Mnemonics are fine as a starting point, but they should help you remember meaning, not replace it.</p><ul><li>Top to bottom: <strong>All People Seem To Need Data Processing</strong></li><li>Bottom to top: <strong>Please Do Not Throw Sausage Pizza Away</strong></li></ul><div class='lesson-note'><strong>Study tip:</strong> say the layer name out loud and pair it with a real example. For example, Layer 3 means IP and routing. Layer 2 means frames and MAC addresses. That habit sticks much better than memorizing a phrase by itself.</div>"
+        },
+        {
+          "id": "s-ch2-further-learning",
+          "heading": "Further Learning",
+          "type": "richtext",
+          "html": "<p>These official or standards-backed references are worth bookmarking after the OSI chapter:</p><div class='lesson-links'><a class='lesson-link-card' href='https://www.cisco.com/c/en/us/solutions/enterprise-networks/what-is-the-osi-model.html' target='_blank' rel='noopener noreferrer'><strong>Cisco: What Is the OSI Model?</strong><span>A practical explanation of the layers and how to use them while troubleshooting.</span></a><a class='lesson-link-card' href='https://www.ibm.com/think/topics/osi-model' target='_blank' rel='noopener noreferrer'><strong>IBM: OSI Model Overview</strong><span>A concise explanation from a mainstream enterprise source.</span></a><a class='lesson-link-card' href='https://www.ietf.org/standards/' target='_blank' rel='noopener noreferrer'><strong>IETF Standards Process</strong><span>Helpful if you want to connect the model to how real protocols are standardized.</span></a></div>"
         }
       ],
       "quiz": [
@@ -160,19 +149,19 @@
       "id": "chapter-3",
       "number": 3,
       "title": "IP Addresses",
-      "subtitle": "Understand addressing step by step: IPv4, subnets, private/public ranges, and practical usage.",
+      "subtitle": "Learn how to read an address, tell what network it belongs to, and build the habits you need for real troubleshooting and lab work.",
       "sections": [
         {
           "id": "s-ipv4-structure",
           "heading": "IPv4 Fundamentals",
           "type": "richtext",
-          "html": "<p>IPv4 uses <strong>32 bits</strong> and is written in dotted decimal format, like <code>192.168.1.10</code>.</p><p>An IP address has two parts:</p><ul><li><strong>Network portion:</strong> identifies which network a device belongs to.</li><li><strong>Host portion:</strong> identifies the specific device on that network.</li></ul><p>The subnet mask (or CIDR prefix) tells you where the split happens.</p>"
+          "html": "<p>An IPv4 address is a <strong>32-bit</strong> number written in dotted decimal form, such as <code>192.168.1.10</code>. Most beginners first see it as four numbers separated by dots, but what matters is what those numbers help you identify.</p><p>Every IPv4 address answers two questions at once:</p><ul><li><strong>Which network am I on?</strong></li><li><strong>Which device am I on inside that network?</strong></li></ul><p>The subnet mask, or CIDR prefix, tells you where that split happens. Once that clicks, IP addressing starts to feel much less random.</p>"
         },
         {
           "id": "s-subnetting-basics",
           "heading": "Subnetting Basics",
           "type": "richtext",
-          "html": "<p>Subnetting splits large networks into smaller, easier-to-manage networks.</p><p>For any subnet, identify:</p><ul><li><strong>Network address:</strong> first address (not assigned to hosts).</li><li><strong>Broadcast address:</strong> last address (used to reach all hosts in subnet).</li><li><strong>Usable range:</strong> addresses between network and broadcast.</li></ul><p>Example: <code>10.0.0.0/24</code> has usable hosts <code>10.0.0.1</code> to <code>10.0.0.254</code> and broadcast <code>10.0.0.255</code>.</p>"
+          "html": "<p>Subnetting is just the practice of carving a larger address space into smaller, easier-to-manage networks. In real environments, that helps with organization, performance, and security.</p><p>Whenever you look at a subnet, train yourself to identify these pieces right away:</p><ul><li><strong>Network address:</strong> the identifier for the subnet itself.</li><li><strong>Broadcast address:</strong> the last address in the range, reserved for sending to the whole subnet.</li><li><strong>Usable host range:</strong> the addresses devices can actually use.</li></ul>"
         },
         {
           "id": "s-cidr-walkthrough",
@@ -190,7 +179,13 @@
           "id": "s-ip-practice",
           "heading": "Practice Like an Instructional Lab",
           "type": "richtext",
-          "html": "<p>Try this simple lab workflow:</p><ol><li>Check your own IP settings on your device.</li><li>Identify subnet mask/prefix.</li><li>Decide if the IP is private or public.</li><li>Predict the default gateway range.</li><li>Test with <code>ping</code> (gateway first, then internet DNS like 8.8.8.8).</li></ol><p>This habit builds confidence quickly for beginners.</p>"
+          "html": "<p>This chapter is where hands-on practice starts to matter. The goal of this lab is not to be fancy. It is to make you comfortable reading your own address information and turning it into decisions.</p><div class='lab-steps'><div class='lab-step'><strong>Step 1: Find your current address information.</strong><span>On Windows, open Command Prompt and run <code>ipconfig</code>. On macOS or Linux, use a terminal and run <code>ifconfig</code> or <code>ip addr</code>. Write down the IPv4 address, subnet mask, default gateway, and DNS server.</span></div><div class='lab-step'><strong>Step 2: Decide what part is the network and what part is the host.</strong><span>Look at the subnet mask or prefix and ask where the split happens. If you see <code>/24</code>, the first 24 bits describe the network and the remaining bits identify the host.</span></div><div class='lab-step'><strong>Step 3: Identify whether the address is private or public.</strong><span>Compare it against the private ranges: <code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, and <code>192.168.0.0/16</code>. If it falls inside one of those ranges, it is meant for internal use.</span></div><div class='lab-step'><strong>Step 4: Predict the subnet details before testing.</strong><span>For a <code>/24</code> address like <code>192.168.1.34</code>, predict that the network is <code>192.168.1.0</code>, the broadcast is <code>192.168.1.255</code>, and the likely gateway is something like <code>192.168.1.1</code> or <code>192.168.1.254</code>.</span></div><div class='lab-step'><strong>Step 5: Test from nearest to farthest.</strong><span>Ping the default gateway first. If that works, ping a known public IP such as <code>8.8.8.8</code>. If that works too, try a hostname such as <code>cloudflare.com</code>. That order helps you separate local connectivity problems from DNS problems.</span></div></div><div class='lesson-note'><strong>What you should learn from the lab:</strong> if the gateway ping fails, focus on the local network. If the IP ping works but the hostname fails, focus on DNS. That simple sequence is one of the most useful beginner troubleshooting habits you can build.</div>"
+        },
+        {
+          "id": "s-ch3-further-learning",
+          "heading": "Further Learning",
+          "type": "richtext",
+          "html": "<p>For deeper practice with addressing and subnetting, these are worth your time:</p><div class='lesson-links'><a class='lesson-link-card' href='https://www.rfc-editor.org/rfc/rfc1918' target='_blank' rel='noopener noreferrer'><strong>RFC 1918: Private IPv4 Address Space</strong><span>The original standards document for the private address ranges you will use constantly.</span></a><a class='lesson-link-card' href='https://www.iana.org/help/private-addresses' target='_blank' rel='noopener noreferrer'><strong>IANA: Private-Use IP Addresses</strong><span>A concise official reference for the address blocks reserved for internal use.</span></a><a class='lesson-link-card' href='https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13788-3.html' target='_blank' rel='noopener noreferrer'><strong>Cisco: IP Addressing and Subnetting for New Users</strong><span>A practical walk-through that helps bridge theory and real examples.</span></a></div>"
         }
       ],
       "quiz": [
@@ -221,13 +216,13 @@
       "id": "chapter-4",
       "number": 4,
       "title": "Switching and Routing",
-      "subtitle": "Learn the core difference: switching inside networks vs routing between networks.",
+      "subtitle": "Understand what stays inside a local network, what has to cross into another one, and how switches and routers divide that work.",
       "sections": [
         {
           "id": "s-switching-basics",
           "heading": "Switching Essentials",
           "type": "richtext",
-          "html": "<p>Switches mostly work at Layer 2 and forward traffic using <strong>MAC addresses</strong>.</p><p>They build a MAC table by learning source MAC addresses on each port. If a destination MAC is unknown, the switch temporarily floods the frame within the VLAN.</p><p>Beginner takeaway: switches keep local traffic local and efficient.</p>"
+          "html": "<p>A switch is the traffic organizer for a local network. Most of the time it works at Layer 2, paying attention to <strong>MAC addresses</strong> so it can send frames out of the correct port.</p><p>As devices talk, the switch learns which MAC address lives on which port and stores that in a MAC table. If it has not learned the destination yet, it briefly floods the frame within the VLAN, then becomes smarter once a reply comes back.</p><p>The big beginner takeaway is simple: switches are great at keeping same-network traffic local, fast, and organized.</p>"
         },
         {
           "id": "s-vlan-segmentation",
@@ -245,13 +240,19 @@
           "id": "s-switch-router-compare",
           "heading": "Switch vs Router: Beginner Comparison",
           "type": "richtext",
-          "html": "<p>Use this quick comparison:</p><ul><li><strong>Switch:</strong> forwards frames inside one network (MAC-based).</li><li><strong>Router:</strong> forwards packets between networks (IP-based).</li></ul><p>If two devices are in the same VLAN/subnet, the switch handles most traffic. If they are in different networks, the router is required.</p>"
+          "html": "<p>If you only remember one comparison from this chapter, make it this one:</p><ul><li><strong>Switch:</strong> handles local delivery inside the same network by using MAC addresses.</li><li><strong>Router:</strong> moves packets between different networks by using IP addresses.</li></ul><p>If two devices share the same VLAN and subnet, the switch does most of the work. If they sit on different networks, traffic needs a Layer 3 decision, which is where the router or Layer 3 switch comes in.</p>"
         },
         {
           "id": "s-chapter4-practice",
           "heading": "Instructional Practice Scenario",
           "type": "richtext",
-          "html": "<p>Imagine VLAN 10 (HR) and VLAN 20 (Engineering) on one switch:</p><ol><li>Devices in VLAN 10 can talk to VLAN 10 directly.</li><li>Devices in VLAN 20 can talk to VLAN 20 directly.</li><li>Traffic between VLAN 10 and VLAN 20 must go through a router/L3 switch.</li></ol><p>This is one of the most common real-world network patterns.</p>"
+          "html": "<p>Try talking through this out loud like you are explaining it to a coworker:</p><ol><li>VLAN 10 belongs to HR and VLAN 20 belongs to Engineering.</li><li>Users inside VLAN 10 can reach other VLAN 10 devices through the switch.</li><li>Users inside VLAN 20 can do the same inside their own VLAN.</li><li>If HR needs to reach Engineering, that traffic must cross a Layer 3 boundary.</li><li>That means a router or Layer 3 switch has to route between the two networks.</li></ol><div class='lesson-note'><strong>Why this matters:</strong> this is how real environments stay organized. Teams can be separated for security and management, while still allowing controlled communication where needed.</div>"
+        },
+        {
+          "id": "s-ch4-further-learning",
+          "heading": "Further Learning",
+          "type": "richtext",
+          "html": "<p>These official references are useful once the switch-versus-router distinction starts to click:</p><div class='lesson-links'><a class='lesson-link-card' href='https://www.cisco.com/c/en/us/products/switches/what-is-a-network-switch.html' target='_blank' rel='noopener noreferrer'><strong>Cisco: What Is a Network Switch?</strong><span>Clear explanation of switching behavior and where switches fit in a LAN.</span></a><a class='lesson-link-card' href='https://www.cisco.com/c/en/us/products/routers/what-is-a-router.html' target='_blank' rel='noopener noreferrer'><strong>Cisco: What Is a Router?</strong><span>Vendor documentation that explains routing in approachable terms.</span></a><a class='lesson-link-card' href='https://www.juniper.net/documentation/us/en/software/junos/multicast-l2/topics/concept/ethernet-802-1q-vlan-id-by-interface-type.html' target='_blank' rel='noopener noreferrer'><strong>Juniper: VLAN Basics</strong><span>An official networking vendor reference for how VLAN tagging works.</span></a></div>"
         }
       ],
       "quiz": [
@@ -287,19 +288,19 @@
       "id": "chapter-5",
       "number": 5,
       "title": "Core Protocols",
-      "subtitle": "Understand the everyday protocols that make apps and services work.",
+      "subtitle": "Meet the protocols you run into constantly in the real world and learn how to connect each one to the job it performs.",
       "sections": [
         {
           "id": "s-tcp-vs-udp",
           "heading": "TCP vs UDP",
           "type": "richtext",
-          "html": "<p><strong>TCP</strong> is reliable and connection-oriented. It confirms delivery and can resend lost data.</p><p><strong>UDP</strong> is lightweight and connectionless. It does not guarantee delivery but is fast.</p><p>Beginner rule:</p><ul><li>Need reliability? Think TCP.</li><li>Need speed/low delay? Think UDP.</li></ul>"
+          "html": "<p><strong>TCP</strong> is the careful protocol. It sets up a conversation, keeps track of what was sent, and retransmits data if something gets lost. That is why it works well for web pages, file transfers, and anything where accuracy matters.</p><p><strong>UDP</strong> is the lightweight protocol. It sends data quickly without building the same level of reliability into the conversation. That is useful when speed matters more than perfection, such as voice, video, gaming, or some DNS traffic.</p><p>A simple beginner rule still works well:</p><ul><li>Need reliability? Think TCP.</li><li>Need low delay and lower overhead? Think UDP.</li></ul>"
         },
         {
           "id": "s-dns-dhcp",
           "heading": "DNS and DHCP",
           "type": "richtext",
-          "html": "<p><strong>DNS</strong> translates names (like <code>example.com</code>) into IP addresses.</p><p><strong>DHCP</strong> automatically gives devices their network settings: IP, subnet mask, gateway, and DNS server.</p><p>DHCP process (DORA):</p><ol><li>Discover</li><li>Offer</li><li>Request</li><li>Acknowledge</li></ol><p>If a client has no valid IP, DHCP is one of the first things to check.</p>"
+          "html": "<p><strong>DNS</strong> is the internet's address book. Humans prefer names like <code>example.com</code>, but devices still need IP addresses to communicate.</p><p><strong>DHCP</strong> is the service that saves you from typing network settings manually on every device. It hands out the IP address, subnet mask, default gateway, and DNS server information a device needs to start talking.</p><p>The DHCP exchange is often remembered as <strong>DORA</strong>:</p><ol><li>Discover</li><li>Offer</li><li>Request</li><li>Acknowledge</li></ol><p>That is why DHCP is one of the first things to check when a device looks connected but still cannot join the network properly.</p>"
         },
         {
           "id": "s-arp-icmp",
@@ -317,7 +318,13 @@
           "id": "s-protocol-playbook",
           "heading": "Beginner Protocol Playbook",
           "type": "richtext",
-          "html": "<p>When an app fails, ask in this order:</p><ol><li>Does the device have an IP? (DHCP)</li><li>Can it resolve a hostname? (DNS)</li><li>Can it reach the target network? (ICMP/ping)</li><li>Is the required app protocol allowed? (HTTP/HTTPS/SMTP/etc.)</li></ol><p>This step-by-step playbook is how help desks and junior admins troubleshoot consistently.</p>"
+          "html": "<p>When an app fails, a protocol playbook keeps you from guessing.</p><ol><li>Does the device even have valid network settings? Check DHCP first.</li><li>Can the device turn a name into an IP address? Check DNS next.</li><li>Can it reach the destination network at all? Use ICMP tools like <code>ping</code> and <code>traceroute</code>.</li><li>If the path is fine, is the application protocol itself available and allowed through the firewall? Think HTTP, HTTPS, SMTP, IMAP, and so on.</li></ol><div class='lesson-note'><strong>Good troubleshooting feels boring on purpose.</strong> The goal is a repeatable order of checks, not a lucky guess.</div>"
+        },
+        {
+          "id": "s-ch5-further-learning",
+          "heading": "Further Learning",
+          "type": "richtext",
+          "html": "<p>These references are strong next steps if you want official explanations of the protocols in this chapter:</p><div class='lesson-links'><a class='lesson-link-card' href='https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml' target='_blank' rel='noopener noreferrer'><strong>IANA: Service Names and Port Numbers</strong><span>The official registry for well-known ports and protocol service names.</span></a><a class='lesson-link-card' href='https://developers.cloudflare.com/dns/' target='_blank' rel='noopener noreferrer'><strong>Cloudflare Developers: DNS</strong><span>Modern, readable documentation for how DNS records and lookups work.</span></a><a class='lesson-link-card' href='https://learn.microsoft.com/windows-server/networking/technologies/dhcp/dhcp-top' target='_blank' rel='noopener noreferrer'><strong>Microsoft Learn: DHCP Overview</strong><span>Official platform documentation that explains DHCP behavior and management.</span></a></div>"
         }
       ],
       "quiz": [
@@ -358,13 +365,13 @@
       "id": "chapter-6",
       "number": 6,
       "title": "Security Fundamentals",
-      "subtitle": "Build security-first habits: protect users, devices, and data with practical beginner steps.",
+      "subtitle": "Build a beginner-friendly security mindset so you can protect people, devices, and data with habits that actually hold up in real environments.",
       "sections": [
         {
           "id": "s-cia-triad",
           "heading": "Security Goals: CIA Triad",
           "type": "richtext",
-          "html": "<p>Most security decisions map to the CIA triad:</p><ul><li><strong>Confidentiality:</strong> keep sensitive data private.</li><li><strong>Integrity:</strong> protect data from unauthorized changes.</li><li><strong>Availability:</strong> keep systems usable when needed.</li></ul><p>When evaluating a control, ask: which part of CIA does this protect?</p>"
+          "html": "<p>The CIA triad gives you three simple goals to measure security decisions against:</p><ul><li><strong>Confidentiality:</strong> only the right people should see the data.</li><li><strong>Integrity:</strong> the data should stay accurate and trustworthy.</li><li><strong>Availability:</strong> systems and information should still be there when people need them.</li></ul><p>When you hear about a security tool, ask yourself which part of CIA it protects first. That question keeps security grounded in purpose instead of buzzwords.</p>"
         },
         {
           "id": "s-threats-attacks",
@@ -376,7 +383,7 @@
           "id": "s-defense-practices",
           "heading": "Baseline Defense Practices",
           "type": "richtext",
-          "html": "<p>Foundational controls every beginner should know:</p><ul><li>Use MFA and strong password policy.</li><li>Apply updates and patches on a schedule.</li><li>Use least privilege for accounts and services.</li><li>Segment networks to reduce lateral movement.</li><li>Encrypt sensitive traffic and stored data.</li><li>Monitor logs and alerts for unusual behavior.</li></ul><p>Security is not a one-time setup. It is an ongoing cycle: <strong>prevent, detect, respond, improve</strong>.</p>"
+          "html": "<p>Good security is usually not flashy. It comes from a stack of consistent controls that lower risk a little at a time.</p><ul><li>Use MFA and a strong password policy so one stolen password is not enough.</li><li>Patch systems regularly because known vulnerabilities are the easiest ones for attackers to exploit.</li><li>Apply least privilege so users and services only have the access they truly need.</li><li>Segment networks so a problem in one area does not spread as easily to another.</li><li>Encrypt sensitive data in transit and at rest.</li><li>Watch logs and alerts so you can spot unusual behavior early.</li></ul><p>Security is not a one-time box to check. It is a cycle: <strong>prevent, detect, respond, improve</strong>.</p>"
         },
         {
           "id": "s-incident-mindset",
@@ -388,7 +395,13 @@
           "id": "s-security-habits",
           "heading": "Daily Security Habits",
           "type": "richtext",
-          "html": "<p>Small habits create strong security posture:</p><ul><li>Lock your device when stepping away.</li><li>Verify sender identity before clicking links.</li><li>Use approved tools, not random downloads.</li><li>Review account permissions periodically.</li><li>Report suspicious behavior early.</li></ul><p>For beginners, consistency beats complexity. Do the basics well every day.</p>"
+          "html": "<p>Daily habits matter more than most people think:</p><ul><li>Lock your device when you step away, even for a minute.</li><li>Slow down before clicking links or opening attachments from unexpected senders.</li><li>Use approved software instead of random downloads or browser extensions.</li><li>Review access and permissions once in a while instead of assuming they are still correct.</li><li>Report suspicious behavior early, even if you are not fully sure what you are seeing.</li></ul><div class='lesson-note'><strong>Beginner rule:</strong> you do not have to be an expert to be useful. Noticing something early and raising the flag is already good security behavior.</div>"
+        },
+        {
+          "id": "s-ch6-further-learning",
+          "heading": "Further Learning",
+          "type": "richtext",
+          "html": "<p>These official resources are strong follow-ups if you want practical, trusted security guidance:</p><div class='lesson-links'><a class='lesson-link-card' href='https://www.cisa.gov/cybersecurity' target='_blank' rel='noopener noreferrer'><strong>CISA Cybersecurity</strong><span>Official U.S. government guidance, alerts, and beginner-friendly recommendations.</span></a><a class='lesson-link-card' href='https://www.nist.gov/cyberframework' target='_blank' rel='noopener noreferrer'><strong>NIST Cybersecurity Framework</strong><span>A widely used security framework that connects nicely to the prevent, detect, respond mindset.</span></a><a class='lesson-link-card' href='https://learn.microsoft.com/security/' target='_blank' rel='noopener noreferrer'><strong>Microsoft Learn Security</strong><span>Official training paths that translate security concepts into practical admin habits.</span></a></div>"
         }
       ],
       "quiz": [
