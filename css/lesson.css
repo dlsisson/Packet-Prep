@@ -146,14 +146,14 @@ body {
   min-height: 40px;
   padding: 10px 16px;
   border-radius: 999px;
-  border: 1px solid rgba(193, 58, 134, 0.24);
-  background: linear-gradient(135deg, rgba(255, 156, 182, 0.2) 0%, rgba(193, 58, 134, 0.18) 100%);
+  border: 1px solid rgb(var(--brand-electric-rgb) / 0.24);
+  background: linear-gradient(135deg, rgb(var(--brand-gold-rgb) / 0.18) 0%, rgb(var(--brand-electric-rgb) / 0.18) 100%);
   color: var(--text);
   cursor: pointer;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.02em;
-  box-shadow: 0 12px 30px rgba(168, 50, 121, 0.12);
+  box-shadow: 0 12px 30px rgb(var(--brand-deep-rgb) / 0.14);
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,
@@ -163,15 +163,15 @@ body {
 
 .icon-btn:hover,
 .sidebar-rail:hover {
-  border-color: rgba(193, 58, 134, 0.38);
-  background: linear-gradient(135deg, rgba(255, 156, 182, 0.28) 0%, rgba(193, 58, 134, 0.24) 100%);
-  box-shadow: 0 16px 34px rgba(168, 50, 121, 0.16);
+  border-color: rgb(var(--brand-electric-rgb) / 0.38);
+  background: linear-gradient(135deg, rgb(var(--brand-gold-rgb) / 0.24) 0%, rgb(var(--brand-electric-rgb) / 0.24) 100%);
+  box-shadow: 0 16px 34px rgb(var(--brand-deep-rgb) / 0.18);
   transform: translateY(-1px);
 }
 
 .icon-btn:focus-visible,
 .sidebar-rail:focus-visible {
-  outline: 2px solid rgba(193, 58, 134, 0.3);
+  outline: 2px solid rgb(var(--brand-electric-rgb) / 0.3);
   outline-offset: 2px;
 }
 
@@ -245,6 +245,27 @@ body {
   color: var(--text);
 }
 
+.section-nav-list {
+  margin: 0;
+  padding: 0 12px 12px 30px;
+  font-size: 13px;
+}
+
+.section-nav-list li + li {
+  margin-top: 8px;
+}
+
+.section-nav-list .navitem {
+  display: block;
+  padding: 2px 0;
+  color: var(--text);
+  font-size: inherit;
+}
+
+.section-nav-list .navitem:hover {
+  color: var(--focus);
+}
+
 /* Chapter list container */
 .chapterlist {
   display: grid;
@@ -280,7 +301,7 @@ body {
 .pager__btn:focus-visible,
 .sidebar-reset-btn:focus-visible,
 .lesson-footer__top:focus-visible {
-  outline: 3px solid rgba(193, 58, 134, 0.35);
+  outline: 3px solid rgb(var(--brand-electric-rgb) / 0.35);
   outline-offset: 3px;
 }
 
@@ -314,8 +335,8 @@ body {
 }
 
 .chapter.is-active summary {
-  background: rgba(193, 58, 134, 0.12);
-  border-bottom: 1px solid rgba(193, 58, 134, 0.22);
+  background: rgb(var(--brand-electric-rgb) / 0.1);
+  border-bottom: 1px solid rgb(var(--brand-electric-rgb) / 0.22);
 }
 
 .chapter__sections {
@@ -337,7 +358,7 @@ body {
 }
 .chapter__link.is-active {
   color: var(--focus);
-  background: rgba(193, 58, 134, 0.12);
+  background: rgb(var(--brand-electric-rgb) / 0.1);
   font-weight: 700;
 }
 
@@ -406,10 +427,10 @@ body {
   padding: 40px 26px;
   background: linear-gradient(
     168deg,
-    rgba(255, 202, 223, 0.34) 10%,
-    rgba(255, 156, 182, 0.26) 34%,
-    rgba(255, 95, 154, 0.22) 64%,
-    rgba(193, 58, 134, 0.18) 100%
+    rgb(var(--brand-gold-rgb) / 0.22) 8%,
+    rgb(var(--brand-pink-rgb) / 0.18) 34%,
+    rgb(var(--brand-electric-rgb) / 0.16) 66%,
+    rgb(var(--brand-deep-rgb) / 0.18) 100%
   );
   border-bottom: 1px solid var(--line);
   margin-bottom: 32px;
@@ -454,8 +475,8 @@ body {
 
 .chip--accent {
   color: var(--text);
-  border-color: rgba(193, 58, 134, 0.24);
-  background: rgba(255, 156, 182, 0.18);
+  border-color: rgb(var(--brand-electric-rgb) / 0.24);
+  background: rgb(var(--brand-pink-rgb) / 0.16);
   font-weight: 600;
 }
 
@@ -560,8 +581,8 @@ body {
 .lesson-note {
   padding: 16px 18px;
   border-radius: 16px;
-  border: 1px solid rgba(193, 58, 134, 0.18);
-  background: rgba(255, 202, 223, 0.12);
+  border: 1px solid rgb(var(--brand-electric-rgb) / 0.18);
+  background: linear-gradient(135deg, rgb(var(--brand-gold-rgb) / 0.1) 0%, rgb(var(--brand-pink-rgb) / 0.08) 100%);
 }
 
 .lab-steps {
@@ -596,9 +617,9 @@ body {
   grid-template-columns: minmax(0, 180px) minmax(0, 1fr);
   gap: 18px;
   padding: 18px;
-  border: 1px solid rgba(193, 58, 134, 0.16);
+  border: 1px solid rgb(var(--brand-electric-rgb) / 0.16);
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(255, 250, 252, 0.96) 0%, rgba(255, 238, 245, 0.92) 100%);
+  background: linear-gradient(135deg, rgb(var(--brand-gold-rgb) / 0.08) 0%, rgb(var(--brand-electric-rgb) / 0.08) 100%);
 }
 
 .twocol__left {
@@ -617,7 +638,7 @@ body {
   min-width: 56px;
   padding: 6px 12px;
   border-radius: 999px;
-  background: rgba(193, 58, 134, 0.12);
+  background: rgb(var(--brand-electric-rgb) / 0.12);
   color: var(--focus);
   font-family: var(--mono);
   font-size: 0.88rem;
@@ -647,8 +668,8 @@ body {
   padding: 16px 18px;
   border-radius: var(--radius-sm);
   border-left: 4px solid var(--accent);
-  border: 1px solid rgba(193, 58, 134, 0.24);
-  background: linear-gradient(135deg, rgba(255, 202, 223, 0.2) 0%, rgba(255, 95, 154, 0.1) 100%);
+  border: 1px solid rgb(var(--brand-electric-rgb) / 0.24);
+  background: linear-gradient(135deg, rgb(var(--brand-pink-rgb) / 0.12) 0%, rgb(var(--brand-gold-rgb) / 0.12) 100%);
 }
 
 .callout__title {
@@ -706,10 +727,10 @@ pre code {
   border-bottom: 1px solid var(--line);
   background: linear-gradient(
     168deg,
-    rgba(255, 202, 223, 0.24) 10%,
-    rgba(255, 156, 182, 0.18) 36%,
-    rgba(255, 95, 154, 0.12) 68%,
-    rgba(193, 58, 134, 0.1) 100%
+    rgb(var(--brand-gold-rgb) / 0.14) 10%,
+    rgb(var(--brand-pink-rgb) / 0.14) 38%,
+    rgb(var(--brand-electric-rgb) / 0.12) 70%,
+    rgb(var(--brand-deep-rgb) / 0.1) 100%
   );
 }
 
@@ -769,13 +790,13 @@ pre code {
   transition: all 0.2s ease;
 }
 .quizopt:hover {
-  background: rgba(255, 156, 182, 0.12);
-  border-color: rgba(193, 58, 134, 0.28);
+  background: rgb(var(--brand-pink-rgb) / 0.1);
+  border-color: rgb(var(--brand-electric-rgb) / 0.28);
 }
 
 .quizopt:focus-within {
-  border-color: rgba(193, 58, 134, 0.45);
-  box-shadow: 0 0 0 3px rgba(193, 58, 134, 0.16);
+  border-color: rgb(var(--brand-electric-rgb) / 0.45);
+  box-shadow: 0 0 0 3px rgb(var(--brand-electric-rgb) / 0.16);
 }
 
 .quizopt input {
@@ -784,8 +805,8 @@ pre code {
 }
 
 .quizopt.is-selected {
-  border-color: rgba(193, 58, 134, 0.34);
-  background: rgba(255, 202, 223, 0.2);
+  border-color: rgb(var(--brand-electric-rgb) / 0.34);
+  background: linear-gradient(135deg, rgb(var(--brand-pink-rgb) / 0.12) 0%, rgb(var(--brand-gold-rgb) / 0.1) 100%);
 }
 
 .quizopt.is-correct {
@@ -855,7 +876,7 @@ pre code {
 .btn:hover {
   filter: brightness(0.96);
   text-decoration: none;
-  border-color: rgba(193, 58, 134, 0.28);
+  border-color: rgb(var(--brand-electric-rgb) / 0.28);
 }
 
 .btn:disabled {
@@ -865,13 +886,13 @@ pre code {
 }
 
 .btn--primary {
-  border-color: rgba(193, 58, 134, 0.28);
-  background: linear-gradient(135deg, rgba(255, 156, 182, 0.22) 0%, rgba(193, 58, 134, 0.2) 100%);
+  border-color: rgb(var(--brand-electric-rgb) / 0.28);
+  background: linear-gradient(135deg, rgb(var(--brand-pink-rgb) / 0.18) 0%, rgb(var(--brand-electric-rgb) / 0.18) 100%);
   color: var(--text);
 }
 
 .btn--primary:hover {
-  background: linear-gradient(135deg, rgba(255, 156, 182, 0.28) 0%, rgba(193, 58, 134, 0.26) 100%);
+  background: linear-gradient(135deg, rgb(var(--brand-pink-rgb) / 0.24) 0%, rgb(var(--brand-electric-rgb) / 0.24) 100%);
 }
 
 .btn--ghost {
@@ -982,8 +1003,8 @@ pre code {
   width: 100%;
   padding: 10px 12px;
   border-radius: 10px;
-  border: 1px solid rgba(193, 58, 134, 0.3);
-  background: linear-gradient(135deg, rgba(255, 156, 182, 0.2) 0%, rgba(193, 58, 134, 0.18) 100%);
+  border: 1px solid rgb(var(--brand-electric-rgb) / 0.3);
+  background: linear-gradient(135deg, rgb(var(--brand-pink-rgb) / 0.18) 0%, rgb(var(--brand-electric-rgb) / 0.16) 100%);
   color: var(--text);
   font-size: 13px;
   font-weight: 700;
@@ -995,13 +1016,13 @@ pre code {
 }
 
 .sidebar-reset-btn:hover {
-  border-color: rgba(193, 58, 134, 0.44);
-  background: linear-gradient(135deg, rgba(255, 156, 182, 0.28) 0%, rgba(193, 58, 134, 0.24) 100%);
+  border-color: rgb(var(--brand-electric-rgb) / 0.44);
+  background: linear-gradient(135deg, rgb(var(--brand-pink-rgb) / 0.24) 0%, rgb(var(--brand-electric-rgb) / 0.22) 100%);
   transform: translateY(-1px);
 }
 
 .sidebar-reset-btn:focus-visible {
-  outline: 2px solid rgba(193, 58, 134, 0.35);
+  outline: 2px solid rgb(var(--brand-electric-rgb) / 0.35);
   outline-offset: 2px;
 }
 

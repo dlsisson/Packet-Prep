@@ -23,7 +23,7 @@
   text-align: center;
   overflow: hidden;
   position: relative;
-  background: linear-gradient(135deg, #fff0f5 0%, #ffd6e8 20%, #ff9cb6 40%, #e0578a 60%, #c13a86 80%, #7b1d5a 100%);
+  background: linear-gradient(135deg, #450693 0%, #8c00ff 34%, #ff3f7f 70%, #ffc400 100%);
   background-size: 300% 300%;
   animation: heroGradientShift 28s ease infinite;
 }
@@ -42,7 +42,7 @@
 
 /* Dark mode version of the hero gradient */
 :root[data-theme="dark"] #home.screen {
-  background: linear-gradient(135deg, #181018 0%, #2e0f22 20%, #5a1440 40%, #7b1d5a 60%, #c13a86 80%, #3d0a28 100%);
+  background: linear-gradient(135deg, #12051f 0%, #2a0d57 26%, #450693 50%, #8c00ff 76%, #ff3f7f 100%);
 }
 
 /* Slight overlay to keep hero text readable */
@@ -137,14 +137,14 @@ h1 {
 .btn:hover {
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(193, 58, 134, 0.35);
+  box-shadow: 0 8px 24px rgb(var(--brand-electric-rgb) / 0.35);
 }
 
 /* Hero ticker */
 .ticker-banner {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  background: linear-gradient(90deg, #7b1d5a 0%, #c13a86 50%, #7b1d5a 100%);
+  background: linear-gradient(90deg, #450693 0%, #8c00ff 45%, #ff3f7f 78%, #ffc400 100%);
   overflow: hidden;
 }
 
@@ -172,14 +172,14 @@ h1 {
 
 .ticker-item {
   font-family: "Orbitron", sans-serif;
-  color: #fff0f5;
+  color: #fff7db;
   letter-spacing: 0.15em;
   font-size: 0.86rem;
   font-weight: 700;
 }
 
 .ticker-dot {
-  color: rgba(255, 240, 245, 0.45);
+  color: rgb(var(--brand-gold-rgb) / 0.5);
   font-size: 0.85rem;
 }
 

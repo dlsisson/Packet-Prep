@@ -1,37 +1,46 @@
 :root {
   /* Core color tokens for light mode */
-  --bg: #fff5f7;
-  --text: #111111;
-  --muted: #4a3640;
-  --line: #ecc8d8;
-  --panel: #fff0f5;
-  --btn: #ffdfe9;
-  --btnText: #111;
-  --focus: #c13a86;
-  --title: #f2f2f2;
+  --bg: #f7f2ff;
+  --text: #16062a;
+  --muted: #56436f;
+  --line: #d9c8f1;
+  --panel: #efe6ff;
+  --btn: #f4ebff;
+  --btnText: #16062a;
+  --focus: #8c00ff;
+  --title: #f7f2ff;
 
   --topH: 75px;
   --max: 1100px;
   --gap: 28px;
   --radius: 14px;
 
+  --brand-deep: #450693;
+  --brand-electric: #8c00ff;
+  --brand-pink: #ff3f7f;
+  --brand-gold: #ffc400;
+  --brand-deep-rgb: 69 6 147;
+  --brand-electric-rgb: 140 0 255;
+  --brand-pink-rgb: 255 63 127;
+  --brand-gold-rgb: 255 196 0;
+
   /* Shared tokens used by lesson pages */
   --border: rgba(0, 0, 0, 0.08);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  --accent: #ff9cb6;
-  --accent-2: #c13a86;
+  --accent: #ff3f7f;
+  --accent-2: #450693;
 }
 
 /* Dark mode token overrides */
 :root[data-theme="dark"] {
-  --bg: #181018;
-  --text: #f2f2f2;
-  --muted: #c3a7b7;
-  --line: #4a2b3a;
-  --panel: #211520;
-  --btn: #301d2c;
-  --btnText: #f2f2f2;
-  --title: #181018;
+  --bg: #12051f;
+  --text: #f5edff;
+  --muted: #ccb7eb;
+  --line: #3a1d5f;
+  --panel: #1d0d30;
+  --btn: #2a1247;
+  --btnText: #f5edff;
+  --title: #12051f;
 
   --border: rgba(255, 255, 255, 0.08);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);

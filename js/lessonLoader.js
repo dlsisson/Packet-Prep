@@ -215,12 +215,23 @@ function renderChapter(chapter, chapters) {
     currentGroup.className = "navgroup";
 
     const links = (chapter.sections || [])
-      .map((sec) => `<a class="navitem" href="#${sec.id}" data-scroll>${sec.heading}</a>`)
+      .map(
+        (sec) => `
+          <li>
+            <a class="navitem" href="#${sec.id}" data-scroll>${sec.heading}</a>
+          </li>
+        `
+      )
       .join("");
 
     currentGroup.innerHTML = `
-      ${links}
-      <a class="navitem" href="#knowledge-check" data-scroll>Knowledge Check</a>
+      <div class="sidebar__navTitle">Chapter Sections</div>
+      <ol class="section-nav-list">
+        ${links}
+        <li>
+          <a class="navitem" href="#knowledge-check" data-scroll>Knowledge Check</a>
+        </li>
+      </ol>
       <hr style="border:0;border-top:1px solid var(--border);margin:10px 12px">
       <div style="padding:12px 12px 10px" class="muted">Other Chapters</div>
       <ul class="jump-chapters-list">
