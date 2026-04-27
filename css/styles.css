@@ -227,10 +227,18 @@ h1 {
   background: transparent;
   aspect-ratio: 1;
   display: flex;
-  height: 20em;
   align-items: center;
   justify-content: center;
-  color: var(--muted);
+  color: var(--text);
+  padding: 2rem;
+}
+
+.fact-media svg {
+  width: 100%;
+  height: 100%;
+  max-width: 10rem;
+  max-height: 10rem;
+  stroke: currentColor;
 }
 
 .fact-title {
@@ -364,6 +372,13 @@ h1 {
   border-bottom: 0;
 }
 
+.topic {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem 0.75rem 0;
+}
+
 .learnRow:first-child {
   border-top: 0;
 }
@@ -419,6 +434,20 @@ h1 {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
+.previewIcon {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+
+.previewIcon svg {
+  width: 6rem;
+  height: 6rem;
+  stroke-width: 1.25;
+}
+
 .previewTitle {
   font-weight: 900;
   font-size: 1.2rem;
@@ -432,7 +461,6 @@ h1 {
 }
 
 .previewMeta {
-  margin-top: auto;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
