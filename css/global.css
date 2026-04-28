@@ -87,6 +87,7 @@ body.nav-open {
   z-index: 300;
 }
 
+.skip-link:focus,
 .skip-link:focus-visible {
   transform: translateY(0);
 }

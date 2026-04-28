@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupLearnAnimation(prefersReducedMotion);
   setupBackToTop(prefersReducedMotion);
   setupThemeToggle();
+  setupSkipLinkPriority();
   setupLearnPreviewPanel();
   setupBeginButtons();
   setupHeroTicker(prefersReducedMotion);
@@ -15,6 +16,24 @@ document.addEventListener("DOMContentLoaded", () => {
   setupLessonSidebar();
   setupHeroParticles(prefersReducedMotion);
 });
+
+function setupSkipLinkPriority() {
+  const skipLink = document.querySelector(".skip-link");
+  if (!skipLink) return;
+
+  function handleFirstTab(event) {
+    if (event.key !== "Tab") return;
+    if (event.defaultPrevented) return;
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    if (document.activeElement !== document.body) return;
+
+    event.preventDefault();
+    skipLink.focus();
+    document.removeEventListener("keydown", handleFirstTab, true);
+  }
+
+  document.addEventListener("keydown", handleFirstTab, true);
+}
 
 function registerGsapPlugins() {
   if (window.ScrollTrigger) {

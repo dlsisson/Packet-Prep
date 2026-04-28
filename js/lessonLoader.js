@@ -20,7 +20,7 @@ function getProgressState() {
     if (!parsed || typeof parsed !== "object") return { chapters: {} };
     if (!parsed.chapters || typeof parsed.chapters !== "object") parsed.chapters = {};
     return parsed;
-  } catch {
+  } catch (error) {
     return { chapters: {} };
   }
 }
@@ -28,7 +28,7 @@ function getProgressState() {
 function saveProgressState(state) {
   try {
     localStorage.setItem(LESSON_PROGRESS_KEY, JSON.stringify(state));
-  } catch {
+  } catch (error) {
     // Keep the page usable even if storage is blocked.
   }
 }
@@ -36,7 +36,7 @@ function saveProgressState(state) {
 function resetProgressState() {
   try {
     localStorage.removeItem(LESSON_PROGRESS_KEY);
-  } catch {
+  } catch (error) {
     // Keep the page usable even if storage is blocked.
   }
 }
@@ -73,7 +73,10 @@ function updateCourseProgressUI(chapters) {
 
   const state = getProgressState();
   const total = chapters.length || 0;
-  const passedCount = chapters.filter((ch) => state.chapters[ch.id]?.passed).length;
+  const passedCount = chapters.filter((ch) => {
+    const chapterProgress = state.chapters[ch.id];
+    return chapterProgress && chapterProgress.passed;
+  }).length;
   const percent = total ? Math.round((passedCount / total) * 100) : 0;
 
   if (fillEl) fillEl.style.width = `${percent}%`;
@@ -134,12 +137,12 @@ function renderSectionHTML(sec) {
         (item) => `
       <div class="twocol__row">
         <div class="twocol__left">
-          <div class="twocol__badge">${item.label ?? ""}</div>
-          <div class="twocol__title">${item.title ?? ""}</div>
+          <div class="twocol__badge">${item.label || ""}</div>
+          <div class="twocol__title">${item.title || ""}</div>
         </div>
 
         <div class="twocol__right">
-          <p class="twocol__desc">${item.desc ?? ""}</p>
+          <p class="twocol__desc">${item.desc || ""}</p>
         </div>
       </div>
     `
@@ -243,7 +246,7 @@ function renderChapter(chapter, chapters) {
                href="?id=${ch.id}"
                data-chapter-link="${ch.id}">
               <span class="chapter-link__label">Chapter ${ch.number}: ${ch.title}</span>
-              ${state.chapters[ch.id]?.passed ? chapterCompleteIcon() : ""}
+              ${state.chapters[ch.id] && state.chapters[ch.id].passed ? chapterCompleteIcon() : ""}
             </a>
           </li>
         `
@@ -329,7 +332,10 @@ function wireNavigation() {
 
     setURLChapter(id);
     await loadAndRender();
-    document.getElementById("main")?.scrollIntoView({ behavior: "smooth" });
+    const mainEl = document.getElementById("main");
+    if (mainEl) {
+      mainEl.scrollIntoView({ behavior: "smooth" });
+    }
   });
 
   window.addEventListener("popstate", () => {
@@ -521,7 +527,10 @@ function mountSingleCardQuiz(mountEl, quizData, chapterId) {
 
     const labels = mountEl.querySelectorAll(".quizopt");
     labels.forEach((label) => label.classList.remove("is-selected"));
-    input.closest(".quizopt")?.classList.add("is-selected");
+    const selectedLabel = input.closest(".quizopt");
+    if (selectedLabel) {
+      selectedLabel.classList.add("is-selected");
+    }
   }
 
   function handleCheckAnswer() {
@@ -544,7 +553,7 @@ function mountSingleCardQuiz(mountEl, quizData, chapterId) {
     }
 
     isLocked = true;
-    const correctIdx = q._shuffledAnswerIndex ?? q.answerIndex;
+    const correctIdx = typeof q._shuffledAnswerIndex === "number" ? q._shuffledAnswerIndex : q.answerIndex;
     const isCorrect = selectedIndex === correctIdx;
 
     if (isCorrect) score += 1;
@@ -610,7 +619,7 @@ function mountSingleCardQuiz(mountEl, quizData, chapterId) {
 
     setChapterProgress(chapterId, score, total);
 
-    if (LESSONS?.chapters) {
+    if (LESSONS && LESSONS.chapters) {
       updateCourseProgressUI(LESSONS.chapters);
     }
 
@@ -629,10 +638,10 @@ function mountSingleCardQuiz(mountEl, quizData, chapterId) {
   const nextBtn = mountEl.querySelector("#quizNextBtn");
   const restartBtn = mountEl.querySelector("#quizRestartBtn");
 
-  body?.addEventListener("change", handleSelectionChange);
-  checkBtn?.addEventListener("click", handleCheckAnswer);
-  nextBtn?.addEventListener("click", handleNextQuestion);
-  restartBtn?.addEventListener("click", handleRestart);
+  if (body) body.addEventListener("change", handleSelectionChange);
+  if (checkBtn) checkBtn.addEventListener("click", handleCheckAnswer);
+  if (nextBtn) nextBtn.addEventListener("click", handleNextQuestion);
+  if (restartBtn) restartBtn.addEventListener("click", handleRestart);
 
   renderQuestion();
 }
